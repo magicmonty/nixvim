@@ -1,0 +1,20 @@
+{
+  imports = [
+    ./bufferline.nix
+    ./cmp.nix
+    ./commentary.nix
+    ./conform.nix
+    ./dressing.nix
+    ./flash.nix
+    ./gitsigns.nix
+    ./lsp.nix
+    ./lualine.nix
+    ./neo-tree.nix
+    ./notify.nix
+    ./noice.nix
+    ./nightfox.nix
+    ./telescope.nix
+    ./treesitter.nix
+    ./trouble.nix
+  ];
+}
