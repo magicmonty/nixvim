@@ -19,5 +19,7 @@
     ./telescope.nix
     ./treesitter.nix
     ./trouble.nix
+    ./ufo.nix
+    ./which-key.nix
   ];
 }
