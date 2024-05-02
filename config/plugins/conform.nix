@@ -1,14 +1,19 @@
-{
+{pkgs, ...}: {
+  extraPackages = with pkgs; [
+    stylua
+    alejandra
+    shfmt
+    nodePackages.prettier
+    prettierd
+    yamllint
+    yamlfmt
+  ];
   plugins.conform-nvim = {
     enable = true;
-    formatOnSave = ''
-      {
-        timeout_ms = 3000,
-        async = false,
-        quiet = false,
-        lsp_fallback = true,
-      }
-    '';
+    formatOnSave = {
+      timeoutMs = 3000;
+      lspFallback = true;
+    };
     formatters = {
       injected = {
         options = {
@@ -21,6 +26,14 @@
       lua = ["stylua"];
       nix = ["alejandra"];
       sh = ["shfmt"];
+      html = [["prettierd" "prettier"]];
+      css = [["prettierd" "prettier"]];
+      javascript = [["prettierd" "prettier"]];
+      javascriptreact = [["prettierd" "prettier"]];
+      typescript = [["prettierd" "prettier"]];
+      typescriptreact = [["prettierd" "prettier"]];
+      markdown = [["prettierd" "prettier"]];
+      yaml = [["yamllint" "yamlfmt"]];
     };
   };
 
@@ -33,6 +46,9 @@
           require("conform").format({ timeout_ms = 3000 })
         end
       '';
+      options = {
+        desc = "Format";
+      };
     }
     {
       mode = ["n" "v"];
@@ -42,12 +58,9 @@
           require("conform").format({ formatters = { "injected" }, timeout_ms = 3000 })
         end
       '';
-    }
-    {
-      # Escape terminal mode using ESC
-      mode = "t";
-      key = "<ESC>";
-      action = "<C-\\><C-n>";
+      options = {
+        desc = "Format injected";
+      };
     }
   ];
 }
