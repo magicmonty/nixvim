@@ -11,6 +11,7 @@
     ./lsp.nix
     ./lspkind.nix
     ./lualine.nix
+    ./luasnip.nix
     ./neo-tree.nix
     ./notify.nix
     ./noice.nix

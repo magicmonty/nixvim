@@ -19,10 +19,10 @@
           name = "diagnostics";
           extraConfig = {
             symbols = {
-              error = "e";
-              warn = "w";
-              info = "i";
-              hint = "h";
+              error = " ";
+              warn = " ";
+              info = " ";
+              hint = "󰝶 ";
             };
           };
         }

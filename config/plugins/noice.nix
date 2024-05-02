@@ -1,11 +1,34 @@
 {
   plugins.noice = {
     enable = true;
+    notify.enabled = false;
+    messages.enabled = true;
     lsp = {
+      message.enabled = true;
+      progress = {
+        enabled = false;
+        view = "mini";
+      };
       override = {
         "vim.lsp.util.convert_input_to_markdown_lines" = true;
         "vim.lsp.util.stylize_markdown" = true;
         "cmp.entry.get_documentation" = true;
+      };
+    };
+    popupmenu = {
+      enabled = true;
+      backend = "nui";
+    };
+    format = {
+      filter = {
+        pattern = [":%s*%%s*s:%s*" ":%s*%%s*s!%s*" ":%s*%%s*s/%s*" "%s*s:%s*" ":%s*s!%s*" ":%s*s/%s*"];
+        icon = "";
+        lang = "regex";
+      };
+      replace = {
+        pattern = [":%s*%%s*s:%w*:%s*" ":%s*%%s*s!%w*!%s*" ":%s*%%s*s/%w*/%s*" "%s*s:%w*:%s*" ":%s*s!%w*!%s*" ":%s*s/%w*/%s*"];
+        icon = "󱞪";
+        lang = "regex";
       };
     };
     routes = [
