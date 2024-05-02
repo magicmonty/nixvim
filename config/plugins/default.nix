@@ -1,9 +1,11 @@
 {
   imports = [
+    ./autopairs.nix
     ./bufferline.nix
     ./cmp.nix
-    ./commentary.nix
+    ./comment.nix
     ./conform.nix
+    ./dashboard.nix
     ./dressing.nix
     ./fidget.nix
     ./flash.nix
@@ -12,6 +14,7 @@
     ./lspkind.nix
     ./lualine.nix
     ./luasnip.nix
+    ./mini.nix
     ./neo-tree.nix
     ./notify.nix
     ./noice.nix
