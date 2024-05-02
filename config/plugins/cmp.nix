@@ -7,97 +7,64 @@
     cmp-path.enable = true;
     cmp_luasnip.enable = true;
     cmp-treesitter.enable = true;
+    copilot-cmp.enable = true;
+    copilot-lua = {
+      enable = true;
+      suggestion.enabled = false;
+      panel.enabled = false;
+    };
 
     cmp = {
       enable = true;
-      autoEnableSources = true;
       settings = {
+        autoEnableSources = true;
+        experimental = {
+          ghost_text = {
+            hl_group = "CmpGhostText";
+          };
+        };
+        performance = {
+          debounce = 60;
+          fetchingTimeout = 200;
+          maxViewEntries = 30;
+        };
         snippet.expand = "luasnip";
         sources = [
           {name = "nvim_lsp";}
+          {name = "emoji";}
+          {name = "copilot";}
           {name = "treesitter";}
-          {name = "luasnip";}
+          {
+            name = "luasnip";
+            keywordLength = 3;
+          }
           {
             name = "buffer";
             option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+            keywordLength = 3;
           }
-          {name = "path";}
+          {
+            name = "path";
+            keywordLength = 3;
+          }
         ];
         formatting = {
           fields = ["abbr" "kind" "menu"];
-          format =
-            # lua
-            ''
-              function(_, item)
-                local icons = {
-                  Namespace = "󰌗",
-                  Text = "󰉿",
-                  Method = "󰆧",
-                  Function = "󰆧",
-                  Constructor = "",
-                  Field = "󰜢",
-                  Variable = "󰀫",
-                  Class = "󰠱",
-                  Interface = "",
-                  Module = "",
-                  Property = "󰜢",
-                  Unit = "󰑭",
-                  Value = "󰎠",
-                  Enum = "",
-                  Keyword = "󰌋",
-                  Snippet = "",
-                  Color = "󰏘",
-                  File = "󰈚",
-                  Reference = "󰈇",
-                  Folder = "󰉋",
-                  EnumMember = "",
-                  Constant = "󰏿",
-                  Struct = "󰙅",
-                  Event = "",
-                  Operator = "󰆕",
-                  TypeParameter = "󰊄",
-                  Table = "",
-                  Object = "󰅩",
-                  Tag = "",
-                  Array = "[]",
-                  Boolean = "",
-                  Number = "",
-                  Null = "󰟢",
-                  String = "󰉿",
-                  Calendar = "",
-                  Watch = "󰥔",
-                  Package = "",
-                  Copilot = "",
-                  Codeium = "",
-                  TabNine = "",
-                }
-
-                local icon = icons[item.kind] or ""
-                item.kind = string.format("%s %s", icon, item.kind or "")
-                return item
-              end
-            '';
         };
 
         completion = {
           completeopt = "menu,menuone,noinsert";
         };
 
-        experimental = {
-          ghost_text = {
-            hl_group = "CmpGhostText";
-          };
-        };
-
         window = {
           completion = {
             scrollbar = false;
             sidePadding = 0;
-            border = ["╭" "─" "╮" "│" "╯" "─" "╰" "│"];
+            border = "rounded";
           };
 
           settings.documentation = {
-            border = ["╭" "─" "╮" "│" "╯" "─" "╰" "│"];
+            border = "rounded";
           };
         };
 
@@ -151,4 +118,46 @@
       };
     };
   };
+  extraConfigLua =
+    # lua
+    ''
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+
+      luasnip = require("luasnip")
+
+      local cmp = require'cmp'
+      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+      cmp.setup.cmdline({'/', "?" }, {
+        sources = {
+          { name = 'buffer' }
+        }
+      })
+
+      -- Set configuration for specific filetype.
+      cmp.setup.filetype('gitcommit', {
+        sources = cmp.config.sources(
+          {
+            { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+          },
+          {
+            { name = 'buffer' },
+          }
+        )
+      })
+
+      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+      cmp.setup.cmdline(':', {
+        sources = cmp.config.sources(
+          {
+            { name = 'path' }
+          },
+          {
+            { name = 'cmdline' }
+          }
+        ),
+      })
+    '';
 }

@@ -5,9 +5,11 @@
     ./commentary.nix
     ./conform.nix
     ./dressing.nix
+    ./fidget.nix
     ./flash.nix
     ./gitsigns.nix
     ./lsp.nix
+    ./lspkind.nix
     ./lualine.nix
     ./neo-tree.nix
     ./notify.nix
