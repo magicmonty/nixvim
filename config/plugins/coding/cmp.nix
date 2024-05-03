@@ -6,6 +6,7 @@
     cmp-path.enable = true;
     cmp_luasnip.enable = true;
     cmp-treesitter.enable = true;
+    cmp-git.enable = true;
     copilot-cmp.enable = true;
     copilot-lua = {
       enable = true;

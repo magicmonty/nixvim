@@ -53,6 +53,10 @@
       };
     };
 
+    ts-context-commentstring = {
+      enable = true;
+    };
+
     rainbow-delimiters.enable = true;
   };
 }
