@@ -77,7 +77,7 @@
           position = "center";
         };
         type = "text";
-        val = "https://github.com/magicmonty/nixvim-config";
+        val = "https://github.com/magicmonty/nixvim";
       }
     ];
   };

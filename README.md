@@ -55,7 +55,7 @@ If you have nix installed, you can directly run my config from anywhere
 You can try running mine with:
 
 ```shell
-nix run 'github:magicmonty/nixvim-config'
+nix run 'github:magicmonty/nixvim'
 ```
 
 ## Installing into NixOS configuration
@@ -69,7 +69,7 @@ You can add my `nixvim` configuration as an input to your `NixOS` configuration 
 ```nix
 {
  inputs = {
-    nixvim.url = "github:magicmonty/nixvim-config";
+    nixvim.url = "github:magicmonty/nixvim";
  };
 }
 ```
