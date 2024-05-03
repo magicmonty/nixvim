@@ -59,6 +59,8 @@
         in [
           (mkButton "f" "<CMD>lua require('telescope.builtin').find_files({hidden = true})<CR>" "  Find File" "Operator")
           (mkPadding 1)
+          (mkButton "e" "<CMD>Neotree<CR>" "  Open Neo-Tree" "Operator")
+          (mkPadding 1)
           (mkButton "n" "<cmd>ene | startinsert<cr>" "  New File" "Operator")
           (mkPadding 1)
           (mkButton "r" "<cmd>Telescope oldfiles<cr>" "  Recent Files" "Operator")

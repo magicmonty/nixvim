@@ -1,11 +1,11 @@
 {
   imports = [
+    ./alpha.nix
     ./autopairs.nix
     ./bufferline.nix
     ./cmp.nix
     ./comment.nix
     ./conform.nix
-    ./dashboard.nix
     ./dressing.nix
     ./fidget.nix
     ./flash.nix

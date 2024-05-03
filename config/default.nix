@@ -15,6 +15,7 @@
   viAlias = true;
   vimAlias = true;
   withNodeJs = true;
+  enableMan = false;
 
   globals = {
     mapleader = " ";
