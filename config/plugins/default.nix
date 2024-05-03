@@ -1,28 +1,11 @@
 {
   imports = [
-    ./alpha.nix
-    ./autopairs.nix
-    ./bufferline.nix
-    ./cmp.nix
-    ./comment.nix
-    ./conform.nix
-    ./dressing.nix
-    ./fidget.nix
-    ./flash.nix
-    ./gitsigns.nix
-    ./lsp.nix
-    ./lspkind.nix
-    ./lualine.nix
-    ./luasnip.nix
-    ./mini.nix
-    ./neo-tree.nix
-    ./notify.nix
-    ./noice.nix
-    ./nightfox.nix
-    ./telescope.nix
-    ./treesitter.nix
-    ./trouble.nix
-    ./ufo.nix
-    ./which-key.nix
+    ./coding
+    ./colorscheme
+    ./editor
+    ./formatting
+    ./lsp
+    ./treesitter
+    ./ui
   ];
 }
