@@ -94,8 +94,8 @@
               cmp.mapping(function(fallback)
                 if cmp.visible() then
                   cmp.select_next_item()
-                elseif luasnip.expand_or_jumpable() then
-                  luasnip.expand_or_jump()
+                elseif require("luasnip").expand_or_jumpable() then
+                  require("luasnip").expand_or_jump()
                 elseif has_words_before() then
                   cmp.complete()
                 else
@@ -109,8 +109,8 @@
               cmp.mapping(function(fallback)
                 if cmp.visible() then
                   cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
-                  luasnip.jump(-1)
+                elseif require("luasnip").jumpable(-1) then
+                  require("luasnip").jump(-1)
                 else
                   fallback()
                 end
@@ -123,8 +123,6 @@
   extraConfigLuaPre =
     # lua
     ''
-      local luasnip = require("luasnip")
-
       function has_words_before()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
