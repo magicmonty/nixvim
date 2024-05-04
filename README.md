@@ -12,12 +12,12 @@ If you add a new configuration file, remember to add it to the
 
 - **Coding**
 - **Color scheme**
-  - [nvim-autopairs](./config/plugins/coding/autopairs.nix)
   - [nvim-cmp](./config/plugins/coding/cmp.nix)
   - [comment.nvim](./config/plugins/coding/comment.nix)
   - [LuaSnip](./config/plugins/coding/luasnip.nix)
   - [mini](./config/plugins/coding/mini.nix)
     - [mini.ai](./config/plugins/coding/mini-ai.nix) - Better text-objects
+    - [mini.pairs](./config/plugins/coding/mini-pairs.nix)
     - [mini.surround](./config/plugins/coding/mini-surround.nix)
 - **Editor**
   - [flash](./config/plugins/editor/flash.nix)
