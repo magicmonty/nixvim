@@ -104,6 +104,7 @@
     })
     (nremap "<leader>," "<cmd>e #<cr>" "Switch to other buffer")
     (nremap "<leader>bb" "<cmd>e #<cr>" "Switch to other buffer")
+    (lnremap "<leader>bd" "function() require('mini.bufremove').delete(n, false) end" "Delete Buffer")
 
     # Clear search with <esc>
     (kmap ["i" "n"] "<esc>" "<cmd>noh<cr><esc>" {desc = "Escape and Clear hlsearch";})

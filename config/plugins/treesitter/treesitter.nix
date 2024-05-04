@@ -16,47 +16,6 @@
       };
     };
 
-    treesitter-context = {
-      enable = true;
-      settings = {
-        line_numbers = true;
-        max_lines = 3;
-        mode = "cursor";
-        multiline_threshold = 20;
-        separator = "-";
-        trim_scope = "inner";
-        zindex = 20;
-      };
-    };
-
-    treesitter-refactor = {
-      enable = true;
-      highlightCurrentScope.enable = false;
-      highlightDefinitions.enable = true;
-      navigation = {
-        enable = true;
-        keymaps = {
-          gotoDefinition = "gd";
-        };
-      };
-      smartRename = {
-        enable = true;
-        keymaps.smartRename = "<leader>rr";
-      };
-    };
-
-    treesitter-textobjects = {
-      enable = true;
-      lspInterop = {
-        enable = true;
-        border = "rounded";
-      };
-    };
-
-    ts-context-commentstring = {
-      enable = true;
-    };
-
     rainbow-delimiters.enable = true;
   };
 }

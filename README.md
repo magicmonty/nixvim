@@ -33,6 +33,11 @@ If you add a new configuration file, remember to add it to the
   - [lspkind](./config/plugins/lsp/lspkind.nix)
 - **Treesitter**
   - [nvim-treesitter](./config/plugins/treesitter/treesitter.nix)
+  - [treesitter-context](./config/plugins/treesitter/context.nix)
+  - [treesitter-refactor](./config/plugins/treesitter/refactor.nix)
+  - [treesitter-textobjects](./config/plugins/treesitter/textobjects.nix)
+  - [ts-autotag](./config/plugins/treesitter/autotag.nix)
+  - [ts-context-commentstring](./config/plugins/treesitter/context-commentstring.nix)
 - **UI**
   - [alpha](./config/plugins/ui/alpha.nix)
   - [bufferline](./config/plugins/ui/bufferline.nix)
