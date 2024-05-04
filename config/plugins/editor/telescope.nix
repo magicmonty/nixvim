@@ -1,9 +1,6 @@
 {
   plugins.telescope = {
     enable = true;
-    keymaps = {
-      "<leader>fg" = "live_grep";
-    };
     extensions.fzf-native.enable = true;
     settings = {
       prompt_prefix = " ";
@@ -88,6 +85,11 @@
     }
     {
       key = "<leader>fg";
+      action = "<cmd>Telescope live_grep<cr>";
+      options = {desc = "Live grep";};
+    }
+    {
+      key = "<leader>fG";
       action = "<cmd>Telescope git_files<cr>";
       options = {desc = "Find Files (git-files)";};
     }
