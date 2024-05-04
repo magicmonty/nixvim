@@ -11,14 +11,16 @@ If you add a new configuration file, remember to add it to the
 ## Current Plugins
 
 - **Coding**
-- **Color scheme**
   - [nvim-cmp](./config/plugins/coding/cmp.nix)
   - [comment.nvim](./config/plugins/coding/comment.nix)
+  - [LazyGit](./config/plugins/coding/lazygit.nix)  
   - [LuaSnip](./config/plugins/coding/luasnip.nix)
   - [mini](./config/plugins/coding/mini.nix)
     - [mini.ai](./config/plugins/coding/mini-ai.nix) - Better text-objects
     - [mini.pairs](./config/plugins/coding/mini-pairs.nix)
     - [mini.surround](./config/plugins/coding/mini-surround.nix)
+- **Color scheme**
+  - [nightfox](./config/plugins/colorscheme/nightfox.nix)
 - **Editor**
   - [flash](./config/plugins/editor/flash.nix)
   - [gitsigns](./config/plugins/editor/gitsigns.nix)
@@ -31,6 +33,8 @@ If you add a new configuration file, remember to add it to the
   - [which-key](./config/plugins/editor/which-key.nix)
 - **Formatting**
   - [conform.nvim](./config/plugins/formatting/conform.nix)
+- **Linting**
+  - [nvim-lint](./config/plugins/linting/nvim-lint.nix)
 - **LSP**
   - [fidget.nvim](./config/plugins/lsp/fidget.nix)
   - [lsp](./config/plugins/lsp/lsp.nix)

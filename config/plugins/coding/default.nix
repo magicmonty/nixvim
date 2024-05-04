@@ -2,6 +2,7 @@
   imports = [
     ./cmp.nix
     ./comment.nix
+    ./lazygit.nix
     ./mini.nix
     ./mini-ai.nix
     ./mini-pairs.nix
