@@ -25,6 +25,7 @@
             end
           end
         '';
+      lua = true;
       options = {
         desc = "Toggle Auto Pairs";
       };
