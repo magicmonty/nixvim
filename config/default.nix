@@ -4,6 +4,7 @@
     ./plugins
     ./icons_lua.nix
     ./keymaps.nix
+    ./utils
   ];
 
   config = {
@@ -93,6 +94,21 @@
     };
 
     autoCmd = [
+      {
+        event = "TermClose";
+        pattern = "*lazygit";
+        callback = {
+          __raw =
+            # lua
+            ''
+              function()
+                if package.loaded["neo-tree.sources.git_status"] then
+                  require("neo-tree.sources.git_status").refresh()
+                end
+              end
+            '';
+        };
+      }
       # Highlight on yank
       {
         event = "TextYankPost";

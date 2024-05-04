@@ -24,8 +24,6 @@
       silent = true;
     });
   in [
-    (lnremap "<leader>." "function() require('neo-tree.command').execute({ toggle = true }) end" "Explorer")
-
     # Better up / down
     (kmap ["n" "x"] "j" "v:count == 0 ? 'gj' : 'j'" {
       expr = true;
