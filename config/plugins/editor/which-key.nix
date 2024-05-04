@@ -18,6 +18,7 @@
       "<leader>u" = "+ui";
       "<leader>w" = "+windows";
       "<leader>x" = "+diagnostics/quickfix";
+      "<leader>sn" = "+noice";
     };
   };
 }
