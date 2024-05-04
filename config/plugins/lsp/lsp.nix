@@ -11,6 +11,9 @@
         settings.telemetry.enable = false;
       };
       nil_ls.enable = true;
+      dockerls.enable = true;
+      docker-compose-language-service.enable = true;
+      marksman.enable = true;
     };
 
     keymaps = {

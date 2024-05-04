@@ -64,6 +64,57 @@ in {
               # lua
               ''
                 function()
+                  local icon = icons.kinds.Copilot
+                  local status = require("copilot.api").status.data
+                  return icon .. (status.message or "")
+                end
+              '';
+          };
+          extraConfig = {
+            cond = {
+              __raw =
+                # lua
+                ''
+                  function()
+                    if not package.loaded["copilot"] then
+                      return
+                    end
+                    local ok, clients = pcall(NixVim.lsp.get_clients, { name = "copilot", bufnr = 0 })
+                    if not ok then
+                      return false
+                    end
+                    return ok and #clients > 0
+                  end
+                '';
+            };
+            color = {
+              __raw =
+                # lua
+                ''
+                  function()
+                    local colors = {
+                      [""] = NixVim.ui.fg("Special"),
+                      ["Normal"] = NixVim.ui.fg("Special"),
+                      ["Warning"] = NixVim.ui.fg("DiagnosticError"),
+                      ["InProgress"] = NixVim.ui.fg("DiagnosticWarn"),
+                    }
+                    if not package.loaded["copilot"] then
+                      return
+                    end
+                    local status = require("copilot.api").status.data
+                    return colors[status.status] or colors[""]
+                  end
+                '';
+            };
+          };
+        }
+
+        {
+          name = {
+            __raw =
+              # lua
+              ''
+                function()
                   return require("noice").api.status.mode.get()
                 end
               '';
