@@ -16,7 +16,9 @@ If you add a new configuration file, remember to add it to the
   - [nvim-cmp](./config/plugins/coding/cmp.nix)
   - [comment.nvim](./config/plugins/coding/comment.nix)
   - [LuaSnip](./config/plugins/coding/luasnip.nix)
-  - [mini.surround](./config/plugins/coding/mini.nix)
+  - [mini](./config/plugins/coding/mini.nix)
+    - [mini.ai](./config/plugins/coding/mini-ai.nix) - Better text-objects
+    - [mini.surround](./config/plugins/coding/mini-surround.nix)
 - **Editor**
   - [flash](./config/plugins/editor/flash.nix)
   - [gitsigns](./config/plugins/editor/gitsigns.nix)

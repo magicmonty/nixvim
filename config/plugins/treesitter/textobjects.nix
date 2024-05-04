@@ -5,7 +5,49 @@
       enable = true;
       border = "rounded";
     };
-    move.enable = true;
+    move = {
+      enable = true;
+      gotoNextStart = {
+        "äf" = {
+          query = "@function.outer";
+          desc = "Goto start of next function";
+        };
+        "äc" = {
+          query = "@class.outer";
+          desc = "Goto start of next class";
+        };
+      };
+      gotoNextEnd = {
+        "äF" = {
+          query = "@function.outer";
+          desc = "Goto end of next function";
+        };
+        "äC" = {
+          query = "@class.outer";
+          desc = "Goto end of next class";
+        };
+      };
+      gotoPreviousStart = {
+        "öf" = {
+          query = "@function.outer";
+          desc = "Goto start of previous function";
+        };
+        "öc" = {
+          query = "@class.outer";
+          desc = "Goto start of previous class";
+        };
+      };
+      gotoPreviousEnd = {
+        "öF" = {
+          query = "@function.outer";
+          desc = "Goto end of previous function";
+        };
+        "öC" = {
+          query = "@class.outer";
+          desc = "Goto end of previous class";
+        };
+      };
+    };
   };
 
   extraConfigLuaPost =
