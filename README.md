@@ -22,7 +22,7 @@ If you add a new configuration file, remember to add it to the
 - **Editor**
   - [flash](./config/plugins/editor/flash.nix)
   - [gitsigns](./config/plugins/editor/gitsigns.nix)
-  - [indent-blankline](./config/plugins/editor/indent.nix)
+  - [illuminate](./config/plugins/editor/illuminate.nix)
   - [neo-tree](./config/plugins/editor/neo-tree.nix)
   - [spectre](./config/plugins/editor/spectre.nix)
   - [Telescope](./config/plugins/editor/telescope.nix)
