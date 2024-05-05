@@ -1,6 +1,46 @@
 {
   plugins.lsp = {
     enable = true;
+    onAttach =
+      # lua
+      ''
+        vim.keymap.set("n", "<leader>cl", "<cmd>LspInfo<cr>", { desc = "LSP info", silent = true })
+        vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "References", silent = true })
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
+        vim.keymap.set("n", "gI", function() require('telescope.builtin').lsp_implementations({ reuse_win = true }) end, { desc = "Goto Implementation" })
+        vim.keymap.set("n", "gy", function() require('telescope.builtin').lsp_type_definitions({ reuse_win = true }) end, { desc = "Goto T[y]pe Definition" })
+        vim.keymap.set("n", "<leader>cr", function()
+          local inc_rename = require("inc_rename")
+          return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
+        end, {desc = "Rename"})
+
+        if NixVim.lsp.has(bufnr, "definition") then
+          vim.keymap.set("n", "gd", function() require('telescope.builtin').lsp_definitions({ reuse_win = true }) end, { desc = "Goto Definition" })
+        end
+
+        if NixVim.lsp.has(bufnr, "signatureHelp") then
+          vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
+          vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { desc = "Signature Help" })
+        end
+
+        if NixVim.lsp.has(bufnr, "codeAction") then
+          vim.keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+          vim.keymap.set("n", "<leader>cA", function()
+            vim.lsp.buf.code_action({
+              context = {
+                only = { "source" },
+                diagnostics = {},
+              },
+            })
+          end, { desc = "Source Action" })
+        end
+
+        if NixVim.lsp.has(bufnr, "codeLens") then
+          vim.keymap.set({"n", "v"}, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
+          vim.keymap.set("n", "<leader>cC", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens" })
+        end
+
+      '';
 
     servers = {
       bashls.enable = true;
@@ -113,8 +153,6 @@
       };
 
       lspBuf = {
-        "gd" = "definition";
-        "gr" = "references";
         "gt" = "type_definition";
         "gi" = "implementation";
         "K" = "hover";

@@ -1,6 +1,10 @@
-{
+{pkgs, ...}: {
   plugins.vimtex = {
     enable = true;
+    texlivePackage = null;
+    settings = {
+      view_method = "zathura";
+    };
   };
 
   globals = {
@@ -9,4 +13,6 @@
 
     vimtex_quickfix_method = {__raw = "vim.fn.executable('pplatex') == 1 and 'pplatex' or 'latexlog'";};
   };
+
+  extraPackages = [pkgs.zathura];
 }

@@ -137,9 +137,9 @@ in {
           name = "diff";
           extraConfig = {
             symbols = {
-              added = icons.git.added;
-              modified = icons.git.modified;
-              removed = icons.git.removed;
+              inherit (icons.git) added;
+              inherit (icons.git) modified;
+              inherit (icons.git) removed;
             };
             source = {
               __raw =

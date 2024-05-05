@@ -37,6 +37,7 @@ If you add a new configuration file, remember to add it to the
   - [nvim-lint](./config/plugins/linting/nvim-lint.nix)
 - **LSP**
   - [fidget.nvim](./config/plugins/lsp/fidget.nix)
+  - [inc-rename](./config/plugins/lsp/inc-rename.nix)
   - [lsp](./config/plugins/lsp/lsp.nix)
   - [lspkind](./config/plugins/lsp/lspkind.nix)
 - **Treesitter**

@@ -5,6 +5,7 @@
     ./editor
     ./formatting
     ./lang
+    ./linting
     ./lsp
     ./treesitter
     ./ui
