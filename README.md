@@ -56,6 +56,10 @@ If you add a new configuration file, remember to add it to the
   - [noice](./config/plugins/ui/noice.nix)
   - [nvim-notify](./config/plugins/ui/notify.nix)
   - [ufo](./config/plugins/ui/ufo.nix)
+- **Language support**
+  - **Markdown**
+    - [headlines](./config/plugins/lang/markdown/headlines.nix)
+    - [markdown-preview](./config/plugins/lang/markdown/markdown-preview.nix)
 
 ## Testing your new configuration
 
