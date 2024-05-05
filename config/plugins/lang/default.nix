@@ -3,5 +3,6 @@
     ./json
     ./markdown
     ./tailwindcss
+    ./tex
   ];
 }

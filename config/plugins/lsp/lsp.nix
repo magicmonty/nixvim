@@ -20,6 +20,14 @@
           filetypes = ["javascript" "javascriptreact" "typescript" "typescriptreact" "html" "css" "scss" "vue" "svelte"];
         };
       };
+      texlab = {
+        enable = true;
+        onAttach.function =
+          # lua
+          ''
+            vim.keymap.set("n", "<leader>K", "<plug>(vimtex-doc-package)", desc = "Vimtex docs", silent = true)
+          '';
+      };
     };
 
     keymaps = {

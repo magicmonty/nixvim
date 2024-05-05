@@ -35,6 +35,10 @@
         snippet.expand = "luasnip";
         sources = [
           {name = "nvim_lsp";}
+          {
+            name = "path";
+            keywordLength = 3;
+          }
           {name = "emoji";}
           {name = "copilot";}
           {name = "treesitter";}
@@ -45,10 +49,6 @@
           {
             name = "buffer";
             option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
-            keywordLength = 3;
-          }
-          {
-            name = "path";
             keywordLength = 3;
           }
         ];

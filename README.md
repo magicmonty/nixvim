@@ -63,7 +63,9 @@ If you add a new configuration file, remember to add it to the
     - [headlines](./config/plugins/lang/markdown/headlines.nix)
     - [markdown-preview](./config/plugins/lang/markdown/markdown-preview.nix)
   - **Tailwind CSS**
-    -[tailwindcss-colorizer-cmp](./config/plugins/lang/tailwindcss/tailwindcss-colorizer-cmp.nix)
+    - [tailwindcss-colorizer-cmp](./config/plugins/lang/tailwindcss/tailwindcss-colorizer-cmp.nix)
+  - **TeX**
+    - [vimtex](./config/plugins/lang/tex/vimtex.nix)
 
 ## Testing your new configuration
 

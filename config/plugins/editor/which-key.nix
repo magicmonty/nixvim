@@ -19,6 +19,7 @@
       "<leader>w" = "+windows";
       "<leader>x" = "+diagnostics/quickfix";
       "<leader>sn" = "+noice";
+      "<localLeader>l" = "+vimtex";
     };
   };
 }
