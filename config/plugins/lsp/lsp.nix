@@ -22,7 +22,7 @@
                   },
                 })
               end,
-              desc = "Organize imports",
+              { desc = "Organize imports" }
             )
             vim.keymap.set(
               "n",
@@ -36,7 +36,7 @@
                   },
                 })
               end,
-              desc = "Remove unused imports",
+              { desc = "Remove unused imports" }
             )
           '';
         settings = {
@@ -62,7 +62,7 @@
         onAttach.function =
           # lua
           ''
-            vim.keymap.set("n", "<leader>K", "<plug>(vimtex-doc-package)", desc = "Vimtex docs", silent = true)
+            vim.keymap.set("n", "<leader>K", "<plug>(vimtex-doc-package)",{desc = "Vimtex docs", silent = true})
           '';
       };
       yamlls = {
