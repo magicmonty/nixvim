@@ -1,20 +1,19 @@
 {
   plugins.mini.modules.surround = {
     mappings = {
-      add = "gsa";
-      delete = "gsd";
+      add = "ys";
+      delete = "ds";
       find = "gsf";
       find_left = "gsF";
       highlight = "gsh";
-      replace = "gsr";
+      replace = "cs";
       update_n_lines = "gsn";
     };
 
     silent = true;
   };
 
-  /*
-     keymaps = [
+  keymaps = [
     {
       mode = "x";
       key = "ys";
@@ -25,8 +24,7 @@
             require('mini.surround').add('visual')
           end
         '';
-      options = {silent = true;};
+      lua = true;
     }
   ];
-  */
 }
