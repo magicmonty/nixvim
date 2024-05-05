@@ -14,6 +14,12 @@
       dockerls.enable = true;
       docker-compose-language-service.enable = true;
       marksman.enable = true;
+      tailwindcss = {
+        enable = true;
+        settings = {
+          filetypes = ["javascript" "javascriptreact" "typescript" "typescriptreact" "html" "css" "scss" "vue" "svelte"];
+        };
+      };
     };
 
     keymaps = {

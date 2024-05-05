@@ -1,5 +1,7 @@
 {
   imports = [
+    ./json
     ./markdown
+    ./tailwindcss
   ];
 }

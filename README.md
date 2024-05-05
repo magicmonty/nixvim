@@ -57,9 +57,13 @@ If you add a new configuration file, remember to add it to the
   - [nvim-notify](./config/plugins/ui/notify.nix)
   - [ufo](./config/plugins/ui/ufo.nix)
 - **Language support**
+  - **JSON**
+    - [schemastore.nvim](./config/plugins/lang/json/schemastore.nix)
   - **Markdown**
     - [headlines](./config/plugins/lang/markdown/headlines.nix)
     - [markdown-preview](./config/plugins/lang/markdown/markdown-preview.nix)
+  - **Tailwind CSS**
+    -[tailwindcss-colorizer-cmp](./config/plugins/lang/tailwindcss/tailwindcss-colorizer-cmp.nix)
 
 ## Testing your new configuration
 
