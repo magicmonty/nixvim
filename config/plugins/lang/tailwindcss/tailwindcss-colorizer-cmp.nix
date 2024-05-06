@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  lib,
+  helpers,
+  ...
+}: {
   extraPlugins = with pkgs.vimUtils; [
     (buildVimPlugin {
       pname = "tailwindcss-colorizer-cmp";
@@ -17,9 +23,26 @@
         color_square_width = 2;
       })
   '';
-  extraConfigLuaPost = ''
-    cmp.config.formatting = {
-      format = require("tailwindcss-colorizer-cmp").formatter
-    }
-  '';
+
+  plugins.cmp.settings.formatting.format = let
+    cfg = config.plugins.lspkind;
+    options =
+      {
+        inherit (cfg) mode preset;
+        symbol_map = cfg.symbolMap;
+        maxwidth = cfg.cmp.maxWidth;
+        ellipsis_char = cfg.cmp.ellipsisChar;
+        inherit (cfg.cmp) menu;
+      }
+      // cfg.extraOptions;
+  in
+    lib.mkForce
+    # lua
+    ''
+      function(entry, vim_item)
+        local kind = require('lspkind').cmp_format(${helpers.toLuaObject options})(entry, vim_item)
+
+        return require('tailwindcss-colorizer-cmp').formatter(entry, vim_item)
+      end
+    '';
 }
