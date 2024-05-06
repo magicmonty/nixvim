@@ -7,6 +7,7 @@
     cmp_luasnip.enable = true;
     cmp-treesitter.enable = true;
     cmp-git.enable = true;
+    cmp-npm.enable = true;
     copilot-cmp.enable = true;
     copilot-lua = {
       enable = true;
@@ -35,6 +36,10 @@
         snippet.expand = "luasnip";
         sources = [
           {name = "nvim_lsp";}
+          {
+            name = "npm";
+            keyword_length = 4;
+          }
           {
             name = "path";
             keywordLength = 3;
@@ -134,6 +139,7 @@
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
     '';
+
   extraConfigLua =
     # lua
     ''
