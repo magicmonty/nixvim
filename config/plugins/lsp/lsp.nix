@@ -87,6 +87,13 @@
         enable = true;
         settings.telemetry.enable = false;
       };
+      eslint = {
+        enable = true;
+        settings = {
+          workingDirectories = {mode = "auto";};
+        };
+      };
+
       nil_ls.enable = true;
       dockerls.enable = true;
       docker-compose-language-service.enable = true;

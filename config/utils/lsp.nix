@@ -46,4 +46,56 @@
     end
     return false
   end
+
+  function NixVim.lsp.formatter(opts)
+    opts = opts or {}
+    local filter = opts.filter or {}
+    filter = type(filter) == "string" and { name = filter } or filter
+
+    local ret = {
+      name = "LSP",
+      primary = true,
+      priority = 1,
+      format = function(buf)
+        NixVim.lsp.format(NixVim.merge({}, filter, { bufnr = buf }))
+      end,
+      sources = function(buf)
+        local clients = NixVim.lsp.get_clients(LazyVim.merge({}, filter, { bufnr = buf }))
+
+        local ret = vim.tbl_filter(function(client)
+          return client.supports_method("textDocument/formatting")
+            or client.supports_method("textDocument/rangeFormatting")
+        end, clients)
+
+        return vim.tbl_map(function(client)
+          return client.name
+        end, ret)
+      end,
+    }
+    return NixVim.merge(ret, opts) --[[@as LazyFormatter]]
+  end
+
+  function NixVim.lsp.format(opts)
+    opts = vim.tbl_deep_extend(
+      "force",
+      {
+        timeout_ms = 3000,
+        async = false,
+        quiet = false,
+        lsp_fallback = true,
+        formatting_options = nil,
+      },
+      opts or {}
+    )
+
+    local ok, conform = pcall(require, "conform")
+    -- use conform for formatting with LSP when available,
+    -- since it has better format diffing
+    if ok then
+      opts.formatters = {}
+      conform.format(opts)
+    else
+      vim.lsp.buf.format(opts)
+    end
+  end
 ''
