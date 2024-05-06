@@ -58,6 +58,8 @@ If you add a new configuration file, remember to add it to the
   - [nvim-notify](./config/plugins/ui/notify.nix)
   - [ufo](./config/plugins/ui/ufo.nix)
 - **Language support**
+  - **Angular**
+    - [angular](./config/plugins/lang/angular/angular.nix)
   - **JSON**
     - [schemastore.nvim](./config/plugins/lang/json/schemastore.nix)
   - **Markdown**

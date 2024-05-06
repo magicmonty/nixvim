@@ -2,7 +2,7 @@
 ''
   NixVim.root = {}
   NixVim.root.cache = {}
-  NixVim.root.spec = { "lsp", { ".git", "lua" }, "cwd" }
+  NixVim.root.spec = { "lsp", { ".git", "lua", "package.json" }, "cwd" }
   NixVim.root.detectors = {}
 
   function NixVim.root.cwd()

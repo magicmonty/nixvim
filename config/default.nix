@@ -10,8 +10,9 @@
   config = {
     extraPackages = with pkgs; [
       fd
-      ripgrep
       fzf
+      gnused
+      ripgrep
       unzip
     ];
 

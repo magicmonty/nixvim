@@ -12,6 +12,10 @@
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    language-servers = {
+      url = "github:magicmonty/angular-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -19,6 +23,7 @@
     nixvim,
     flake-parts,
     pre-commit-hooks,
+    language-servers,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -36,6 +41,7 @@
         lib,
         ...
       }: let
+        lang-servers = language-servers.packages.${system};
         nixvim' = nixvim.legacyPackages.${system};
         nixvimLib = nixvim.lib.${system};
         nvim = nixvim'.makeNixvimWithModule {
@@ -43,6 +49,7 @@
           module = ./config; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
           extraSpecialArgs = {
+            language-servers = lang-servers;
           };
         };
       in {

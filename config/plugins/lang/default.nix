@@ -1,5 +1,6 @@
 {
   imports = [
+    ./angular
     ./json
     ./markdown
     ./tailwindcss
