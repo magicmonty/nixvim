@@ -10,7 +10,7 @@
 
   extraPackages = with pkgs; [
     hadolint
-    markdownlint-cli2
+    markdownlint-cli
     statix
   ];
 
