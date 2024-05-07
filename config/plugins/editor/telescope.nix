@@ -132,7 +132,7 @@
       options = {desc = "Buffers";};
     }
     {
-      key = "<leader>sg";
+      key = "<leader>fg";
       action = "<cmd>Telescope live_grep<cr>";
       options = {desc = "Live grep";};
     }
@@ -219,12 +219,17 @@
       options = {desc = "Jump to Mark";};
     }
     {
+      key = "<leader>sn";
+      action = "<cmd>Telescope notify<cr>";
+      options = {desc = "Show notifications history";};
+    }
+    {
       key = "<leader>so";
       action = "<cmd>Telescope vim_options<cr>";
       options = {desc = "Options";};
     }
     {
-      key = "<leader>sR";
+      key = "<leader>;";
       action = "<cmd>Telescope resume<cr>";
       options = {desc = "Resume";};
     }

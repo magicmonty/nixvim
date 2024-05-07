@@ -168,4 +168,42 @@
       silent = true;
     };
   };
+  extraConfigLua =
+    # lua
+    ''
+      local _border = "rounded"
+
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+        vim.lsp.handlers.hover, {
+          border = _border
+        }
+      )
+
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+        vim.lsp.handlers.signature_help, {
+          border = _border
+        }
+      )
+
+      vim.diagnostic.config {
+        float = { border = _border },
+      }
+
+      local _signs = {
+        [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+        [vim.diagnostic.severity.WARN] = icons.diagnostics.Warn,
+        [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
+        [vim.diagnostic.severity.INFO] = icons.diagnostics.Info,
+      }
+
+      for severity, icon in pairs(_signs) do
+        local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
+        name = "DiagnosticSign" .. name
+        vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+      end
+
+      require('lspconfig.ui.windows').default_options = {
+        border = _border
+      }
+    '';
 }
