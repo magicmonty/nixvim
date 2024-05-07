@@ -112,6 +112,7 @@
             vim.keymap.set("n", "<leader>K", "<plug>(vimtex-doc-package)",{desc = "Vimtex docs", silent = true})
           '';
       };
+      jsonls.enable = true;
       yamlls = {
         enable = true;
         extraOptions = {
