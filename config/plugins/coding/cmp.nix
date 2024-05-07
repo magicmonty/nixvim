@@ -29,11 +29,17 @@
           };
         };
         performance = {
-          debounce = 60;
-          fetchingTimeout = 200;
+          debounce = 150;
+          fetchingTimeout = 500;
           maxViewEntries = 30;
         };
-        snippet.expand = "luasnip";
+        snippet.expand =
+          # lua
+          ''
+            function(args)
+              require('luasnip').lsp_expand(args.body)
+            end
+          '';
         sources = [
           {name = "nvim_lsp";}
           {
@@ -45,7 +51,10 @@
             keywordLength = 3;
           }
           {name = "emoji";}
-          {name = "copilot";}
+          {
+            name = "copilot";
+            keywordLength = 5;
+          }
           {name = "treesitter";}
           {
             name = "luasnip";
@@ -88,7 +97,21 @@
           "<C-f>" = "cmp.mapping.scroll_docs(4)";
           "<C-Space>" = "cmp.mapping.complete()";
           "<C-e>" = "cmp.mapping.close()";
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
+          "<CR>" =
+            # lua
+            ''
+              cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  if require("luasnip").expandable() then
+                    require("luasnip").expand()
+                  else
+                    cmp.confirm({select = true})
+                  end
+                else
+                  fallback()
+                end
+              end)
+            '';
           "<S-CR>" = "cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })";
           "<C-CR>" =
             # lua
@@ -104,7 +127,7 @@
               cmp.mapping(function(fallback)
                 if cmp.visible() then
                   cmp.select_next_item()
-                elseif require("luasnip").expand_or_jumpable() then
+                elseif require("luasnip").expand_or_locally_jumpable() then
                   require("luasnip").expand_or_jump()
                 elseif has_words_before() then
                   cmp.complete()
@@ -119,7 +142,7 @@
               cmp.mapping(function(fallback)
                 if cmp.visible() then
                   cmp.select_prev_item()
-                elseif require("luasnip").jumpable(-1) then
+                elseif require("luasnip").locally_jumpable(-1) then
                   require("luasnip").jump(-1)
                 else
                   fallback()
