@@ -7,8 +7,8 @@
         vim.keymap.set("n", "<leader>cl", "<cmd>LspInfo<cr>", { desc = "LSP info", silent = true })
         vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "References", silent = true })
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
-        vim.keymap.set("n", "gI", function() require('telescope.builtin').lsp_implementations({ reuse_win = true }) end, { desc = "Goto Implementation" })
-        vim.keymap.set("n", "gy", function() require('telescope.builtin').lsp_type_definitions({ reuse_win = true }) end, { desc = "Goto T[y]pe Definition" })
+        vim.keymap.set("n", "gi", function() require('telescope.builtin').lsp_implementations({ reuse_win = true }) end, { desc = "Goto Implementation" })
+        vim.keymap.set("n", "gt", function() require('telescope.builtin').lsp_type_definitions({ reuse_win = true }) end, { desc = "Goto Type Definition" })
         vim.keymap.set("n", "<leader>cr", function()
           local inc_rename = require("inc_rename")
           return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
@@ -16,6 +16,10 @@
 
         if NixVim.lsp.has(bufnr, "definition") then
           vim.keymap.set("n", "gd", function() require('telescope.builtin').lsp_definitions({ reuse_win = true }) end, { desc = "Goto Definition" })
+        end
+
+        if NixVim.lsp.has(bufnr, "hover") then
+          vim.keymap.set("n", "K", vim.lsp.buf.hover)
         end
 
         if NixVim.lsp.has(bufnr, "signatureHelp") then
@@ -153,37 +157,11 @@
         };
       };
     };
-
-    keymaps = {
-      diagnostic = {
-        "äd" = "goto_next";
-        "öd" = "goto_prev";
-      };
-
-      lspBuf = {
-        "gt" = "type_definition";
-        "gi" = "implementation";
-        "K" = "hover";
-      };
-      silent = true;
-    };
   };
   extraConfigLua =
     # lua
     ''
       local _border = "rounded"
-
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-        vim.lsp.handlers.hover, {
-          border = _border
-        }
-      )
-
-      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-        vim.lsp.handlers.signature_help, {
-          border = _border
-        }
-      )
 
       vim.diagnostic.config {
         float = { border = _border },

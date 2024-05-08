@@ -13,6 +13,8 @@
         "vim.lsp.util.stylize_markdown" = true;
         "cmp.entry.get_documentation" = true;
       };
+      hover.opts = {border = "rounded";};
+      signature.opts = {border = "rounded";};
     };
     popupmenu = {
       enabled = true;
