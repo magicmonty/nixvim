@@ -9,16 +9,6 @@
     cmp-treesitter.enable = true;
     cmp-git.enable = true;
     cmp-npm.enable = true;
-    copilot-cmp.enable = true;
-    copilot-lua = {
-      enable = true;
-      suggestion.enabled = false;
-      panel.enabled = false;
-      filetypes = {
-        markdown = true;
-        help = true;
-      };
-    };
 
     cmp = {
       enable = true;
@@ -52,10 +42,6 @@
             keywordLength = 3;
           }
           {name = "emoji";}
-          {
-            name = "copilot";
-            keywordLength = 5;
-          }
           {name = "treesitter";}
           {
             name = "luasnip";
@@ -167,11 +153,6 @@
   extraConfigLua =
     # lua
     ''
-      require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
-      })
-
       -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
       -- Set configuration for specific filetype.
       cmp.setup.filetype('gitcommit', {

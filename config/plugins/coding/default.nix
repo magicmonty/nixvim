@@ -1,6 +1,7 @@
 {
   imports = [
     ./cmp.nix
+    ./codeium.nix
     ./comment.nix
     ./lazygit.nix
     ./mini.nix

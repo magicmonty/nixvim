@@ -1,8 +1,10 @@
-{
+let
+  icons = import ../../icons.nix {};
+in {
   plugins.lspkind = {
     enable = true;
     symbolMap = {
-      Copilot = "";
+      inherit (icons.kinds) Copilot Codeium;
     };
     extraOptions = {
       maxwidth = 50;

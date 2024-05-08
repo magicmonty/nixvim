@@ -132,7 +132,7 @@
       options = {desc = "Buffers";};
     }
     {
-      key = "<leader>fg";
+      key = "<leader>sg";
       action = "<cmd>Telescope live_grep<cr>";
       options = {desc = "Live grep";};
     }

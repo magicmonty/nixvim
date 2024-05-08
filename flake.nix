@@ -35,12 +35,18 @@
       ];
 
       perSystem = {
-        pkgs,
         system,
         self',
         lib,
         ...
       }: let
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfreePredicate = pkg:
+            builtins.elem (lib.getName pkg) [
+              "codeium"
+            ];
+        };
         lang-servers = language-servers.packages.${system};
         nixvim' = nixvim.legacyPackages.${system};
         nixvimLib = nixvim.lib.${system};

@@ -24,7 +24,7 @@ _: {
     Array = " ";
     Boolean = "󰨙 ";
     Class = " ";
-    Codeium = "󰘦 ";
+    Codeium = "";
     Color = " ";
     Control = " ";
     Collapsed = " ";
