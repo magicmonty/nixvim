@@ -65,6 +65,8 @@ If you add a new configuration file, remember to add it to the
   - **Markdown**
     - [headlines](./config/plugins/lang/markdown/headlines.nix)
     - [markdown-preview](./config/plugins/lang/markdown/markdown-preview.nix)
+  - **PowerShell**
+    - [Powershell LSP config + vim-ps1](./config/plugins/lang/powershell/default.nix)
   - **Tailwind CSS**
     - [tailwindcss-colorizer-cmp](./config/plugins/lang/tailwindcss/tailwindcss-colorizer-cmp.nix)
   - **TeX**
