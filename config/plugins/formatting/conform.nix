@@ -7,6 +7,7 @@
     prettierd
     yamllint
     yamlfmt
+    libxml2
   ];
   plugins.conform-nvim = {
     enable = true;
@@ -34,6 +35,7 @@
       typescriptreact = [["prettierd" "prettier"]];
       markdown = [];
       yaml = [["yamllint" "yamlfmt"]];
+      xml = ["xmllint"];
     };
   };
 
