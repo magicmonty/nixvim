@@ -89,7 +89,7 @@
         packages = rec {
           default = full;
           full = nvim;
-          light = nvim-lite;
+          lite = nvim-lite;
         };
 
         devShells = {
