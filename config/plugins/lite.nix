@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   imports = [
     ./coding/lite.nix
     ./colorscheme
@@ -10,4 +10,8 @@
     ./treesitter
     ./ui
   ];
+
+  config = {
+    plugins.lsp.servers.texlab.enable = lib.mkForce false;
+  };
 }
