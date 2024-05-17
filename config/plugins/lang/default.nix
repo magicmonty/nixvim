@@ -1,10 +1,5 @@
 {
   imports = [
-    ./angular
-    ./json
-    ./markdown
-    ./powershell
-    ./tailwindcss
-    ./tex
+    ./full.nix
   ];
 }

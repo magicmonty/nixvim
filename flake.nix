@@ -52,7 +52,16 @@
         nixvimLib = nixvim.lib.${system};
         nvim = nixvim'.makeNixvimWithModule {
           inherit pkgs;
-          module = ./config; # import the module directly
+          module = ./config/full.nix; # import the module directly
+          # You can use `extraSpecialArgs` to pass additional arguments to your module files
+          extraSpecialArgs = {
+            language-servers = lang-servers;
+          };
+        };
+
+        nvim-lite = nixvim'.makeNixvimWithModule {
+          inherit pkgs;
+          module = ./config/lite.nix; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
           extraSpecialArgs = {
             language-servers = lang-servers;
@@ -77,7 +86,11 @@
         formatter = pkgs.alejandra;
 
         # Lets you run `nix run .` to start nixvim
-        packages.default = nvim;
+        packages = rec {
+          default = full;
+          full = nvim;
+          light = nvim-lite;
+        };
 
         devShells = {
           default = with pkgs;

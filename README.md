@@ -85,7 +85,11 @@ If you have nix installed, you can directly run my config from anywhere
 You can try running mine with:
 
 ```shell
+# Full Version
 nix run 'github:magicmonty/nixvim'
+
+# Lighter version without TeX support
+nix run 'github:magicmonty/nixvim#lite'
 ```
 
 ## Installing into NixOS configuration
@@ -115,6 +119,9 @@ With the input added you can reference it directly.
   environment.systemPackages = [ inputs.nixvim.packages.${system}.default ];
   # home-manager
   home.packages = [ inputs.nixvim.packages.${system}.default ];
+  
+  # Lighter version without TeX support
+  home.packages = [ inputs.nixvim.packages.${system}.lite ];
 }
 ```
 
