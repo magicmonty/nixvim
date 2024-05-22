@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   plugins.alpha = let
     header = [
       " "
@@ -16,7 +16,7 @@
       "    ++-..-:/ooo`    .-.   88                                              "
       " `--o+:------o+--`        dP                                              "
       "    `/oo+///++`                                                           "
-      "       .-::-`                                                             "
+      "       .-::-`             NixVim ${config.nixvim.flavour}                 "
     ];
     mkPadding = val: {
       type = "padding";

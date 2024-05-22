@@ -1,4 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}:
+with lib; {
+  options.nixvim.flavour = mkOption {
+    description = "The flavour of this NixVim distribution (either lite or full)";
+    type = types.enum ["lite" "full"];
+    default = "full";
+  };
+
   config = {
     extraPackages = with pkgs; [
       fd

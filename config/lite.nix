@@ -8,4 +8,8 @@
     ./keymaps.nix
     ./utils
   ];
+
+  config = {
+    nixvim.flavour = "lite";
+  };
 }

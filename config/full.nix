@@ -8,4 +8,8 @@
     ./opts.nix
     ./utils
   ];
+
+  config = {
+    nixvim.flavour = "full";
+  };
 }
