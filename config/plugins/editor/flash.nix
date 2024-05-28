@@ -9,8 +9,7 @@
     {
       mode = ["n" "x" "o"];
       key = "s";
-      lua = true;
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -21,8 +20,7 @@
     {
       mode = ["n" "x" "o"];
       key = "S";
-      lua = true;
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -33,8 +31,7 @@
     {
       mode = ["o"];
       key = "r";
-      lua = true;
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -45,8 +42,7 @@
     {
       mode = ["o" "x"];
       key = "R";
-      lua = true;
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -57,8 +53,7 @@
     {
       mode = ["c"];
       key = "<C-s>";
-      lua = true;
-      action =
+      action.__raw =
         # lua
         ''
           function()

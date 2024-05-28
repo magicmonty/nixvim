@@ -17,14 +17,13 @@
     {
       mode = "x";
       key = "ys";
-      action =
+      action.__raw =
         # lua
         ''
           function()
             require('mini.surround').add('visual')
           end
         '';
-      lua = true;
     }
   ];
 }

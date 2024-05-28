@@ -16,7 +16,7 @@
     {
       mode = "n";
       "key" = "<leader>ut";
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -29,7 +29,6 @@
             end
           end
         '';
-      lua = true;
       options = {desc = "Toggle Treesitter Context";};
     }
   ];

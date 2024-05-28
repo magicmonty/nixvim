@@ -13,7 +13,7 @@
     {
       mode = "n";
       key = "<leader>up";
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -25,7 +25,6 @@
             end
           end
         '';
-      lua = true;
       options = {
         desc = "Toggle Auto Pairs";
       };

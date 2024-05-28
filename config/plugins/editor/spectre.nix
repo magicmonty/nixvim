@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   plugins.spectre = {
     enable = true;
     settings = {
@@ -10,14 +10,13 @@
     {
       mode = "n";
       key = "<leader>sr";
-      action =
+      action.__raw =
         # lua
         ''
           function()
             require('spectre').open()
           end
         '';
-      lua = true;
       options = {desc = "Replace in files (Spectre)";};
     }
   ];

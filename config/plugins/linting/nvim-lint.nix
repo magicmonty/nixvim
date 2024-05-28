@@ -25,8 +25,7 @@
     {
       mode = "n";
       key = "<leader>cL";
-      action = "require('lint').try_lint";
-      lua = true;
+      action.__raw = "require('lint').try_lint";
       options = {desc = "Run Linter";};
     }
   ];

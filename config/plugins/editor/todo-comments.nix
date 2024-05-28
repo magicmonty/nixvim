@@ -6,14 +6,12 @@
   keymaps = [
     {
       key = "ät";
-      action = "function() require('todo-comments').jump_next() end";
-      lua = true;
+      action.__raw = "function() require('todo-comments').jump_next() end";
       options = {desc = "Next Todo Comment";};
     }
     {
       key = "öt";
-      action = "function() require('todo-comments').jump_prev() end";
-      lua = true;
+      action.__raw = "function() require('todo-comments').jump_prev() end";
       options = {desc = "Previous Todo Comment";};
     }
     {

@@ -14,8 +14,7 @@
     {
       mode = "n";
       key = "zR";
-      action = "require('ufo').openAllFolds";
-      lua = true;
+      action.__raw = "require('ufo').openAllFolds";
       options = {
         desc = "Open all folds";
       };
@@ -23,8 +22,7 @@
     {
       mode = "n";
       key = "zM";
-      action = "require('ufo').closeAllFolds";
-      lua = true;
+      action.__raw = "require('ufo').closeAllFolds";
       options = {
         desc = "Open all folds";
       };

@@ -56,22 +56,37 @@
     {
       mode = "n";
       key = "<leader>.";
-      action = "function() require('neo-tree.command').execute({ toggle = true, dir = NixVim.root.get() }) end";
-      lua = true;
+      action.__raw =
+        # lua
+        ''
+          function()
+            require('neo-tree.command').execute({ toggle = true, dir = NixVim.root.get() })
+          end
+        '';
       options = {desc = "Toggle file explorer";};
     }
     {
       mode = "n";
       key = "<leader>ge";
-      action = "function() require('neo-tree.command').execute({ toggle = true, source = 'git_status' }) end";
-      lua = true;
+      action.__raw =
+        # lua
+        ''
+          function()
+            require('neo-tree.command').execute({ toggle = true, source = 'git_status' })
+          end
+        '';
       options = {desc = "Toggle Git explorer";};
     }
     {
       mode = "n";
       key = "<leader>be";
-      action = "function() require('neo-tree.command').execute({ toggle = true, source = 'buffers' }) end";
-      lua = true;
+      action.__raw =
+        # lua
+        ''
+          function()
+            require('neo-tree.command').execute({ toggle = true, source = 'buffers' })
+          end
+        '';
       options = {desc = "Toggle buffer explorer";};
     }
   ];

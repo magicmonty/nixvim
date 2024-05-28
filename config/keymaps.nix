@@ -14,8 +14,7 @@
     lmap = mode: key: action: options: {
       inherit mode;
       inherit key;
-      inherit action;
-      lua = true;
+      action.__raw = action;
       inherit options;
     };
     lnremap = key: action: desc: (lmap "n" key action {
@@ -104,7 +103,7 @@
     (nremap "<leader>bb" "<cmd>e #<cr>" "Switch to other buffer")
     {
       key = "<leader>bd";
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -122,7 +121,6 @@
             end
           end
         '';
-      lua = true;
       options = {
         desc = "Delete Buffer";
       };

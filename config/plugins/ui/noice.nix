@@ -57,8 +57,7 @@
     {
       mode = ["c"];
       key = "<S-Enter>";
-      action = "function() require('noice').redirect(vim.fn.getcmdline()) end";
-      lua = true;
+      action.__raw = "function() require('noice').redirect(vim.fn.getcmdline()) end";
       options = {desc = "Redirect Cmdline";};
     }
     {
@@ -84,7 +83,7 @@
     {
       mode = ["i" "n" "s"];
       key = "<c-f>";
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -93,7 +92,6 @@
             end
           end
         '';
-      lua = true;
       options = {
         silent = true;
         expr = true;
@@ -103,7 +101,7 @@
     {
       mode = ["i" "n" "s"];
       key = "<c-d>";
-      action =
+      action.__raw =
         # lua
         ''
           function()
@@ -112,7 +110,6 @@
             end
           end
         '';
-      lua = true;
       options = {
         silent = true;
         expr = true;
