@@ -49,6 +49,7 @@
     servers = {
       bashls.enable = true;
       clangd.enable = true;
+      gopls.enable = true;
       lemminx.enable = true;
       tsserver = {
         enable = true;

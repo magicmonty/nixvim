@@ -29,6 +29,7 @@
       sh = ["shfmt"];
       html = [["prettierd" "prettier"]];
       css = [["prettierd" "prettier"]];
+      go = ["gofmt"];
       javascript = [["prettierd" "prettier"]];
       javascriptreact = [["prettierd" "prettier"]];
       typescript = [["prettierd" "prettier"]];
