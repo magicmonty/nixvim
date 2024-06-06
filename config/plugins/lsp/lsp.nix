@@ -100,7 +100,7 @@
         };
       };
 
-      nil_ls.enable = true;
+      nil-ls.enable = true;
       dockerls.enable = true;
       docker-compose-language-service.enable = true;
       marksman.enable = true;
