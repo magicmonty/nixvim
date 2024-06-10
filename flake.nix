@@ -50,7 +50,8 @@
         lang-servers = language-servers.packages.${system};
         nixvim' = nixvim.legacyPackages.${system};
         nixvimLib = nixvim.lib.${system};
-        nvim = nixvim'.makeNixvimWithModule {
+
+        nixvimModuleFull = {
           inherit pkgs;
           module = ./config/full.nix; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
@@ -59,7 +60,9 @@
           };
         };
 
-        nvim-lite = nixvim'.makeNixvimWithModule {
+        nvim = nixvim'.makeNixvimWithModule nixvimModuleFull;
+
+        nixvimModuleLite = {
           inherit pkgs;
           module = ./config/lite.nix; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
@@ -67,13 +70,13 @@
             language-servers = lang-servers;
           };
         };
+
+        nvim-lite = nixvim'.makeNixvimWithModule nixvimModuleLite;
       in {
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
-          default = nixvimLib.check.mkTestDerivationFromNixvimModule {
-            inherit nvim;
-            name = "A nixvim configuration";
-          };
+          default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModuleFull;
+
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
             src = ./.;
             hooks = {
