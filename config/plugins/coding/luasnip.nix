@@ -1,15 +1,21 @@
-{pkgs, ...}: {
-  plugins.luasnip = {
-    enable = true;
-    extraConfig = {
-      enable_autosnippets = true;
-      store_selection_keys = "<Tab>";
+_: {
+  plugins = {
+    friendly-snippets.enable = true;
+
+    luasnip = {
+      enable = true;
+      extraConfig = {
+        enable_autosnippets = true;
+        store_selection_keys = "<Tab>";
+      };
+      # Triggers the load of friendly-snippets
+      fromVscode = [{}];
+      fromLua = [
+        {
+          lazyLoad = true;
+          paths = ./snippets;
+        }
+      ];
     };
-    fromVscode = [
-      {
-        lazyLoad = true;
-        paths = "${pkgs.vimPlugins.friendly-snippets}";
-      }
-    ];
   };
 }
