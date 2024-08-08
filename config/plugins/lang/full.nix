@@ -4,6 +4,7 @@
     ./json
     ./markdown
     ./powershell
+    ./rust
     ./tailwindcss
     ./tex
   ];
