@@ -15,7 +15,7 @@
         end, {desc = "Rename"})
 
         if NixVim.lsp.has(bufnr, "definition") then
-          vim.keymap.set("n", "gd", function() require('telescope.builtin').lsp_definitions({ reuse_win = true }) end, { desc = "Goto Definition" })
+          vim.keymap.set("n", "gd", function() require('telescope.builtin').lsp_definitions({ reuse_win = true }) end, { desc = "Goto Definition", buffer = 0 })
         end
 
         if NixVim.lsp.has(bufnr, "hover") then
@@ -28,7 +28,7 @@
         end
 
         if NixVim.lsp.has(bufnr, "codeAction") then
-          vim.keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+          vim.keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action", buffer = 0 })
           vim.keymap.set("n", "<leader>cA", function()
             vim.lsp.buf.code_action({
               context = {
@@ -36,7 +36,7 @@
                 diagnostics = {},
               },
             })
-          end, { desc = "Source Action" })
+          end, { desc = "Source Action", buffer = 0 })
         end
 
         if NixVim.lsp.has(bufnr, "codeLens") then
