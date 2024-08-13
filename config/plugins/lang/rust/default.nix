@@ -24,7 +24,7 @@ _: {
   keymaps = [
     {
       mode = "n";
-      key = "<leader>ur";
+      key = "<leader>ctf";
       action.__raw =
         #lua
         ''
@@ -36,7 +36,7 @@ _: {
     }
     {
       mode = "n";
-      key = "<leader>ut";
+      key = "<leader>ctr";
       action.__raw =
         #lua
         ''
@@ -48,7 +48,7 @@ _: {
     }
     {
       mode = "n";
-      key = "<leader>uw";
+      key = "<leader>ctw";
       action.__raw =
         #lua
         ''
@@ -60,7 +60,7 @@ _: {
     }
     {
       mode = "n";
-      key = "<leader>uu";
+      key = "<leader>ctt";
       action = "<cmd>Neotest run latest<cr>";
       options = {desc = "Run latest tests";};
     }
