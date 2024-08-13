@@ -30,7 +30,7 @@ _: {
         ''
           function()
             require("neotest").run.run(vim.fn.expand("%"))
-            end
+          end
         '';
       options = {desc = "Run all tests in file";};
     }
@@ -42,7 +42,7 @@ _: {
         ''
           function()
             require("neotest").run.run()
-            end
+          end
         '';
       options = {desc = "Run nearest test";};
     }
@@ -54,25 +54,43 @@ _: {
         ''
           function()
             require("neotest").watch.toggle()
-            end
+          end
         '';
       options = {desc = "Toggle test watcher";};
     }
     {
       mode = "n";
       key = "<leader>ctt";
-      action = "<cmd>Neotest run latest<cr>";
+      action.__raw =
+        #lua
+        ''
+          function()
+            require("neotest").run.run_last()
+          end
+        '';
       options = {desc = "Run latest tests";};
+    }
+    {
+      mode = "n";
+      key = "<leader>cts";
+      action.__raw =
+        #lua
+        ''
+          function()
+            require("neotest").summary.toggle()
+          end
+        '';
+      options = {desc = "Neotest: Toggle summary pane";};
     }
   ];
 
-  extraConfigLua =
+  extraConfigLuaPost =
     #lua
     ''
-      require("neotest").setup({
-        adapters = {
-          rust = require("rustaceanvim.neotest")
-        }
+      require('neotest').setup({
+          adapters = {
+              require('rustaceanvim.neotest')
+          }
       })
     '';
 }
