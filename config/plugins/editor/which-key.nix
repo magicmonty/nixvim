@@ -2,24 +2,24 @@
   plugins.which-key = {
     enable = true;
     registrations = {
-      "g" = "+goto";
-      "gs" = "+surround";
-      "z" = "+fold";
-      "ä" = "+next";
-      "ö" = "+prev";
-      "<leader><Tab>" = "+tabs";
-      "<leader>b" = "+buffer";
-      "<leader>c" = "+code";
-      "<leader>f" = "+file/find";
-      "<leader>g" = "+git";
-      "<leader>gh" = "+hunks";
-      "<leader>q" = "+quit/session";
-      "<leader>s" = "+search";
-      "<leader>u" = "+ui";
-      "<leader>w" = "+windows";
-      "<leader>x" = "+diagnostics/quickfix";
-      "<leader>sn" = "+noice";
-      "<localLeader>l" = "+vimtex";
+      "g" = {desc = "+goto";};
+      "gs" = {desc = "+surround";};
+      "z" = {desc = "+fold";};
+      "ä" = {desc = "+next";};
+      "ö" = {desc = "+prev";};
+      "<leader><Tab>" = {desc = "+tabs";};
+      "<leader>b" = {desc = "+buffer";};
+      "<leader>c" = {desc = "+code";};
+      "<leader>f" = {desc = "+file/find";};
+      "<leader>g" = {desc = "+git";};
+      "<leader>gh" = {desc = "+hunks";};
+      "<leader>q" = {desc = "+quit/session";};
+      "<leader>s" = {desc = "+search";};
+      "<leader>u" = {desc = "+ui";};
+      "<leader>w" = {desc = "+windows";};
+      "<leader>x" = {desc = "+diagnostics/quickfix";};
+      "<leader>sn" = {desc = "+noice";};
+      "<localLeader>l" = {desc = "+vimtex";};
     };
   };
 }
