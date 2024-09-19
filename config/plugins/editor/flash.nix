@@ -1,7 +1,7 @@
 {
   plugins.flash = {
     enable = true;
-    extraOptions = {
+    settings = {
       vscode = true;
     };
   };

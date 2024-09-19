@@ -2,7 +2,7 @@
   plugins = {
     codeium-nvim = {
       enable = true;
-      extraOptions = {
+      settings = {
         enable_chat = true;
       };
     };

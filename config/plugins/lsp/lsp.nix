@@ -51,7 +51,7 @@
       clangd.enable = true;
       gopls.enable = true;
       lemminx.enable = true;
-      tsserver = {
+      ts-ls = {
         enable = true;
         onAttach.function =
           # lua

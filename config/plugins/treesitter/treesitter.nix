@@ -3,15 +3,17 @@
     treesitter = {
       enable = true;
       folding = true;
-      indent = true;
-      nixvimInjections = true;
       nixGrammars = true;
-      incrementalSelection = {
-        enable = true;
-        keymaps = {
-          initSelection = "<C-V>";
-          nodeIncremental = "<C-V>";
-          nodeDecremental = "<BS>";
+      nixvimInjections = true;
+      settings = {
+        indent.enable = true;
+        incremental_selection = {
+          enable = true;
+          keymaps = {
+            init_selection = "<C-V>";
+            node_decremental = "<BS>";
+            node_incremental = "<C-V>";
+          };
         };
       };
     };

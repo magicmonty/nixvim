@@ -11,32 +11,34 @@
   ];
   plugins.conform-nvim = {
     enable = true;
-    formatOnSave = {
-      timeoutMs = 3000;
-      lspFallback = true;
-    };
-    formatters = {
-      injected = {
-        options = {
-          ignore_errors = true;
+    settings = {
+      format_on_save = {
+        timeout_ms = 3000;
+        lsp_format = "fallback";
+      };
+      formatters = {
+        injected = {
+          options = {
+            ignore_errors = true;
+          };
         };
       };
-    };
 
-    formattersByFt = {
-      lua = ["stylua"];
-      nix = ["alejandra"];
-      sh = ["shfmt"];
-      html = [["prettierd" "prettier"]];
-      css = [["prettierd" "prettier"]];
-      go = ["gofmt"];
-      javascript = [["prettierd" "prettier"]];
-      javascriptreact = [["prettierd" "prettier"]];
-      typescript = [["prettierd" "prettier"]];
-      typescriptreact = [["prettierd" "prettier"]];
-      markdown = [];
-      yaml = [["yamllint" "yamlfmt"]];
-      xml = ["xmllint"];
+      formatters_by_ft = {
+        lua = ["stylua"];
+        nix = ["alejandra"];
+        sh = ["shfmt"];
+        html = ["prettierd" "prettier"];
+        css = ["prettierd" "prettier"];
+        go = ["gofmt"];
+        javascript = ["prettierd" "prettier"];
+        javascriptreact = ["prettierd" "prettier"];
+        typescript = ["prettierd" "prettier"];
+        typescriptreact = ["prettierd" "prettier"];
+        markdown = [];
+        yaml = ["yamllint" "yamlfmt"];
+        xml = ["xmllint"];
+      };
     };
   };
 
