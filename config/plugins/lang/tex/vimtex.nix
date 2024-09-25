@@ -14,5 +14,8 @@
     vimtex_quickfix_method = {__raw = "vim.fn.executable('pplatex') == 1 and 'pplatex' or 'latexlog'";};
   };
 
-  extraPackages = [pkgs.zathura];
+  extraPackages = with pkgs; [
+    zathura
+    python312Packages.pygments
+  ];
 }
