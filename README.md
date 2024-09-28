@@ -71,6 +71,8 @@ If you add a new configuration file, remember to add it to the
     - [tailwindcss-colorizer-cmp](./config/plugins/lang/tailwindcss/tailwindcss-colorizer-cmp.nix)
   - **TeX**
     - [vimtex](./config/plugins/lang/tex/vimtex.nix)
+  - NeOrg
+    - [neorg](./config/plugins/lang/neorg/default.nix)
 
 ## Testing your new configuration
 
