@@ -1,4 +1,5 @@
-{
+{lib, ...}:
+with lib; {
   imports = [
     ./angular
     ./json
@@ -8,5 +9,5 @@
     ./tailwindcss
   ];
 
-  config.sys.lang.neorg.enable = false;
+  config.sys.lang.neorg.enable = mkDefault false;
 }
