@@ -1,9 +1,11 @@
-{
+{lib, ...}:
+with lib; {
   imports = [
     ./angular
     ./json
     ./markdown
     ./neorg
+    ./obsidian
     ./powershell
     ./rust
     ./tailwindcss
@@ -11,5 +13,6 @@
     ./neorg
   ];
 
-  config.sys.lang.neorg.enable = true;
+  config.sys.lang.neorg.enable = mkDefault false;
+  config.sys.lang.obsidian.enable = mkDefault true;
 }

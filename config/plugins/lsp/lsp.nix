@@ -51,7 +51,7 @@
       clangd.enable = true;
       gopls.enable = true;
       lemminx.enable = true;
-      ts-ls = {
+      ts_ls = {
         enable = true;
         onAttach.function =
           # lua
@@ -89,7 +89,7 @@
           completions.completeFunctionCalls = true;
         };
       };
-      lua-ls = {
+      lua_ls = {
         enable = true;
         settings.telemetry.enable = false;
       };
@@ -100,9 +100,9 @@
         };
       };
 
-      nil-ls.enable = true;
+      nil_ls.enable = true;
       dockerls.enable = true;
-      docker-compose-language-service.enable = true;
+      docker_compose_language_service.enable = true;
       marksman.enable = true;
       tailwindcss = {
         enable = true;

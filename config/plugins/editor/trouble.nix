@@ -2,7 +2,8 @@
   plugins.trouble = {
     enable = true;
     settings = {
-      use_diagnostic_signs = true;
+      auto_close = true;
+      auto_jump = true;
     };
   };
 
