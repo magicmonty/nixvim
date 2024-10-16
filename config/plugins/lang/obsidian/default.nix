@@ -46,6 +46,7 @@ with builtins; {
   in
     mkIf enable {
       plugins = {
+        image.enable = true;
         render-markdown = {
           enable = true;
           settings = {
