@@ -1,5 +1,4 @@
-{lib, ...}:
-with lib; {
+_: {
   imports = [
     ./angular
     ./json
@@ -7,9 +6,7 @@ with lib; {
     ./neorg
     ./obsidian
     ./powershell
+    ./vue
     ./tailwindcss
   ];
-
-  config.sys.lang.neorg.enable = mkDefault false;
-  config.sys.lang.obsidian.enable = mkDefault false;
 }

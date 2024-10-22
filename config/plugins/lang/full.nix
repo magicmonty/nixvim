@@ -10,9 +10,12 @@ with lib; {
     ./rust
     ./tailwindcss
     ./tex
-    ./neorg
+    ./vue
   ];
 
-  config.sys.lang.neorg.enable = mkDefault false;
-  config.sys.lang.obsidian.enable = mkDefault true;
+  config.sys.lang = {
+    neorg.enable = mkDefault false;
+    obsidian.enable = mkDefault true;
+    vue.enable = mkDefault true;
+  };
 }
