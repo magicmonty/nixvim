@@ -100,7 +100,13 @@
         };
       };
 
-      nil_ls.enable = true;
+      nixd = {
+        enable = true;
+        settings = {
+          nixpkgs.expr = "import <nixpkgs> { }";
+          formatting.command = ["alejandra"];
+        };
+      };
       dockerls.enable = true;
       docker_compose_language_service.enable = true;
       marksman.enable = true;
