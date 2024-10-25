@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   plugins.lsp = {
     enable = true;
     onAttach =
@@ -102,9 +102,13 @@
 
       nixd = {
         enable = true;
+
         settings = {
           nixpkgs.expr = "import <nixpkgs> { }";
           formatting.command = ["alejandra"];
+          options = {
+            nixvim.expr = "(builtins.getFlake \"github:magicmonty/nixvim\").packages.${pkgs.system}.full.options";
+          };
         };
       };
       dockerls.enable = true;
