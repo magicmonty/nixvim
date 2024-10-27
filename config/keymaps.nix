@@ -191,6 +191,10 @@
     (kmap "n" "<leader><tab>ö" "<cmd>tabprevious<cr>" {desc = "Previous tab";})
     (kmap "n" "<leader><tab>ä" "<cmd>tabnext<cr>" {desc = "Next tab";})
     (kmap "n" "<leader><tab>d" "<cmd>tabclose<cr>" {desc = "Close Tab";})
+
+    # Checkbox
+    (nremap "<leader>tz" ":s/\\[\\s\\?\\]/[x]/<cr>" "Check checkbox")
+    (nremap "<leader>tu" ":s/\\[[x~>!]\\]/[ ]/<cr>" "Uncheck checkbox")
   ];
 
   extraConfigLua =
@@ -204,6 +208,12 @@
           go({ severity = severity, border = "rounded" })
         end
       end
+
+      -- ignore capitalization mistakes
+      vim.cmd("ca W w")
+      vim.cmd("ca Q q")
+      vim.cmd("ca WQ wq")
+      vim.cmd("ca Wq wq")
 
       map("n", "äd", diagnostic_goto(true), { desc = "Next diagnostic", remap = true, silent = true })
       map("n", "öd", diagnostic_goto(false), { desc = "Previous diagnostic", remap = true, silent = true })

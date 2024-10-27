@@ -26,7 +26,7 @@ with builtins; {
       default = [
         {
           name = "private";
-          path = "~/Dokumente/Notes/private";
+          path = "~/Dokumente/Notes/";
         }
       ];
       description = ''
@@ -42,8 +42,32 @@ with builtins; {
 
   config = let
     inherit (config.sys.lang.obsidian) enable workspaces;
+    first_workspace_path = (lib.lists.elemAt workspaces 0).path;
   in
     mkIf enable {
+      keymaps = [
+        {
+          mode = "n";
+          key = "<leader>oo";
+          action = ":cd ${first_workspace_path}<cr>";
+          options = {desc = "Change current directory to Obsidian root";};
+        }
+        {
+          mode = "n";
+          key = "<leader>on";
+          action.__raw = ''
+            function()
+              vim.cmd.ObsidianNew()
+              vim.api.nvim_buf_set_lines(0, 0, -1, false, {})
+              vim.cmd.ObsidianTemplate("note")
+              vim.cmd(":%s/^#\\s\\d\\+-\\(.\\+\\)/# \\1/g")
+              vim.cmd("norm Gi")
+            end
+          '';
+          options = {desc = "New Obsidian note";};
+        }
+      ];
+
       plugins = {
         image.enable = true;
         render-markdown = {
@@ -55,6 +79,33 @@ with builtins; {
               left_pad = 0;
               right_pad = 1;
             };
+            checkbox = {
+              unchecked = {
+                icon = "󰄱";
+                highlight = "ObsidianTodo";
+              };
+              checked = {
+                icon = "";
+                highlight = "ObsidianDone";
+              };
+              custom = {
+                rightArrow = {
+                  raw = "[>]";
+                  rendered = "";
+                  highlight = "ObsidianRightArrow";
+                };
+                tilde = {
+                  raw = "[~]";
+                  rendered = "󰰱";
+                  highlight = "ObsidianTilde";
+                };
+                important = {
+                  raw = "[!]";
+                  rendered = "";
+                  highlight = "ObsidianImportant";
+                };
+              };
+            };
           };
         };
 
@@ -62,6 +113,17 @@ with builtins; {
           enable = true;
           settings = {
             inherit workspaces;
+
+            notes_subdir = "inbox";
+            new_notes_location = "notes_subdir";
+
+            disable_frontmatter = true;
+
+            templates = {
+              subdir = "templates";
+              date_format = "%Y-%m-%d";
+              time_format = "%H:%M:%S";
+            };
 
             completion = {
               nvim_cmp = true;
@@ -109,7 +171,7 @@ with builtins; {
             ui = {
               checkboxes = {
                 " " = {
-                  char = "☐";
+                  char = "󰄱";
                   hl_group = "ObsidianTodo";
                 };
                 "x" = {

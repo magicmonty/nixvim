@@ -72,6 +72,9 @@
         };
 
         nvim-lite = nixvim'.makeNixvimWithModule nixvimModuleLite;
+        nvim-lite-obsidian = nvim-lite.extend {
+          sys.lang.obsidian.enable = true;
+        };
       in {
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
@@ -93,6 +96,7 @@
           default = full;
           full = nvim;
           lite = nvim-lite;
+          lite-obsidian = nvim-lite-obsidian;
         };
 
         devShells = {
