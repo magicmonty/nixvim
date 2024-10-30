@@ -91,6 +91,28 @@ with builtins; {
           enable = true;
           backend = "kitty";
           editorOnlyRenderWhenFocused = false;
+          extraOptions = {
+            integrations.markdown.resolve_image_path.__raw =
+              # lua
+              ''
+                function(document_path, image_path, fallback)
+                  local workspace = require("obsidian")._client.current_workspace.path
+                  if workspace ~= nil then
+                    local absolute_path = string.format("%s/%s", workspace, image_path)
+
+                    local f=io.open(absolute_path, "r")
+                    if f~=nil then
+                      io.close(f)
+                      return fallback(document_path, absolute_path)
+                    else
+                      return fallback(document_path, image_path)
+                    end
+                  else
+                    return fallback(document_path, image_path)
+                  end
+                end
+              '';
+          };
           integrations = {
             markdown = {
               enabled = true;
