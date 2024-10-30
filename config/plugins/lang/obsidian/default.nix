@@ -66,10 +66,40 @@ with builtins; {
           '';
           options = {desc = "New Obsidian note";};
         }
+        {
+          mode = "n";
+          key = "<leader>ot";
+          action.__raw =
+            # lua
+            ''
+              function()
+                vim.cmd("norm gg")
+                vim.cmd.ObsidianTemplate("note")
+                vim.cmd(":%s/^#\\s\\d\\+-\\(.\\+\\)/# \\1/g")
+              end
+            '';
+        }
+        {
+          mode = "n";
+          key = "<leader>oi";
+          action = ":ObsidianPasteImg<cr>";
+        }
       ];
 
       plugins = {
-        image.enable = true;
+        image = {
+          enable = true;
+          backend = "kitty";
+          editorOnlyRenderWhenFocused = false;
+          integrations = {
+            markdown = {
+              enabled = true;
+              clearInInsertMode = true;
+              onlyRenderImageAtCursor = false;
+            };
+          };
+        };
+
         render-markdown = {
           enable = true;
           settings = {
@@ -81,27 +111,27 @@ with builtins; {
             };
             checkbox = {
               unchecked = {
-                icon = "󰄱";
+                icon = "󰄱 ";
                 highlight = "ObsidianTodo";
               };
               checked = {
-                icon = "";
+                icon = " ";
                 highlight = "ObsidianDone";
               };
               custom = {
                 rightArrow = {
                   raw = "[>]";
-                  rendered = "";
+                  rendered = " ";
                   highlight = "ObsidianRightArrow";
                 };
                 tilde = {
                   raw = "[~]";
-                  rendered = "󰰱";
+                  rendered = "󰰱 ";
                   highlight = "ObsidianTilde";
                 };
                 important = {
                   raw = "[!]";
-                  rendered = "";
+                  rendered = " ";
                   highlight = "ObsidianImportant";
                 };
               };
@@ -138,11 +168,11 @@ with builtins; {
                 end
               '';
 
-            follow_img_func =
+            follow_img_func.__raw =
               # lua
               ''
                 function(img)
-                  vim.fn.jobstart({"xdg-open", url})
+                  vim.fn.jobstart({"xdg-open", img})
                 end
               '';
 
@@ -168,26 +198,50 @@ with builtins; {
                 end
               '';
 
+            attachments = {
+              confirm_img_paste = false;
+              img_text_func =
+                # lua
+                ''
+                  function(client, path)
+                    ---@type string
+                    local link_path
+                    local vault_relative_path = client:vault_relative_path(path)
+                    print(tostring(path))
+                    print(tostring(vault_relative_path))
+                    if vault_relative_path ~= nil then
+                      -- Use relative path if the image is saved in the vault dir.
+                      link_path = tostring(vault_relative_path)
+                    else
+                      -- Otherwise use the absolute path.
+                      link_path = tostring(path)
+                    end
+                    local display_name = vim.fs.basename(link_path)
+                    return string.format("![%s](%s)", display_name, link_path)
+                  end
+                '';
+            };
+
             ui = {
               checkboxes = {
                 " " = {
-                  char = "󰄱";
+                  char = "󰄱 ";
                   hl_group = "ObsidianTodo";
                 };
                 "x" = {
-                  char = "";
+                  char = " ";
                   hl_group = "ObsidianDone";
                 };
                 ">" = {
-                  char = "";
+                  char = " ";
                   hl_group = "ObsidianRightArrow";
                 };
                 "~" = {
-                  char = "󰰱";
+                  char = "󰰱 ";
                   hl_group = "ObsidianTilde";
                 };
                 "!" = {
-                  char = "";
+                  char = " ";
                   hl_group = "ObsidianImportant";
                 };
               };
@@ -196,7 +250,7 @@ with builtins; {
                 hl_group = "ObsidianBullet";
               };
               external_link_icon = {
-                char = "";
+                char = "  ";
                 hl_group = "ObsidianExtLinkIcon";
               };
             };

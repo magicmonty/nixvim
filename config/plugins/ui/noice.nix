@@ -1,55 +1,57 @@
 {
   plugins.noice = {
     enable = true;
-    messages.enabled = true;
-    lsp = {
-      message.enabled = true;
-      progress = {
-        enabled = false;
-        view = "mini";
-      };
-      override = {
-        "vim.lsp.util.convert_input_to_markdown_lines" = true;
-        "vim.lsp.util.stylize_markdown" = true;
-        "cmp.entry.get_documentation" = true;
-      };
-      hover.opts = {border = "rounded";};
-      signature.opts = {border = "rounded";};
-    };
-    popupmenu = {
-      enabled = true;
-      backend = "nui";
-    };
-    format = {
-      filter = {
-        pattern = [":%s*%%s*s:%s*" ":%s*%%s*s!%s*" ":%s*%%s*s/%s*" "%s*s:%s*" ":%s*s!%s*" ":%s*s/%s*"];
-        icon = "";
-        lang = "regex";
-      };
-      replace = {
-        pattern = [":%s*%%s*s:%w*:%s*" ":%s*%%s*s!%w*!%s*" ":%s*%%s*s/%w*/%s*" "%s*s:%w*:%s*" ":%s*s!%w*!%s*" ":%s*s/%w*/%s*"];
-        icon = "󱞪";
-        lang = "regex";
-      };
-    };
-    routes = [
-      {
-        filter = {
-          event = "msg_show";
-          any = [
-            {find = "%d+L, %d+B";}
-            {find = "; after #%d+";}
-            {find = "; before #%d+";}
-          ];
+    settings = {
+      messages.enabled = true;
+      lsp = {
+        message.enabled = true;
+        progress = {
+          enabled = false;
+          view = "mini";
         };
-        view = "mini";
-      }
-    ];
-    presets = {
-      bottom_search = true;
-      command_palette = true;
-      long_message_to_split = true;
-      inc_rename = true;
+        override = {
+          "vim.lsp.util.convert_input_to_markdown_lines" = true;
+          "vim.lsp.util.stylize_markdown" = true;
+          "cmp.entry.get_documentation" = true;
+        };
+        hover.opts = {border = "rounded";};
+        signature.opts = {border = "rounded";};
+      };
+      popupmenu = {
+        enabled = true;
+        backend = "nui";
+      };
+      format = {
+        filter = {
+          pattern = [":%s*%%s*s:%s*" ":%s*%%s*s!%s*" ":%s*%%s*s/%s*" "%s*s:%s*" ":%s*s!%s*" ":%s*s/%s*"];
+          icon = "";
+          lang = "regex";
+        };
+        replace = {
+          pattern = [":%s*%%s*s:%w*:%s*" ":%s*%%s*s!%w*!%s*" ":%s*%%s*s/%w*/%s*" "%s*s:%w*:%s*" ":%s*s!%w*!%s*" ":%s*s/%w*/%s*"];
+          icon = "󱞪";
+          lang = "regex";
+        };
+      };
+      routes = [
+        {
+          filter = {
+            event = "msg_show";
+            any = [
+              {find = "%d+L, %d+B";}
+              {find = "; after #%d+";}
+              {find = "; before #%d+";}
+            ];
+          };
+          view = "mini";
+        }
+      ];
+      presets = {
+        bottom_search = true;
+        command_palette = true;
+        long_message_to_split = true;
+        inc_rename = true;
+      };
     };
   };
 

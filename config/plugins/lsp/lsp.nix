@@ -101,17 +101,17 @@
       };
 
       nixd = {
-        enable = false;
+        enable = true;
 
         settings = {
-          nixpkgs.expr = "import <nixpkgs> { }";
-          formatting.command = ["alejandra"];
+          # nixpkgs.expr = "import <nixpkgs> { }";
+          # formatting.command = ["alejandra"];
           options = {
-            nixvim.expr = "(builtins.getFlake \"github:magicmonty/nixvim\").packages.${pkgs.system}.full.options";
+            nixvim.expr = ''(builtins.getFlake "github:magicmonty/nixvim").packages.${pkgs.system}.neovimNixvim.options'';
           };
         };
       };
-      nil_ls.enable = true;
+      nil_ls.enable = false;
       dockerls.enable = true;
       docker_compose_language_service.enable = true;
       marksman.enable = true;
