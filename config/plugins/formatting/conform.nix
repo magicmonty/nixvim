@@ -2,6 +2,7 @@
   extraPackages = with pkgs; [
     stylua
     alejandra
+    clang-tools
     shfmt
     nodePackages.prettier
     prettierd
@@ -73,6 +74,8 @@
         nix = ["alejandra"];
         sh = ["shfmt"];
         html = ["prettierd" "prettier"];
+        c = ["clang-format"];
+        cpp = ["clang-format"];
         css = ["prettierd" "prettier"];
         go = ["gofmt"];
         javascript = ["prettierd" "prettier"];
