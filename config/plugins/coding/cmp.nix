@@ -4,6 +4,8 @@
     cmp-cmdline.enable = true;
     cmp-emoji.enable = true;
     cmp-nvim-lsp.enable = true;
+    cmp-nvim-lsp-document-symbol.enable = true;
+    cmp-nvim-lsp-signature-help.enable = true;
     cmp-path.enable = true;
     cmp_luasnip.enable = true;
     cmp-treesitter.enable = true;
@@ -12,6 +14,9 @@
 
     cmp = {
       enable = true;
+      luaConfig.pre = ''
+        require("cmp-npm").setup({})
+      '';
       settings = {
         autoEnableSources = true;
         experimental = {
@@ -32,7 +37,7 @@
             end
           '';
         sources = [
-          {name = "nvim_lsp";}
+          {name = "nvim_lsp_signature_help";}
           {
             name = "npm";
             keyword_length = 4;
