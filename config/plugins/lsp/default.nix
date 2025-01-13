@@ -1,6 +1,6 @@
 {
   imports = [
-    ./fidget.nix
+    ./snacks-notify.nix
     ./inc-rename.nix
     ./lsp.nix
     ./lspkind.nix

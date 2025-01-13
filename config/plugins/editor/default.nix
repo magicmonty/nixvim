@@ -6,6 +6,7 @@
     ./neo-tree.nix
     ./spectre.nix
     ./telescope.nix
+    ./snacks.nix
     ./todo-comments.nix
     ./trouble.nix
     ./which-key.nix
