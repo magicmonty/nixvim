@@ -55,18 +55,6 @@
   keymaps = [
     {
       mode = "n";
-      key = "<leader>.";
-      action.__raw =
-        # lua
-        ''
-          function()
-            require('neo-tree.command').execute({ toggle = true, dir = NixVim.root.get() })
-          end
-        '';
-      options = {desc = "Toggle file explorer";};
-    }
-    {
-      mode = "n";
       key = "<leader>ge";
       action.__raw =
         # lua

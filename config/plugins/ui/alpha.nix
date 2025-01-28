@@ -40,6 +40,15 @@
         val = let
           mkButton = shortcut: cmd: val: hl: {
             type = "button";
+            on_press.__raw = let
+              button_cmd = builtins.replaceStrings ["<CMD>" "<CR>"] ["" ""] cmd;
+            in
+              #  lua
+              ''
+                function()
+                  vim.cmd([[${button_cmd}]])
+                end
+              '';
             inherit val;
             opts = {
               inherit hl shortcut;
@@ -59,15 +68,15 @@
         in [
           (mkButton "f" "<CMD>lua require('telescope.builtin').find_files({hidden = true})<CR>" "  Find File" "Operator")
           (mkPadding 1)
-          (mkButton "e" "<CMD>Neotree<CR>" "  Open Neo-Tree" "Operator")
+          (mkButton "e" "<CMD>Oil<CR>" "  Open File Explorer" "Operator")
           (mkPadding 1)
-          (mkButton "n" "<cmd>ene | startinsert<cr>" "  New File" "Operator")
+          (mkButton "n" "<CMD>ene | startinsert<CR>" "  New File" "Operator")
           (mkPadding 1)
-          (mkButton "r" "<cmd>Telescope oldfiles<cr>" "  Recent Files" "Operator")
+          (mkButton "r" "<CMD>Telescope oldfiles<CR>" "  Recent Files" "Operator")
           (mkPadding 1)
-          (mkButton "g" "<cmd>Telescope live_grep<cr>" "  Find Text" "Operator")
+          (mkButton "g" "<CMD>Telescope live_grep<CR>" "  Find Text" "Operator")
           (mkPadding 1)
-          (mkButton "q" "<cmd>qa<cr>" "  Quit" "String")
+          (mkButton "q" "<CMD>qa<CR>" "  Quit" "String")
         ];
       }
       (mkPadding 2)

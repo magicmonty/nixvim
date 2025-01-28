@@ -4,6 +4,7 @@
     ./gitsigns.nix
     ./illuminate.nix
     ./neo-tree.nix
+    ./oil.nix
     ./spectre.nix
     ./telescope.nix
     ./snacks.nix
