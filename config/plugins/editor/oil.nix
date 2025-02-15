@@ -7,7 +7,7 @@
       use_default_keymaps = false;
       keymaps = {
         "<CR>" = "actions.select";
-        "<BS>" = "actions.open_cwd";
+        "<BS>" = "actions.parent";
         "q" = "actions.close";
         "<leader>." = "actions.close";
         "<C-h>" = "actions.select_split";
