@@ -1,10 +1,11 @@
 {
   config,
   lib,
+  ...
 }:
 with lib; {
   plugins = {
-    neotest.enable = false;
+    neotest.enable = true;
   };
 
   keymaps = mkIf config.plugins.neotest.enable [

@@ -9,6 +9,7 @@
     ./mini-ai.nix
     ./mini-pairs.nix
     ./mini-surround.nix
+    ./neotest.nix
     ./luasnip.nix
   ];
 }

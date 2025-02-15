@@ -29,7 +29,7 @@
         # lua
         ''
           function()
-            require('oil').toggle_float(NixVim.root.get())
+            require('oil').toggle_float()
           end
         '';
       options = {desc = "Toggle file explorer";};
