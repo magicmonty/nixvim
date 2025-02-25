@@ -9,5 +9,6 @@
     ./lsp
     ./treesitter
     ./ui
+    ./custom
   ];
 }

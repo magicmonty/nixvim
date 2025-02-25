@@ -1,0 +1,5 @@
+{
+  imports = [
+    ./present-nvim.nix
+  ];
+}

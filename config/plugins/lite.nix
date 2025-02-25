@@ -2,6 +2,7 @@
   imports = [
     ./coding/lite.nix
     ./colorscheme
+    ./custom
     ./editor
     ./formatting
     ./lang/lite.nix
