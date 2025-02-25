@@ -3,10 +3,10 @@
     (pkgs.vimUtils.buildVimPlugin {
       name = "present-nvim";
       src = pkgs.fetchFromGitHub {
-        owner = "tjdevries";
+        owner = "magicmonty";
         repo = "present.nvim";
-        rev = "ce22dfaf9ebc2b37eb688e00929dfaeff126fe94";
-        hash = "sha256-vBmw+BLfFLxBTFJjA29lPGJ3rBMW41O07SfJnDjC0Rk=";
+        rev = "a9a5c995fc4d92ae67ec9db5708f70a17f63736f";
+        hash = "sha256-KlFClFPYgTerFQ75aX3zkLxFvSDKQXoSzWE+C4AkAZM=";
       };
     })
   ];
