@@ -5,8 +5,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "magicmonty";
         repo = "present.nvim";
-        rev = "a9a5c995fc4d92ae67ec9db5708f70a17f63736f";
-        hash = "sha256-KlFClFPYgTerFQ75aX3zkLxFvSDKQXoSzWE+C4AkAZM=";
+        rev = "1682e66fadde429360d695e773b2f67fb2b2e013";
+        hash = "sha256-VxZjS2dLpa+/4zw8s/oQGaXDwVCvJTq3xN7hUZgJIBo=";
       };
     })
   ];
