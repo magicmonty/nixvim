@@ -88,7 +88,7 @@ with builtins; {
 
       plugins = {
         image = {
-          enable = true;
+          enable = false;
           backend = "kitty";
           editorOnlyRenderWhenFocused = false;
           extraOptions = {
