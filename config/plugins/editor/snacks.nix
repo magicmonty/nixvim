@@ -9,8 +9,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "folke";
         repo = "snacks.nvim";
-        rev = "fa29c6c92631026a7ee41249c78bd91562e67a09";
-        hash = "sha256-JiCgRLcikScrLgiw2PDeR806JKaQdvh4BzInA2pnmWY=";
+        rev = "bc0630e43be5699bb94dadc302c0d21615421d93";
+        hash = "sha256-Gw0Bp2YeoESiBLs3NPnqke3xwEjuiQDDU1CPofrhtig="; # lib.fakeHash;
       };
       doCheck = false;
     })
