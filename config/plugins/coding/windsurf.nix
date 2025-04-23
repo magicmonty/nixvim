@@ -1,16 +1,15 @@
 {pkgs, ...}: {
   plugins = {
-    codeium-nvim = {
+    windsurf-nvim = {
       enable = true;
       settings = {
         enable_chat = true;
       };
-      package = pkgs.vimPlugins.windsurf-nvim;
     };
 
     cmp.settings.sources = [
       {
-        name = "codeium";
+        name = "windsurf";
         keywordLength = 5;
         priority = 100;
       }
