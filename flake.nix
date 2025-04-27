@@ -102,6 +102,9 @@
           default = with pkgs;
             mkShell {
               inherit (self'.checks.pre-commit-check) shellHook;
+              nativeBuildInputs = [
+                pkgs.just
+              ];
             };
         };
       };

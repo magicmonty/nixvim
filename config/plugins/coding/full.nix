@@ -2,6 +2,7 @@
   imports = [
     ./cmp.nix
     ./comment.nix
+    ./copilot.nix
     ./kulala.nix
     ./lazygit.nix
     ./luasnip.nix
@@ -10,6 +11,5 @@
     ./mini-pairs.nix
     ./mini-surround.nix
     ./neotest.nix
-    ./windsurf.nix
   ];
 }
