@@ -47,6 +47,40 @@
         "<cmd>lua require('kulala').toggle_view()<cr>",
         { noremap = true, silent = true, desc = "Toggle between body and headers" }
       )
+
+      vim.api.nvim_buf_set_keymap(
+        0,
+        "n",
+        "<leader>Re",
+        "<cmd>lua require('kulala').set_selected_env()<cr>",
+        { noremap = true, silent = true, desc = "Select environment" }
+      )
+
+      vim.api.nvim_buf_set_keymap(
+        0,
+        "n",
+        "<leader>Ru",
+        "<cmd>lua require('kulala.ui.auth_manager').open_auth_config()<cr>",
+       { noremap = true, silent = true, desc = "Manage auth config" }
+      )
+
+      vim.api.nvim_buf_set_keymap(
+        0,
+        "n",
+        "<leader>Rx",
+        "<cmd>lua require('kulala').scripts_clear_global()<cr>",
+       { noremap = true, silent = true, desc = "Clear globals" }
+      )
+
+      vim.api.nvim_buf_set_keymap(
+        0,
+        "n",
+        "<leader>RX",
+        "<cmd>lua require('kulala').clear_cached_files()<cr>",
+       { noremap = true, silent = true, desc = "Clear cached files" }
+      )
+
+
     '';
 
   plugins.kulala = {
