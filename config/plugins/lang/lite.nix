@@ -7,6 +7,5 @@ _: {
     ./obsidian
     ./powershell
     ./vue
-    ./tailwindcss
   ];
 }
