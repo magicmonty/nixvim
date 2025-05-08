@@ -6,6 +6,7 @@ _: {
     ./neorg
     ./obsidian
     ./powershell
+    ./tailwindcss
     ./vue
   ];
 }

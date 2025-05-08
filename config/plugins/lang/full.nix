@@ -8,6 +8,7 @@ with lib; {
     ./obsidian
     ./powershell
     ./rust
+    ./tailwindcss
     ./tex
     ./vue
   ];

@@ -17,6 +17,8 @@ with lib; {
       gnused
       ripgrep
       unzip
+      nodejs-slim_22
+      nodejs_22
     ];
 
     viAlias = true;
