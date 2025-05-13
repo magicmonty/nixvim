@@ -1,7 +1,6 @@
 {lib, ...}:
 with lib; {
   imports = [
-    ./angular
     ./json
     ./markdown
     ./neorg

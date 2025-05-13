@@ -1,6 +1,5 @@
 _: {
   imports = [
-    ./angular
     ./json
     ./markdown
     ./neorg

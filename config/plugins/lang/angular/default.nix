@@ -1,4 +1,4 @@
-{language-servers, ...}: {
+{pkgs, ...}: {
   extraConfigLua =
     # lsp
     ''
@@ -12,7 +12,7 @@
 
       local __angularGenCmd = function(root_dir)
         return {
-          "${language-servers.angularls}/bin/angular-language-server",
+          "${pkgs.angular-language-server}/bin/angular-language-server",
           "--stdio",
           "--tsProbeLocations",
           root_dir or "",

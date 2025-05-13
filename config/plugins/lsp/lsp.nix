@@ -47,6 +47,7 @@
       '';
 
     servers = {
+      angularls.enable = true;
       bashls.enable = true;
       clangd.enable = true;
       gopls.enable = true;
