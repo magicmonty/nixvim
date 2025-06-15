@@ -95,6 +95,11 @@ with builtins; {
           action = ":ObsidianRename<cr>";
         }
         {
+          mode = "n";
+          key = "<leader>ob";
+          action = ":ObsidianBacklinks<cr>";
+        }
+        {
           mode = "x";
           key = "<c-o>x";
           action = ":Obsidian extract_note<cr>";
