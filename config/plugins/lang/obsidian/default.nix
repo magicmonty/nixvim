@@ -187,6 +187,14 @@ with builtins; {
 
             attachments = {
               confirm_img_paste = false;
+              img_name_func =
+                # lua
+                ''
+                  function()
+                    -- Prefix image names with timestamp.
+                    return string.format("pasted_img_%s", os.date "%Y%m%d%H%M%S")
+                  end
+                '';
               img_text_func =
                 # lua
                 ''
