@@ -84,6 +84,21 @@ with builtins; {
           key = "<leader>oi";
           action = ":ObsidianPasteImg<cr>";
         }
+        {
+          mode = "n";
+          key = "<leader>os";
+          action = ":ObsidianSearch<cr>";
+        }
+        {
+          mode = "n";
+          key = "<leader>or";
+          action = ":ObsidianRename<cr>";
+        }
+        {
+          mode = "x";
+          key = "<c-o>x";
+          action = ":Obsidian extract_note<cr>";
+        }
       ];
 
       plugins = {
