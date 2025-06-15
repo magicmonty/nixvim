@@ -187,7 +187,7 @@ with builtins; {
 
             attachments = {
               confirm_img_paste = false;
-              img_name_func =
+              img_name_func.__raw =
                 # lua
                 ''
                   function()
