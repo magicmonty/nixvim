@@ -114,6 +114,110 @@ with builtins; {
       plugins = {
         markview = {
           enable = true;
+          settings = {
+            markdown_inline = {
+              checkboxes = {
+                enable = true;
+                checked = {
+                  text = " ";
+                  hl = "MarkviewCheckboxChecked";
+                  scope_hl = "MarkviewCheckboxChecked";
+                };
+                unchecked = {
+                  text = "󰄱 ";
+                  hl = "MarkviewCheckboxUnchecked";
+                  scope_hl = "MarkviewCheckboxUnchecked";
+                };
+
+                "/" = {
+                  text = " ";
+                  hl = "MarkviewCheckboxPending";
+                };
+                ">" = {
+                  text = " ";
+                  hl = "MarkviewCheckboxCancelled";
+                };
+                "~" = {
+                  text = "󰰱 ";
+                  hl = "ObsidianTilde";
+                };
+                "<" = {
+                  text = "󰃖";
+                  hl = "MarkviewCheckboxCancelled";
+                };
+                "-" = {
+                  text = "󰍶";
+                  hl = "MarkviewCheckboxCancelled";
+                  scope_hl = "MarkviewCheckboxStriked";
+                };
+
+                "?" = {
+                  text = "󰋗";
+                  hl = "MarkviewCheckboxPending";
+                };
+                "!" = {
+                  rendered = " ";
+                  hl = "ObsidianImportant";
+                };
+                "*" = {
+                  text = "󰓎";
+                  hl = "MarkviewCheckboxPending";
+                };
+                "\"" = {
+                  text = "󰸥";
+                  hl = "MarkviewCheckboxCancelled";
+                };
+                "l" = {
+                  text = "󰆋";
+                  hl = "MarkviewCheckboxProgress";
+                };
+                "b" = {
+                  text = "󰃀";
+                  hl = "MarkviewCheckboxProgress";
+                };
+                "i" = {
+                  text = "󰰄";
+                  hl = "MarkviewCheckboxChecked";
+                };
+                "S" = {
+                  text = "";
+                  hl = "MarkviewCheckboxChecked";
+                };
+                "I" = {
+                  text = "󰛨";
+                  hl = "MarkviewCheckboxPending";
+                };
+                "p" = {
+                  text = "";
+                  hl = "MarkviewCheckboxChecked";
+                };
+                "c" = {
+                  text = "";
+                  hl = "MarkviewCheckboxUnchecked";
+                };
+                "f" = {
+                  text = "󱠇";
+                  hl = "MarkviewCheckboxUnchecked";
+                };
+                "k" = {
+                  text = "";
+                  hl = "MarkviewCheckboxPending";
+                };
+                "w" = {
+                  text = "";
+                  hl = "MarkviewCheckboxProgress";
+                };
+                "u" = {
+                  text = "󰔵";
+                  hl = "MarkviewCheckboxChecked";
+                };
+                "d" = {
+                  text = "󰔳";
+                  hl = "MarkviewCheckboxUnchecked";
+                };
+              };
+            };
+          };
         };
         render-markdown = {
           enable = false;
@@ -127,17 +231,17 @@ with builtins; {
             checkbox = {
               unchecked = {
                 icon = "󰄱 ";
-                highlight = "ObsidianTodo";
+                highlight = "MarkviewCheckboxUnchecked";
               };
               checked = {
                 icon = " ";
-                highlight = "ObsidianDone";
+                highlight = "MarkviewCheckboxChecked";
               };
               custom = {
                 rightArrow = {
                   raw = "[>]";
                   rendered = " ";
-                  highlight = "ObsidianRightArrow";
+                  highlight = "MarkviewCheckboxCancelled";
                 };
                 tilde = {
                   raw = "[~]";
