@@ -112,8 +112,11 @@ with builtins; {
       ];
 
       plugins = {
-        render-markdown = {
+        markview = {
           enable = true;
+        };
+        render-markdown = {
+          enable = false;
           settings = {
             bullet = {
               enabled = true;
