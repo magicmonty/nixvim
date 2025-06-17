@@ -49,7 +49,7 @@ with builtins; {
         {
           mode = "n";
           key = "<leader>oo";
-          action = ":cd ${first_workspace_path}<cr>";
+          action = ":cd ${first_workspace_path}<cr>:e index.md<cr>";
           options = {desc = "Change current directory to Obsidian root";};
         }
         {
@@ -68,7 +68,7 @@ with builtins; {
         }
         {
           mode = "n";
-          key = "<leader>ot";
+          key = "<leader>oT";
           action.__raw =
             # lua
             ''
@@ -87,12 +87,17 @@ with builtins; {
         {
           mode = "n";
           key = "<leader>os";
-          action = ":ObsidianSearch<cr>";
+          action = ":Obsidian quick_switch<cr>";
         }
         {
           mode = "n";
           key = "<leader>or";
           action = ":ObsidianRename<cr>";
+        }
+        {
+          mode = "n";
+          key = "<leader>ot";
+          action = ":Obsidian tags<cr>";
         }
         {
           mode = "n";
