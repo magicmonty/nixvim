@@ -55,6 +55,7 @@
           "<C-d>" = {
             __raw = "require('telescope.actions').preview_scrolling_up";
           };
+          /*
           "<C-s>" = {
             __raw =
               # lua
@@ -79,11 +80,13 @@
                 end
               '';
           };
+          */
         };
         n = {
           "q" = {
             __raw = "require('telescope.actions').close";
           };
+          /*
           "s" = {
             __raw =
               # lua
@@ -108,6 +111,7 @@
                 end
               '';
           };
+          */
         };
       };
     };

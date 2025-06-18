@@ -1,6 +1,6 @@
 {
   imports = [
-    ./flash.nix
+    # ./flash.nix
     ./gitsigns.nix
     ./illuminate.nix
     ./neo-tree.nix
