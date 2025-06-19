@@ -45,21 +45,86 @@ with builtins; {
     first_workspace_path = (lib.lists.elemAt workspaces 0).path;
   in
     mkIf enable {
+      extraConfigLuaPre = ''
+        function find_assets_dir()
+          local dir = vim.fn.expand("%:p:h")
+          while dir ~= "/" do
+            local full_path = dir .. "/assets"
+            if vim.fn.isdirectory(full_path) == 1 then
+              return full_path
+            end
+            dir = vim.fn.fnamemodify(dir, ":h")
+          end
+          return nil
+        end
+        function get_image_path()
+          -- Get the current line
+          local line = vim.api.nvim_get_current_line()
+          -- Pattern to match image path in Markdown
+          local image_pattern = "%[.-%]%((.-)%)"
+          -- Extract relative image path
+          local _, _, image_path = string.find(line, image_pattern)
+          return image_path
+        end
+        function get_absolute_image_path(image_path)
+          -- Check if the image path is relative or absolute
+          if string.sub(image_path, 1, 1) == "/" then
+            -- Absolute path
+            if vim.fn.filereadable(image_path) == 0 then
+              return nil
+            else
+              return image_path
+            end
+          else
+            -- Relative path
+            local IMAGES_DIR = "imgs/"
+
+            local assets_dir = find_assets_dir()
+            if assets_dir then
+              -- if image_path starts with "assets/" trim "assets/" from the beginning
+              if string.sub(image_path, 1, 7) == "assets/" then
+                image_path = string.sub(image_path, 8)
+              end
+
+              -- try to find in assets/imgs/ directory, when the image path starts with "imgs/"
+              if string.sub(image_path, 1, 5) == IMAGES_DIR then
+                local absolute_image_path = assets_dir .. "/" .. image_path
+                if vim.fn.filereadable(absolute_image_path) == 1 then
+                  return absolute_image_path
+                end
+              else
+                -- check if the image is directly in the assets directory
+                local absolute_image_path = assets_dir .. "/" .. image_path
+                if vim.fn.filereadable(absolute_image_path) == 0 then
+                  -- otherwise check if the image is in the assets/imgs directory
+                  absolute_image_path = assets_dir .. "/" .. IMAGES_DIR .. image_path
+                  if vim.fn.filereadable(absolute_image_path) == 1 then
+                    return absolute_image_path
+                  end
+                else
+                  return absolute_image_path
+                end
+              end
+            end
+
+            -- if not found yet construct absolute path from current file path
+            local current_file_path = vim.fn.expand("%:p:h")
+            local absolute_image_path = current_file_path .. "/" .. image_path
+
+            if vim.fn.filereadable(absolute_image_path) == 0 then
+              return nil
+            else
+              return absolute_image_path
+            end
+          end
+        end
+      '';
       keymaps = [
         {
           mode = "n";
           key = "<leader>ir";
           action.__raw = ''
             function()
-              local function get_image_path()
-                -- Get the current line
-                local line = vim.api.nvim_get_current_line()
-                -- Pattern to match image path in Markdown
-                local image_pattern = "%[.-%]%((.-)%)"
-                -- Extract relative image path
-                local _, _, image_path = string.find(line, image_pattern)
-                return image_path
-              end
               -- Get the image path
               local image_path = get_image_path()
 
@@ -73,25 +138,20 @@ with builtins; {
                 vim.api.nvim_echo({ { "URL images cannot be renamed.", "WarningMsg" } }, false, {})
                 return
               end
-              -- Get absolute paths
-              local current_file_path = vim.fn.expand("%:p:h")
-              local absolute_image_path = current_file_path .. "/" .. image_path
-              -- Check if file exists
-              if vim.fn.filereadable(absolute_image_path) == 0 then
-                absolute_image_path = require("obsidian")._client.dir.filename .. "/" .. image_path
-                if vim.fn.filereadable(absolute_image_path) == 0 then
-                  absolute_image_path = require("obsidian")._client.dir.filename .. "/assets/" .. image_path
-                  if vim.fn.filereadable(absolute_image_path) == 0 then
-                    vim.api.nvim_echo(
-                      { { "Image file does not exist:\n", "ErrorMsg" }, { absolute_image_path, "ErrorMsg" } },
-                      false,
-                      {}
-                    )
-                    return
-                  end
-                end
 
+              -- Get absolute path
+              local absolute_image_path = get_absolute_image_path(image_path)
+
+              -- Check if file exists
+              if absolute_image_path == nil then
+                vim.api.nvim_echo(
+                  { { "Image file does not exist:\n", "ErrorMsg" }, { absolute_image_path, "ErrorMsg" } },
+                  false,
+                  {}
+                )
+                return
               end
+
               -- Get directory and extension of current image
               local dir = vim.fn.fnamemodify(absolute_image_path, ":h")
               local ext = vim.fn.fnamemodify(absolute_image_path, ":e")
@@ -160,6 +220,82 @@ with builtins; {
             end
           '';
           options = {desc = "Rename image file";};
+        }
+        {
+          mode = "n";
+          key = "<leader>id";
+          action.__raw = ''
+            function()
+              local image_path = get_image_path()
+              if not image_path then
+                vim.api.nvim_echo({ { "No image found under the cursor", "WarningMsg" } }, false, {})
+                return
+              end
+              if string.sub(image_path, 1, 4) == "http" then
+                vim.api.nvim_echo({ { "URL image cannot be deleted from disk.", "WarningMsg" } }, false, {})
+                return
+              end
+              local absolute_image_path = get_absolute_image_path(image_path)
+
+              -- Check if file exists
+              if not absolute_image_path then
+                vim.api.nvim_echo(
+                  { { "Image file does not exist:\n", "ErrorMsg" }, { absolute_image_path, "ErrorMsg" } },
+                  false,
+                  {}
+                )
+                return
+              end
+
+              -- Cannot see the popup as the cursor is on top of the image name, so saving
+              -- its position, will move it to the top and then move it back
+              local current_pos = vim.api.nvim_win_get_cursor(0) -- Save cursor position
+              vim.api.nvim_win_set_cursor(0, { 1, 0 }) -- Move to top
+              vim.ui.select(
+                { "yes", "no" },
+                { prompt = "Delete image file? " },
+                function(choice)
+                  if choice == "yes" then
+                    -- Cannot see the popup as the cursor is on top of the image name, so saving
+                    -- its position, will move it to the top and then move it back
+
+                    local rm_success, _ = pcall(function()
+                     vim.fn.system({ "rm", vim.fn.fnameescape(absolute_image_path) })
+                    end)
+
+                    if rm_success and vim.fn.filereadable(absolute_image_path) == 0 then
+                      vim.api.nvim_echo({
+                        { "Image file deleted from disk:\n", "Normal" },
+                        { absolute_image_path, "Normal" },
+                      }, false, {})
+
+                      local success, snacks = pcall(require, "snacks")
+                      if success then
+                        snacks.image.placement.clean()
+                      else
+                        local success, image = pcall(require, "image")
+                        if success then
+                          image.clear()
+                        end
+                      end
+
+                      vim.api.nvim_win_set_cursor(0, current_pos) -- Move back to image line
+                      vim.cmd("edit!")
+                      vim.cmd("normal! dd")
+                    else
+                      vim.api.nvim_echo({
+                        { "Failed to delete image file:\n", "ErrorMsg" },
+                        { absolute_image_path, "ErrorMsg" },
+                      }, false, {})
+                    end
+                  else
+                    vim.api.nvim_echo({ { "Image deletion canceled.", "Normal" } }, false, {})
+                  end
+                end
+              )
+            end
+          '';
+          options = {desc = "delete image file under cursor";};
         }
         {
           mode = "n";
