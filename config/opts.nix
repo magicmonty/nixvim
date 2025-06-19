@@ -27,6 +27,26 @@ with lib; {
     enableMan = false;
     editorconfig.enable = true;
 
+    performance = {
+      byteCompileLua = {
+        enable = true;
+        configs = true;
+        initLua = true;
+        luaLib = true;
+        nvimRuntime = true;
+        plugins = true;
+      };
+      combinePlugins = {
+        enable = true; # Combine plugins into a single file
+        standalonePlugins = [
+          "copilot.lua"
+          "markview.nvim"
+          "nvim-treesitter"
+          "conform.nvim"
+        ];
+      };
+    };
+
     globals = {
       mapleader = " ";
       maplocalleader = "\\";
