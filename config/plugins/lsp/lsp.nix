@@ -100,7 +100,6 @@
           workingDirectories = {mode = "auto";};
         };
       };
-
       nixd = {
         enable = true;
 

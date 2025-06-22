@@ -29,7 +29,7 @@ with lib; {
 
     performance = {
       byteCompileLua = {
-        enable = false;
+        enable = true;
         configs = true;
         initLua = true;
         luaLib = true;
@@ -37,7 +37,7 @@ with lib; {
         plugins = true;
       };
       combinePlugins = {
-        enable = false; # Combine plugins into a single file
+        enable = true; # Combine plugins into a single file
         standalonePlugins = [
           "copilot.lua"
           "markview.nvim"

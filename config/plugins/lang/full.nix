@@ -9,6 +9,7 @@ with lib; {
     ./rust
     ./tailwindcss
     ./tex
+    ./typst
     ./vue
   ];
 
