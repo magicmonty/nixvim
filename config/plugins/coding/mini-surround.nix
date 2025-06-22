@@ -1,5 +1,6 @@
 {
   plugins.mini.modules.surround = {
+    /*
     mappings = {
       add = "ys";
       delete = "ds";
@@ -11,8 +12,10 @@
     };
 
     silent = true;
+    */
   };
 
+  /*
   keymaps = [
     {
       mode = "x";
@@ -26,4 +29,5 @@
         '';
     }
   ];
+  */
 }

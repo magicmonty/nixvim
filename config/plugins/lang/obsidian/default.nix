@@ -295,13 +295,13 @@ with builtins; {
               )
             end
           '';
-          options = {desc = "delete image file under cursor";};
+          options = {desc = "Delete image file under cursor";};
         }
         {
           mode = "n";
           key = "<leader>oo";
           action = ":cd ${first_workspace_path}<cr>:e index.md<cr>";
-          options = {desc = "Change current directory to Obsidian root";};
+          options = {desc = "Open obsidian vault";};
         }
         {
           mode = "n";
@@ -333,36 +333,304 @@ with builtins; {
         {
           mode = "n";
           key = "<leader>oi";
-          action = ":ObsidianPasteImg<cr>";
+          action.__raw =
+            # lua
+            ''
+              function()
+                vim.ui.input({ prompt = "Enter new name (without extension): ", default = current_name }, function(new_name)
+                  if not new_name or new_name == "" then
+                    vim.cmd.ObsidianPasteImg()
+                  else
+                    vim.cmd.ObsidianPasteImg(new_name)
+                  end
+                end)
+              end
+            '';
+          options = {desc = "Paste image into Obsidian note";};
         }
         {
           mode = "n";
           key = "<leader>os";
           action = ":Obsidian quick_switch<cr>";
+          options = {desc = "Quick switch to another Obsidian note";};
         }
         {
           mode = "n";
           key = "<leader>or";
           action = ":ObsidianRename<cr>";
+          options = {desc = "Rename current Obsidian note";};
         }
         {
           mode = "n";
           key = "<leader>ot";
           action = ":Obsidian tags<cr>";
+          options = {desc = "Search Obsidian tags";};
         }
         {
           mode = "n";
           key = "<leader>ob";
           action = ":ObsidianBacklinks<cr>";
+          options = {desc = "Show backlinks for current Obsidian note";};
         }
         {
           mode = "x";
           key = "<c-o>x";
           action = ":Obsidian extract_note<cr>";
+          options = {desc = "Extract selected text to a new Obsidian note";};
+        }
+        {
+          mode = "n";
+          key = "<leader>su";
+          action.__raw = ''
+            function()
+              local line = vim.api.nvim_get_current_line()
+              local col = vim.api.nvim_win_get_cursor(0)[2] + 1 -- Adjust for 0-index in Lua
+              -- This makes the `s` optional so it matches both http and https
+              local pattern = "https?://[^ ,;'\"<>%s)]*"
+              -- Find the starting and ending positions of the URL
+              local s, e = string.find(line, pattern)
+              while s and e do
+                if s <= col and e >= col then
+                  -- When the cursor is within the URL
+                  local url = string.sub(line, s, e)
+                  -- Update the line with brackets around the URL
+                  local new_line = string.sub(line, 1, s - 1) .. "[" .. url .. "]" .. string.sub(line, e + 1)
+                  vim.api.nvim_set_current_line(new_line)
+                  vim.cmd("silent write")
+                  return
+                end
+                -- Find the next URL in the line
+                s, e = string.find(line, pattern, e + 1)
+                -- Save the file to update trouble list
+              end
+              print("No URL found under cursor")
+            end
+          '';
+          options = {desc = "Add surrounding to URL";};
+        }
+        {
+          mode = "v";
+          key = "sc";
+          action.__raw = ''
+            function()
+              -- Use nvim_replace_termcodes to handle special characters like backticks
+              local keys = vim.api.nvim_replace_termcodes("sa`", true, false, true)
+              vim.api.nvim_feedkeys(keys, "x", false)
+            end '';
+          options = {desc = "Make selection inline code";};
+        }
+        {
+          mode = "v";
+          key = "si";
+          action.__raw = ''
+            function()
+              -- Use nvim_replace_termcodes to handle special characters like backticks
+              local keys = vim.api.nvim_replace_termcodes("sa*", true, false, true)
+              vim.api.nvim_feedkeys(keys, "x", false)
+            end '';
+          options = {desc = "Make selection italic";};
+        }
+        {
+          mode = "v";
+          key = "sb";
+          action.__raw = ''
+            function()
+              -- Use nvim_replace_termcodes to handle special characters like backticks
+              local keys = vim.api.nvim_replace_termcodes("2sa*", true, false, true)
+              vim.api.nvim_feedkeys(keys, "x", false)
+            end '';
+          options = {desc = "Make selection bold";};
+        }
+        {
+          mode = "n";
+          key = "<leader>mB";
+          action.__raw = ''
+            function()
+              vim.cmd("normal Vsb")
+            end
+          '';
+          options = {desc = "Make line under cursor bold";};
+        }
+        {
+          mode = "n";
+          key = "<leader>mb";
+          action.__raw = ''
+            function()
+              local cursor_pos = vim.api.nvim_win_get_cursor(0)
+              local current_buffer = vim.api.nvim_get_current_buf()
+              local start_row = cursor_pos[1] - 1
+              local col = cursor_pos[2]
+              -- Get the current line
+              local line = vim.api.nvim_buf_get_lines(current_buffer, start_row, start_row + 1, false)[1]
+              -- Check if the cursor is on an asterisk
+              if line:sub(col + 1, col + 1):match("%*") then
+                vim.notify("Cursor is on an asterisk, run inside the bold text", vim.log.levels.WARN)
+                return
+              end
+              -- Search for '**' to the left of the cursor position
+              local left_text = line:sub(1, col)
+              local bold_start = left_text:reverse():find("%*%*")
+              if bold_start then
+                bold_start = col - bold_start
+              end
+              -- Search for '**' to the right of the cursor position and in following lines
+              local right_text = line:sub(col + 1)
+              local bold_end = right_text:find("%*%*")
+              local end_row = start_row
+              while not bold_end and end_row < vim.api.nvim_buf_line_count(current_buffer) - 1 do
+                end_row = end_row + 1
+                local next_line = vim.api.nvim_buf_get_lines(current_buffer, end_row, end_row + 1, false)[1]
+                if next_line == "" then
+                  break
+                end
+                right_text = right_text .. "\n" .. next_line
+                bold_end = right_text:find("%*%*")
+              end
+              if bold_end then
+                bold_end = col + bold_end
+              end
+              -- Remove '**' markers if found, otherwise bold the word
+              if bold_start and bold_end then
+                -- Extract lines
+                local text_lines = vim.api.nvim_buf_get_lines(current_buffer, start_row, end_row + 1, false)
+                local text = table.concat(text_lines, "\n")
+                -- Calculate positions to correctly remove '**'
+                local new_text = text:sub(1, bold_start - 1) .. text:sub(bold_start + 2, bold_end - 1) .. text:sub(bold_end + 2)
+                local new_lines = vim.split(new_text, "\n")
+                -- Set new lines in buffer
+                vim.api.nvim_buf_set_lines(current_buffer, start_row, end_row + 1, false, new_lines)
+              else
+                -- Bold the word at the cursor position if no bold markers are found
+                local before = line:sub(1, col)
+                local after = line:sub(col + 1)
+                local inside_surround = before:match("%*%*[^%*]*$") and after:match("^[^%*]*%*%*")
+                if inside_surround then
+                  vim.cmd("normal 2sd*")
+                else
+                  vim.cmd("normal viWsb")
+                end
+                vim.notify("Bolded current word", vim.log.levels.INFO)
+              end
+            end
+          '';
+          options = {desc = "Toggle bold marker on current word";};
+        }
+        {
+          mode = "n";
+          key = "<leader>mI";
+          action.__raw = ''
+            function()
+              vim.cmd("normal Vsi")
+            end
+          '';
+          options = {desc = "Make line under cursor italic";};
+        }
+        {
+          mode = "n";
+          key = "<leader>mi";
+          action.__raw = ''
+            function()
+              vim.cmd("normal saiw*")
+            end
+          '';
+          options = {desc = "Make word under cursor italic";};
         }
       ];
 
       plugins = {
+        mkdnflow = {
+          enable = true;
+          mappings = {
+            # Folds
+            MkdnFoldSection = {
+              key = "zs";
+              modes = "n";
+            };
+            MkdnUnfoldSection = {
+              key = "zS";
+              modes = "n";
+            };
+
+            # Tables
+            MkdnTableNewColAfter = {
+              key = "<leader>tc";
+              modes = "n";
+            };
+            MkdnTableNewColBefore = {
+              key = "<leader>tC";
+              modes = "n";
+            };
+            MkdnTableNewRowAbove = {
+              key = "<leader>tR";
+              modes = "n";
+            };
+            MkdnTableNewRowBelow = {
+              key = "<leader>tr";
+              modes = "n";
+            };
+            MkdnTableNextCell = {
+              key = "<Tab>";
+              modes = "i";
+            };
+            MkdnTableNextRow = {
+              key = "<M-CR>";
+              modes = "i";
+            };
+            MkdnTablePrefCell = {
+              key = "<S-Tab>";
+              modes = "i";
+            };
+            MkdnTableFormat = {
+              key = "<leader>tf";
+              modes = "n";
+            };
+
+            # The rest is disabled
+            MkdnCreateLink = false;
+            MkdnCreateLinkFromClipboard = false;
+            MkdnDecreaseHeading = false;
+            MkdnDestroyLink = false;
+            MkdnEnter = false;
+            MkdnExtendList = false;
+            MkdnFollowLink = false;
+            MkdnGoBack = false;
+            MkdnGoForward = false;
+            MkdnIncreaseHeading = false;
+            MkdnMoveSource = false;
+            MkdnNewListItem = false;
+            MkdnNewListItemAboveInsert = false;
+            MkdnNewListItemBelowInsert = false;
+            MkdnNextHeading = false;
+            MkdnNextLink = false;
+            MkdnPrevHeading = false;
+            MkdnPrevLink = false;
+            MkdnSTab = false;
+            MkdnTab = false;
+            MkdnToggleToDo = false;
+            MkdnUpdateNumbering = false;
+            MkdnYankAnchorLink = false;
+            MkdnYankFileAnchorLink = false;
+          };
+          modules = {
+            bib = false;
+            buffers = false;
+            conceal = false;
+            cursor = true;
+            folds = true;
+            links = false;
+            lists = false;
+            maps = true;
+            paths = false;
+            tables = true;
+            yaml = false;
+          };
+          tables = {
+            autoExtendCols = false;
+            autoExtendRows = false;
+            formatOnMove = true;
+            trimWhitespace = true;
+          };
+        };
         markview = {
           enable = true;
           settings = {
