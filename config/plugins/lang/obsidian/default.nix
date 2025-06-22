@@ -464,7 +464,6 @@ with builtins; {
               local line = vim.api.nvim_buf_get_lines(current_buffer, start_row, start_row + 1, false)[1]
               -- Check if the cursor is on an asterisk
               if line:sub(col + 1, col + 1):match("%*") then
-                vim.notify("Cursor is on an asterisk, run inside the bold text", vim.log.levels.WARN)
                 return
               end
               -- Search for '**' to the left of the cursor position
@@ -509,7 +508,6 @@ with builtins; {
                 else
                   vim.cmd("normal viWsb")
                 end
-                vim.notify("Bolded current word", vim.log.levels.INFO)
               end
             end
           '';
