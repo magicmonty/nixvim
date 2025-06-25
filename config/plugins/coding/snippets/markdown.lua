@@ -71,22 +71,6 @@ table.insert(
 	})
 )
 
--- Paste clipboard contents in link section, move cursor to ()
-table.insert(
-	snippets,
-	s({
-		trig = "linkex",
-		name = "Paste clipboard as EXT .md link",
-		desc = "Paste clipboard as EXT .md link",
-	}, {
-		t("["),
-		i(1),
-		t("]("),
-		f(clipboard, {}),
-		t('){:target="_blank"}'),
-	})
-)
-
 local autosnippets = {}
 
 return snippets, autosnippets

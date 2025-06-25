@@ -749,6 +749,14 @@ with builtins; {
                 };
               };
             };
+            typst = {
+              enable = true;
+              code_blocks = {
+                enable = true;
+                style = "simple";
+                pad_amount = 2;
+              };
+            };
           };
         };
 
@@ -760,7 +768,7 @@ with builtins; {
             notes_subdir = "inbox";
             new_notes_location = "notes_subdir";
 
-            disable_frontmatter = true;
+            disable_frontmatter = false;
 
             templates = {
               subdir = "templates";
