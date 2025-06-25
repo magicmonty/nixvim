@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib;
@@ -762,6 +763,7 @@ with builtins; {
 
         obsidian = {
           enable = true;
+          package = pkgs.obsidian-nvim-custom;
           settings = {
             inherit workspaces;
 
@@ -771,7 +773,7 @@ with builtins; {
             disable_frontmatter = false;
 
             templates = {
-              subdir = "templates";
+              folder = "templates";
               date_format = "%Y-%m-%d";
               time_format = "%H:%M:%S";
             };

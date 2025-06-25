@@ -40,6 +40,20 @@
             builtins.elem (lib.getName pkg) [
               "codeium"
             ];
+          overlays = [
+            (final: prev: {
+              obsidian-nvim-custom = prev.vimUtils.buildVimPlugin {
+                name = "obsidian-nvim-custom";
+                src = prev.fetchFromGitHub {
+                  owner = "obsidian-nvim";
+                  repo = "obsidian.nvim";
+                  rev = "cc80395d6a710df0aa0faf5d7def46aa0f893e31";
+                  hash = "sha256-0vcThntq0uKNO4s4VqBjwtTqS9nn088xnoRzdsNR4t0="; # prev.lib.fakeHash;
+                };
+                doCheck = false;
+              };
+            })
+          ];
         };
         nixvim' = nixvim.legacyPackages.${system};
         nixvimLib = nixvim.lib.${system};
