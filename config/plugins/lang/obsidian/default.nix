@@ -575,7 +575,7 @@ with builtins; {
               key = "<M-CR>";
               modes = "i";
             };
-            MkdnTablePrefCell = {
+            MkdnTablePrevCell = {
               key = "<S-Tab>";
               modes = "i";
             };
