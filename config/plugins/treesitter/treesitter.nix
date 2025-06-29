@@ -6,7 +6,7 @@
       nixGrammars = true;
       nixvimInjections = true;
       settings = {
-        indent.enable = true;
+        indent.enable = false;
         highlight.enable = true;
         incremental_selection = {
           enable = true;

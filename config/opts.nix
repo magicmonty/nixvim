@@ -29,7 +29,7 @@ with lib; {
 
     performance = {
       byteCompileLua = {
-        enable = true;
+        enable = false;
         configs = true;
         initLua = true;
         luaLib = true;

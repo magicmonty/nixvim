@@ -633,6 +633,12 @@ with builtins; {
         markview = {
           enable = true;
           settings = {
+            markdown = {
+              block_quotes = {
+                enable = true;
+                wrap = true;
+              };
+            };
             markdown_inline = {
               checkboxes = {
                 enable = true;
@@ -740,13 +746,25 @@ with builtins; {
                 "^references$" = {
                   use_types = false;
                   hl = "MarkviewIcon1";
-                  text = " 󰖟 ";
+                  text = "󰖟 ";
                 };
 
                 "^id$" = {
                   use_types = false;
                   hl = "MarkviewIcon1";
-                  text = "  ";
+                  text = " ";
+                };
+
+                "^tags$" = {
+                  use_types = false;
+                  hl = "MarkviewIcon1";
+                  text = "󰓹 ";
+                };
+
+                "^aliases$" = {
+                  use_types = false;
+                  hl = "MarkviewIcon1";
+                  text = "󱞫 ";
                 };
               };
             };
@@ -854,23 +872,23 @@ with builtins; {
             ui = {
               checkboxes = {
                 " " = {
-                  char = "󰄱 ";
+                  char = "󰄱";
                   hl_group = "ObsidianTodo";
                 };
                 "x" = {
-                  char = " ";
+                  char = "";
                   hl_group = "ObsidianDone";
                 };
                 ">" = {
-                  char = " ";
+                  char = "";
                   hl_group = "ObsidianRightArrow";
                 };
                 "~" = {
-                  char = "󰰱 ";
+                  char = "󰰱";
                   hl_group = "ObsidianTilde";
                 };
                 "!" = {
-                  char = " ";
+                  char = "";
                   hl_group = "ObsidianImportant";
                 };
               };

@@ -82,7 +82,7 @@
         javascriptreact = ["prettierd" "prettier"];
         typescript = ["prettierd" "prettier"];
         typescriptreact = ["prettierd" "prettier"];
-        markdown = [];
+        markdown = ["markdownlint"];
         yaml = ["yamllint" "yamlfmt"];
         xml = ["xmllint"];
       };

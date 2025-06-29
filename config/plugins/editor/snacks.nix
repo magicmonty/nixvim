@@ -1,48 +1,44 @@
-{pkgs, ...}: {
-  plugins.snacks = {
-    enable = false;
-  };
-
-  extraPlugins = [
-    (pkgs.vimUtils.buildVimPlugin {
-      name = "snacks.nvim";
-      src = pkgs.fetchFromGitHub {
-        owner = "folke";
-        repo = "snacks.nvim";
-        rev = "bc0630e43be5699bb94dadc302c0d21615421d93";
-        hash = "sha256-Gw0Bp2YeoESiBLs3NPnqke3xwEjuiQDDU1CPofrhtig="; # lib.fakeHash;
+_: {
+  plugins.snacks = let
+    enabled = {enabled = true;};
+  in {
+    enable = true;
+    settings = {
+      bigfile = enabled;
+      dashboard = enabled;
+      explorer = enabled;
+      indent = {
+        enabled = true;
+        filter.__raw = ''
+          function (buf)
+            return vim.g.snacks_indent ~= false and
+              vim.b[buf].snacks_indent ~= false and
+              vim.bo[buf].buftype == "" and
+              vim.bo[buf].filetype ~= "markdown"
+          end
+        '';
       };
-      doCheck = false;
-    })
-  ];
-
-  extraConfigLua = ''
-    require("snacks").setup {
-      bigfile = { enabled = true },
-      dashboard = { enabled = true },
-      explorer = { enabled = true },
-      indent = { enabled = true },
-      input = { enabled = true },
-      picker = { enabled = true },
-      quickfile = { enabled = true },
-      scope = { enabled = true },
-      scroll = { enabled = true },
-      statuscolumn = { enabled = true },
-      words = { enabled = true },
+      input = enabled;
+      picker = enabled;
+      quickfile = enabled;
+      scope = enabled;
+      scroll = enabled;
+      statuscolumn = enabled;
+      words = enabled;
       image = {
-        enabled = true,
+        enabled = true;
         doc = {
-          conceal = true
-        },
+          conceal = false;
+        };
         convert = {
-          notify = false
-        }
-      },
+          notify = false;
+        };
+      };
 
       notifier = {
-        enabled = true,
-        style = "fancy"
-      }
-    }
-  '';
+        enabled = true;
+        style = "fancy";
+      };
+    };
+  };
 }

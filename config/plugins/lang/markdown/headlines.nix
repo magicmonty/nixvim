@@ -15,7 +15,7 @@
       bullets = false;
     };
   in {
-    enable = true;
+    enable = false;
     settings = {
       markdown = default_settings;
       norg = default_settings;
