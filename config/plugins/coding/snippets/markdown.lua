@@ -1,4 +1,6 @@
 local ls = require("luasnip")
+local d = ls.dynamic_node
+local sn = ls.snippet_node
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
@@ -68,6 +70,48 @@ table.insert(
 		t("]("),
 		f(clipboard, {}),
 		t(")"),
+	})
+)
+
+table.insert(
+	snippets,
+	s({ trig = "tbl(%d+)x(%d+)", regTrig = true, hidden = true }, {
+		d(1, function(args, snip)
+			local columns = tonumber(snip.captures[1]) or 1
+			local rows = tonumber(snip.captures[2]) or 1
+			local nodes = {}
+			local i_counter = 0
+			local hlines = ""
+			table.insert(nodes, t({ "", "" }))
+			for _ = 1, columns do
+				i_counter = i_counter + 1
+				table.insert(nodes, t("| "))
+				table.insert(nodes, i(i_counter, "Column " .. i_counter))
+				table.insert(nodes, t(" "))
+				hlines = hlines .. "|---"
+			end
+			table.insert(nodes, t({ "|", "" }))
+			hlines = hlines .. "|"
+			table.insert(nodes, t({ hlines, "" }))
+			for _ = 1, rows do
+				for _ = 1, columns do
+					i_counter = i_counter + 1
+					table.insert(nodes, t("| "))
+					table.insert(nodes, i(i_counter))
+					table.insert(nodes, t(" "))
+				end
+				table.insert(nodes, t({ "|", "" }))
+			end
+			return sn(nil, nodes)
+		end),
+	}, {
+		callbacks = {
+			[-1] = {
+				[events.leave] = function()
+					pcall(vim.cmd.MkdnTableFormat)
+				end,
+			},
+		},
 	})
 )
 

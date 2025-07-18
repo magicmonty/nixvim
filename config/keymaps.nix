@@ -222,5 +222,23 @@
       map("n", "öe", diagnostic_goto(false, "ERROR"), { desc = "Previous error", remap = true, silent = true })
       map("n", "äw", diagnostic_goto(true, "WARN"), { desc = "Previous warning", remap = true, silent = true })
       map("n", "öw", diagnostic_goto(false, "WARN"), { desc = "Previous warning", remap = true, silent = true })
+
+      vim.keymap.del('i', '<Tab>');
+
+      map( "i", "<Tab>", function()
+          local luasnip = require("luasnip")
+          if luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif luasnip.jumpable(1) then
+            luasnip.jump(1)
+          else
+            if vim.bo.filetype == "markdown" then
+              pcall(vim.cmd.MkdnTableNextCell)
+            end
+          end
+
+        end,
+        { desc = "Expand Snippet or Jump to Next Cell", remap = true, silent = true }
+      );
     '';
 }

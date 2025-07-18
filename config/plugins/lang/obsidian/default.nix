@@ -567,10 +567,7 @@ with builtins; {
               key = "<leader>tr";
               modes = "n";
             };
-            MkdnTableNextCell = {
-              key = "<Tab>";
-              modes = "i";
-            };
+            MkdnTableNextCell = false;
             MkdnTableNextRow = {
               key = "<M-CR>";
               modes = "i";
