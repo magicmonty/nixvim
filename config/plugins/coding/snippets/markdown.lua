@@ -73,9 +73,11 @@ table.insert(
 	})
 )
 
+local autosnippets = {}
+
 table.insert(
-	snippets,
-	s({ trig = "tbl(%d+)x(%d+)", regTrig = true, hidden = true }, {
+	autosnippets,
+	s({ trig = "tbl(%d)[x,](%d)", regTrig = true, hidden = true }, {
 		d(1, function(args, snip)
 			local columns = tonumber(snip.captures[1]) or 1
 			local rows = tonumber(snip.captures[2]) or 1
@@ -114,7 +116,5 @@ table.insert(
 		},
 	})
 )
-
-local autosnippets = {}
 
 return snippets, autosnippets
