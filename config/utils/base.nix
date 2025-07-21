@@ -85,7 +85,7 @@
         if not ok then
           pcall(require, "nvim-treesitter")
         end
-        vim.wo[win].conceallevel = 3
+        vim.wo[win].conceallevel = 2
         vim.wo[win].concealcursor = ""
         vim.wo[win].spell = false
         local buf = vim.api.nvim_win_get_buf(win)
