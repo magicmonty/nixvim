@@ -123,6 +123,75 @@ with builtins; {
       keymaps = [
         {
           mode = "n";
+          key = "<leader>io";
+          action.__raw = ''
+            function()
+              local image_path = get_image_path()
+              if not image_path then
+                NixVim.error("No image found under the cursor")
+                return
+              end
+              if string.sub(image_path, 1, 4) == "http" then
+                NixVim.error("URL images cannot be opened.")
+                return
+              end
+              local absolute_image_path = get_absolute_image_path(image_path)
+              if absolute_image_path == nil then
+                NixVim.error("Image file does not exist:\n" .. absolute_image_path)
+                return
+              end
+
+              -- create a temporary directory under /tmp
+              local temp_dir = os.tmpname()
+              -- remove the temp file
+              vim.fn.delete(temp_dir, "rf")
+              vim.fn.mkdir(temp_dir, "p")
+
+              -- copy the image to the temporary directory
+              local temp_image_path = temp_dir .. "/" .. "tmp.png"
+              vim.notify("Copying image to temporary directory: " .. temp_image_path, vim.log.levels.INFO)
+              local copy_success = vim.fn.system({ "cp", absolute_image_path, temp_image_path })
+              if vim.v.shell_error ~= 0 then
+                NixVim.error("Failed to copy image file:\n" .. absolute_image_path .. "\n To:  \n" .. temp_image_path)
+                return
+              end
+
+              -- run docker container with tesseract to convert the image to text
+              local docker_command = string.format(
+                "docker run --rm -v %s:/home/work tesseractshadow/tesseract4re tesseract tmp.png out",
+                temp_dir
+              )
+              vim.notify("Running tesseract: " .. docker_command, vim.log.levels.INFO)
+              local run_success = vim.fn.system(docker_command)
+              if vim.v.shell_error ~= 0 then
+                NixVim.error("Failed to run tesseract:\n" .. vim.v.shell_error .. "\n" .. run_success)
+                return
+              end
+
+              -- read the output text file
+              local output_file = temp_dir .. "/out.txt"
+              local output_text = vim.fn.readfile(output_file)
+              if vim.v.shell_error ~= 0 then
+                NixVim.error("Failed to run tesseract on image file:\n" .. absolute_image_path)
+              end
+              if #output_text == 0 then
+                NixVim.error("No text found in the image")
+                return
+              end
+
+              -- Insert the text into the current buffer on the line before the image
+              local current_buf = vim.api.nvim_get_current_buf()
+              local current_line = vim.api.nvim_win_get_cursor(0)[1]
+              vim.api.nvim_buf_set_lines(current_buf, current_line - 1, current_line - 1, false, output_text)
+
+              -- Clean up temporary files
+              vim.fn.delete(temp_dir, "rf")
+            end
+          '';
+          options = {desc = "Extract text from image";};
+        }
+        {
+          mode = "n";
           key = "<leader>ir";
           action.__raw = ''
             function()
