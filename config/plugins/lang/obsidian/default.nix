@@ -149,7 +149,6 @@ with builtins; {
 
               -- copy the image to the temporary directory
               local temp_image_path = temp_dir .. "/" .. "tmp.png"
-              vim.notify("Copying image to temporary directory: " .. temp_image_path, vim.log.levels.INFO)
               local copy_success = vim.fn.system({ "cp", absolute_image_path, temp_image_path })
               if vim.v.shell_error ~= 0 then
                 NixVim.error("Failed to copy image file:\n" .. absolute_image_path .. "\n To:  \n" .. temp_image_path)
@@ -161,7 +160,6 @@ with builtins; {
                 "docker run --rm -v %s:/home/work tesseractshadow/tesseract4re tesseract tmp.png out",
                 temp_dir
               )
-              vim.notify("Running tesseract: " .. docker_command, vim.log.levels.INFO)
               local run_success = vim.fn.system(docker_command)
               if vim.v.shell_error ~= 0 then
                 NixVim.error("Failed to run tesseract:\n" .. vim.v.shell_error .. "\n" .. run_success)
@@ -171,6 +169,14 @@ with builtins; {
               -- read the output text file
               local output_file = temp_dir .. "/out.txt"
               local output_text = vim.fn.readfile(output_file)
+
+              -- trim whitespaces from output text
+              for i = 1, #output_text do
+                output_text[i] = output_text[i]:gsub("^%s*(.-)%s*$", "%1") -- Trim leading and trailing whitespace
+              end
+              -- Remove empty lines
+              output_text = vim.tbl_filter(function(line) return line ~= "" end, output_text)
+
               if vim.v.shell_error ~= 0 then
                 NixVim.error("Failed to run tesseract on image file:\n" .. absolute_image_path)
               end
