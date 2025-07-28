@@ -113,6 +113,7 @@
       resize_splits.clear = true;
       close_with_q.clear = true;
       json_conceal.clear = true;
+      markdown_conceal.clear = true;
       auto_create_dir.clear = true;
     };
   };
