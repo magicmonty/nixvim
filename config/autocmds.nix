@@ -76,6 +76,21 @@
             '';
         };
       }
+      # Fix conceallevel for markdown files
+      {
+        event = "FileType";
+        group = "markdown_conceal";
+        pattern = ["markdown"];
+        callback = {
+          __raw =
+            # lua
+            ''
+              function()
+                vim.opt_local.conceallevel = 2
+              end
+            '';
+        };
+      }
       # Fix conceallevel for json files
       {
         event = "FileType";

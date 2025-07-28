@@ -240,5 +240,7 @@
         end,
         { desc = "Expand Snippet or Jump to Next Cell", remap = true, silent = true }
       );
+
+      map("n", "<CR>", require("obsidian.builtin").smart_action, { remap = false, silent = false, expr = true });
     '';
 }

@@ -3,6 +3,10 @@
   lib,
   ...
 }: {
+  extraPackages = with pkgs; [
+    grpcurl
+  ];
+
   filetype = {
     extension = {
       http = "http";

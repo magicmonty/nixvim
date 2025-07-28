@@ -736,6 +736,7 @@ with builtins; {
                 "~" = {
                   text = "󰰱 ";
                   hl = "ObsidianTilde";
+                  scope_hl = "MarkviewCheckboxStriked";
                 };
                 "<" = {
                   text = "󰃖";
@@ -856,7 +857,7 @@ with builtins; {
           package = pkgs.obsidian-nvim-custom;
           settings = {
             inherit workspaces;
-
+            legacy_commands = false;
             notes_subdir = "inbox";
             new_notes_location = "notes_subdir";
 

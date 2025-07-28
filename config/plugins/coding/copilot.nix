@@ -1,4 +1,7 @@
-{
+{pkgs, ...}: {
+  extraPackages = with pkgs; [
+    lynx
+  ];
   plugins = {
     copilot-cmp = {
       enable = true;

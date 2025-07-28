@@ -1,4 +1,8 @@
-_: {
+{pkgs, ...}: {
+  extraPackages = with pkgs; [
+    mermaid-cli
+    ghostscript
+  ];
   plugins.snacks = let
     enabled = {enabled = true;};
   in {
