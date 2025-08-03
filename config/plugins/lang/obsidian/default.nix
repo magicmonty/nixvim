@@ -384,9 +384,9 @@ with builtins; {
           key = "<leader>on";
           action.__raw = ''
             function()
-              vim.cmd.ObsidianNew()
+              vim.cmd.Obsidian("new")
               vim.api.nvim_buf_set_lines(0, 0, -1, false, {})
-              vim.cmd.ObsidianTemplate("note")
+              vim.cmd.Obsidian("template", "note")
               vim.cmd(":%s/^#\\s\\d\\+-\\(.\\+\\)/# \\1/g")
               vim.cmd("norm Gi")
             end
@@ -401,7 +401,7 @@ with builtins; {
             ''
               function()
                 vim.cmd("norm gg")
-                vim.cmd.ObsidianTemplate("note")
+                vim.cmd.Obsidian("template", "note")
                 vim.cmd(":%s/^#\\s\\d\\+-\\(.\\+\\)/# \\1/g")
               end
             '';
@@ -415,9 +415,9 @@ with builtins; {
               function()
                 vim.ui.input({ prompt = "Enter new name (without extension): ", default = current_name }, function(new_name)
                   if not new_name or new_name == "" then
-                    vim.cmd.ObsidianPasteImg()
+                    vim.cmd.Obsidian("paste_img")
                   else
-                    vim.cmd.ObsidianPasteImg(new_name)
+                    vim.cmd.Obsidian("paste_img", new_name)
                   end
                 end)
               end
@@ -433,7 +433,7 @@ with builtins; {
         {
           mode = "n";
           key = "<leader>or";
-          action = ":ObsidianRename<cr>";
+          action = ":Obsidian rename<cr>";
           options = {desc = "Rename current Obsidian note";};
         }
         {
@@ -445,7 +445,7 @@ with builtins; {
         {
           mode = "n";
           key = "<leader>ob";
-          action = ":ObsidianBacklinks<cr>";
+          action = ":Obsidian backlinks<cr>";
           options = {desc = "Show backlinks for current Obsidian note";};
         }
         {
