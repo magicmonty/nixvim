@@ -47,11 +47,17 @@
       '';
 
     servers = {
-      angularls.enable = true;
+      angularls = {
+        enable = true;
+        settings = {
+          root_markers = ["angular.json" "nx.json" "project.json"];
+        };
+      };
       bashls.enable = true;
       clangd.enable = true;
       gopls.enable = true;
       lemminx.enable = true;
+      tinymist.enable = true;
       ts_ls = {
         enable = true;
         onAttach.function =

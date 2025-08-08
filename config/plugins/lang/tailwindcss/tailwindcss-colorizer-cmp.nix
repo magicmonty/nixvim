@@ -26,15 +26,15 @@
 
   plugins.cmp.settings.formatting.format = let
     cfg = config.plugins.lspkind;
-    options =
-      {
-        inherit (cfg) mode preset;
-        symbol_map = cfg.symbolMap;
-        maxwidth = cfg.cmp.maxWidth;
-        ellipsis_char = cfg.cmp.ellipsisChar;
-        inherit (cfg.cmp) menu;
-      }
-      // cfg.extraOptions;
+    options = {
+      mode = cfg.settings.mode or "symbol";
+      maxwidth = {
+        menu = 50;
+        abbr = 50;
+      };
+      ellipsis_char = "…";
+      show_labelDetails = false;
+    };
   in
     lib.mkForce
     # lua
