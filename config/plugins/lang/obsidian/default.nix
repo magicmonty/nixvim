@@ -8,6 +8,21 @@ with lib;
 with builtins; {
   options.sys.lang.obsidian = {
     enable = mkEnableOption "Obsidian";
+    tesseract_image = mkOption {
+      type = with lib.types; maybeRaw str;
+      default = "tesseractshadow/tesseract4re";
+      description = "The docker image to use for Tesseract OCR.";
+    };
+    tesseract_docker_host_dir = mkOption {
+      type = with lib.types; maybeRaw str;
+      default = "/home/work";
+      description = "The default host directory to mount in the Tesseract Docker container.";
+    };
+    container_runtime = mkOption {
+      type = with lib.types; maybeRaw str;
+      default = "docker";
+      description = "The command to use for running Docker containers.";
+    };
     workspaces = mkOption {
       type = types.listOf (
         types.submodule {
@@ -42,8 +57,9 @@ with builtins; {
   };
 
   config = let
-    inherit (config.sys.lang.obsidian) enable workspaces;
+    inherit (config.sys.lang.obsidian) enable workspaces tesseract_image container_runtime tesseract_docker_host_dir;
     first_workspace_path = (lib.lists.elemAt workspaces 0).path;
+    docker_command = "\"${container_runtime} run --rm -v %s:${tesseract_docker_host_dir} ${tesseract_image} tesseract tmp.png out\"";
   in
     mkIf enable {
       extraConfigLuaPre = ''
@@ -143,6 +159,15 @@ with builtins; {
 
               -- create a temporary directory under /tmp
               local temp_dir = os.tmpname()
+              local isDarwin = false
+              if vim.fn.system("uname") == "Darwin\n" then
+                isDarwin = true
+              end
+
+              if isDarwin then
+                temp_dir = "/private/" .. temp_dir
+              end
+
               -- remove the temp file
               vim.fn.delete(temp_dir, "rf")
               vim.fn.mkdir(temp_dir, "p")
@@ -156,10 +181,8 @@ with builtins; {
               end
 
               -- run docker container with tesseract to convert the image to text
-              local docker_command = string.format(
-                "docker run --rm -v %s:/home/work tesseractshadow/tesseract4re tesseract tmp.png out",
-                temp_dir
-              )
+              local docker_command = string.format(${docker_command}, temp_dir)
+
               local run_success = vim.fn.system(docker_command)
               if vim.v.shell_error ~= 0 then
                 NixVim.error("Failed to run tesseract:\n" .. vim.v.shell_error .. "\n" .. run_success)
