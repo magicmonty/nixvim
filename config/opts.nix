@@ -43,6 +43,7 @@ with lib; {
           "markview.nvim"
           "nvim-treesitter"
           "conform.nvim"
+          "mini.nvim"
         ];
       };
     };
