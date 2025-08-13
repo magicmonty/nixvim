@@ -809,11 +809,12 @@ with builtins; {
                 };
                 "p" = {
                   text = "";
-                  hl = "MarkviewCheckboxChecked";
+                  hl = "DiagnosticOk";
                 };
                 "c" = {
                   text = "";
-                  hl = "MarkviewCheckboxUnchecked";
+                  hl = "DiagnosticWarn";
+                  scope_hl = "MarkviewCheckboxStriked";
                 };
                 "f" = {
                   text = "󱠇";
