@@ -7,6 +7,11 @@
     nixvim = {
       url = "github:nix-community/nixvim";
     };
+    mcphub-nvim = {
+      url = "github:ravitemer/mcphub.nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,11 +62,15 @@
         };
         nixvim' = nixvim.legacyPackages.${system};
         nixvimLib = nixvim.lib.${system};
+        mcphub-nvim = inputs.mcphub-nvim.packages.${system}.default;
 
         nixvimModuleFull = {
           inherit pkgs;
           module = ./config/full.nix; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
+          extraSpecialArgs = {
+            inherit mcphub-nvim;
+          };
         };
 
         nvim = nixvim'.makeNixvimWithModule nixvimModuleFull;
@@ -70,6 +79,9 @@
           inherit pkgs;
           module = ./config/lite.nix; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
+          extraSpecialArgs = {
+            inherit mcphub-nvim;
+          };
         };
 
         nvim-lite = nixvim'.makeNixvimWithModule nixvimModuleLite;

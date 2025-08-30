@@ -37,7 +37,7 @@ with lib; {
         plugins = true;
       };
       combinePlugins = {
-        enable = true; # Combine plugins into a single file
+        enable = false; # Combine plugins into a single file
         standalonePlugins = [
           "copilot.lua"
           "markview.nvim"

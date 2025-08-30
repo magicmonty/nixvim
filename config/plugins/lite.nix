@@ -1,5 +1,6 @@
 {lib, ...}: {
   imports = [
+    ./ai/lite.nix
     ./coding/lite.nix
     ./colorscheme
     ./custom

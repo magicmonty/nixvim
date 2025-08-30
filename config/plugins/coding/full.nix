@@ -2,7 +2,6 @@
   imports = [
     ./cmp.nix
     ./comment.nix
-    ./copilot.nix
     ./dap.nix
     ./kulala.nix
     ./lazygit.nix
