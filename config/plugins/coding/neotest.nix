@@ -23,6 +23,18 @@ with lib; {
     }
     {
       mode = "n";
+      key = "<leader>ctd";
+      action.__raw =
+        #lua
+        ''
+          function()
+            require("neotest").run.run({ strategy = "dap" })
+          end
+        '';
+      options = {desc = "Debug nearest test";};
+    }
+    {
+      mode = "n";
       key = "<leader>ctr";
       action.__raw =
         #lua

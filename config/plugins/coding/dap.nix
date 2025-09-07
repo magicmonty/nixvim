@@ -11,7 +11,7 @@
     }
     {
       mode = "n";
-      key = "<leader>do";
+      key = "<F10>";
       action.__raw = "require'dap'.step_over";
       options = {
         desc = "Debug Step Over";
@@ -20,7 +20,7 @@
     }
     {
       mode = "n";
-      key = "<leader>di";
+      key = "<F11>";
       action.__raw = "require'dap'.step_into";
       options = {
         desc = "Debug Step Into";
@@ -29,7 +29,7 @@
     }
     {
       mode = "n";
-      key = "<leader>dO";
+      key = "<F12>";
       action.__raw = "require'dap'.step_out";
       options = {
         desc = "Debug Step Out";
@@ -38,7 +38,7 @@
     }
     {
       mode = "n";
-      key = "<leader>dc";
+      key = "<F5>";
       action.__raw = "require'dap'.continue";
       options = {
         desc = "Debug Continue";
