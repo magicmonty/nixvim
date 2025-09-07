@@ -1,5 +1,6 @@
 _: {
   imports = [
+    ./dotnet
     ./json
     ./markdown
     ./neorg

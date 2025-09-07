@@ -1,6 +1,7 @@
 {lib, ...}:
 with lib; {
   imports = [
+    ./dotnet
     ./json
     ./markdown
     ./neorg
@@ -17,5 +18,6 @@ with lib; {
     neorg.enable = mkDefault false;
     obsidian.enable = mkDefault true;
     vue.enable = mkDefault true;
+    dotnet.enable = mkDefault true;
   };
 }

@@ -2,6 +2,7 @@
   description = "A nixvim configuration";
 
   inputs = {
+    nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixvim = {
@@ -63,13 +64,14 @@
         nixvim' = nixvim.legacyPackages.${system};
         nixvimLib = nixvim.lib.${system};
         mcphub-nvim = inputs.mcphub-nvim.packages.${system}.default;
+        stable = inputs.nixpkgs-stable.legacyPackages.${system};
 
         nixvimModuleFull = {
           inherit pkgs;
           module = ./config/full.nix; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
           extraSpecialArgs = {
-            inherit mcphub-nvim;
+            inherit mcphub-nvim stable;
           };
         };
 

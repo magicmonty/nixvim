@@ -1,10 +1,8 @@
 {
-  config,
-  lib,
-  ...
-}:
-with lib; {
   plugins = {
+    neotest.adapters.rust = {
+      enable = true;
+    };
     rustaceanvim = {
       enable = true;
       settings = {
@@ -24,15 +22,4 @@ with lib; {
       };
     };
   };
-
-  extraConfigLuaPost =
-    mkIf config.plugins.neotest.enable
-    #lua
-    ''
-      require('neotest').setup({
-          adapters = {
-              require('rustaceanvim.neotest')
-          }
-      })
-    '';
 }

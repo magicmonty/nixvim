@@ -37,13 +37,15 @@ with lib; {
         plugins = true;
       };
       combinePlugins = {
-        enable = false; # Combine plugins into a single file
+        enable = true; # Combine plugins into a single file
         standalonePlugins = [
           "copilot.lua"
           "markview.nvim"
           "nvim-treesitter"
           "conform.nvim"
           "mini.nvim"
+          "neotest"
+          "mcphub.nvim"
         ];
       };
     };
