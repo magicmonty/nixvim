@@ -21,6 +21,15 @@ with lib; {
       nodejs_22
     ];
 
+    highlightOverride = {
+      Normal = {
+        bg = "none";
+      };
+      NonText = {
+        bg = "none";
+      };
+    };
+
     viAlias = true;
     vimAlias = true;
     withNodeJs = true;
