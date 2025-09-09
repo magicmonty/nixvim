@@ -8,7 +8,8 @@ with lib; {
     ./obsidian
     ./powershell
     ./rust
-    ./tailwindcss
+    ./sql
+    #    ./tailwindcss
     ./tex
     ./typst
     ./vue
@@ -19,5 +20,6 @@ with lib; {
     obsidian.enable = mkDefault true;
     vue.enable = mkDefault true;
     dotnet.enable = mkDefault true;
+    sql.enable = mkDefault true;
   };
 }

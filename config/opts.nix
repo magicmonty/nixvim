@@ -39,6 +39,7 @@ with lib; {
       combinePlugins = {
         enable = true; # Combine plugins into a single file
         standalonePlugins = [
+          "blink.cmp"
           "copilot.lua"
           "markview.nvim"
           "nvim-treesitter"

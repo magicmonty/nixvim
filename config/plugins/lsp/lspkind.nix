@@ -3,6 +3,7 @@ let
 in {
   plugins.lspkind = {
     enable = true;
+    cmp.enable = false;
     settings = {
       mode = "symbol";
       preset = "default";

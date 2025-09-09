@@ -260,7 +260,7 @@
         # sourcepawn
         # sparql
         # sproto
-        # sql
+        sql
         # squirrel
         ssh_config
         # starlark
