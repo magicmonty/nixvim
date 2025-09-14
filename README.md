@@ -11,7 +11,7 @@ If you add a new configuration file, remember to add it to the
 ## Current Plugins
 
 - **Coding**
-  - [nvim-cmp](./config/plugins/coding/cmp.nix)
+  - [blink](./config/plugins/coding/blink.nix)
   - [comment.nvim](./config/plugins/coding/comment.nix)
   - [LazyGit](./config/plugins/coding/lazygit.nix)  
   - [LuaSnip](./config/plugins/coding/luasnip.nix)

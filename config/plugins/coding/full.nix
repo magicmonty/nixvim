@@ -1,7 +1,6 @@
 {
   imports = [
     ./blink.nix
-    # ./cmp.nix
     ./comment.nix
     ./dap.nix
     ./kulala.nix

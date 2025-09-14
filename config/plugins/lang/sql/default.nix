@@ -28,7 +28,7 @@ with builtins; {
             module = "vim_dadbod_completion.blink";
             name = "dadbod";
           };
-          per_filetype.sql = ["luasnip" "dadbod" "buffer"];
+          per_filetype.sql = ["snippets" "dadbod" "buffer"];
         };
       };
     };

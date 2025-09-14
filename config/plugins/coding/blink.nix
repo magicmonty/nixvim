@@ -6,7 +6,7 @@ in {
       enable = true;
       settings = {
         keymap = {
-          preset = "super-tab";
+          preset = "enter";
         };
         appearance.kind_icons = icons.kinds;
         completion = {
