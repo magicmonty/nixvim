@@ -74,6 +74,7 @@
         nix = ["alejandra"];
         sh = ["shfmt"];
         html = ["prettierd" "prettier"];
+        json = ["prettierd" "prettier"];
         c = ["clang-format"];
         cpp = ["clang-format"];
         css = ["prettierd" "prettier"];

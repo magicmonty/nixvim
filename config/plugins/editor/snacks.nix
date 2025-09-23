@@ -8,7 +8,11 @@
   in {
     enable = true;
     settings = {
-      bigfile = enabled;
+      bigfile = {
+        enabled = true;
+        line_length = 500;
+        size = 1024 * 1025; # 1MB
+      };
       dashboard = enabled;
       explorer = enabled;
       indent = {
