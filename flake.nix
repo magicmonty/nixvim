@@ -42,10 +42,7 @@
       }: let
         pkgs = import nixpkgs {
           inherit system;
-          config.allowUnfreePredicate = pkg:
-            builtins.elem (lib.getName pkg) [
-              "codeium"
-            ];
+          config.allowUnfree = true;
           overlays = [
             (final: prev: {
               obsidian-nvim-custom = prev.vimUtils.buildVimPlugin {
