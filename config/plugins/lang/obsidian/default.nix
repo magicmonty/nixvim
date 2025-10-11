@@ -537,92 +537,94 @@ with builtins; {
       plugins = {
         mkdnflow = {
           enable = true;
-          mappings = {
-            # Folds
-            MkdnFoldSection = {
-              key = "zs";
-              modes = "n";
-            };
-            MkdnUnfoldSection = {
-              key = "zS";
-              modes = "n";
-            };
+          settings = {
+            mappings = {
+              # Folds
+              MkdnFoldSection = {
+                key = "zs";
+                modes = "n";
+              };
+              MkdnUnfoldSection = {
+                key = "zS";
+                modes = "n";
+              };
 
-            # Tables
-            MkdnTableNewColAfter = {
-              key = "<leader>tc";
-              modes = "n";
-            };
-            MkdnTableNewColBefore = {
-              key = "<leader>tC";
-              modes = "n";
-            };
-            MkdnTableNewRowAbove = {
-              key = "<leader>tR";
-              modes = "n";
-            };
-            MkdnTableNewRowBelow = {
-              key = "<leader>tr";
-              modes = "n";
-            };
-            MkdnTableNextCell = false;
-            MkdnTableNextRow = {
-              key = "<M-CR>";
-              modes = "i";
-            };
-            MkdnTablePrevCell = {
-              key = "<S-Tab>";
-              modes = "i";
-            };
-            MkdnTableFormat = {
-              key = "<leader>tf";
-              modes = "n";
-            };
+              # Tables
+              MkdnTableNewColAfter = {
+                key = "<leader>tc";
+                modes = "n";
+              };
+              MkdnTableNewColBefore = {
+                key = "<leader>tC";
+                modes = "n";
+              };
+              MkdnTableNewRowAbove = {
+                key = "<leader>tR";
+                modes = "n";
+              };
+              MkdnTableNewRowBelow = {
+                key = "<leader>tr";
+                modes = "n";
+              };
+              MkdnTableNextCell = false;
+              MkdnTableNextRow = {
+                key = "<M-CR>";
+                modes = "i";
+              };
+              MkdnTablePrevCell = {
+                key = "<S-Tab>";
+                modes = "i";
+              };
+              MkdnTableFormat = {
+                key = "<leader>tf";
+                modes = "n";
+              };
 
-            # The rest is disabled
-            MkdnCreateLink = false;
-            MkdnCreateLinkFromClipboard = false;
-            MkdnDecreaseHeading = false;
-            MkdnDestroyLink = false;
-            MkdnEnter = false;
-            MkdnExtendList = false;
-            MkdnFollowLink = false;
-            MkdnGoBack = false;
-            MkdnGoForward = false;
-            MkdnIncreaseHeading = false;
-            MkdnMoveSource = false;
-            MkdnNewListItem = false;
-            MkdnNewListItemAboveInsert = false;
-            MkdnNewListItemBelowInsert = false;
-            MkdnNextHeading = false;
-            MkdnNextLink = false;
-            MkdnPrevHeading = false;
-            MkdnPrevLink = false;
-            MkdnSTab = false;
-            MkdnTab = false;
-            MkdnToggleToDo = false;
-            MkdnUpdateNumbering = false;
-            MkdnYankAnchorLink = false;
-            MkdnYankFileAnchorLink = false;
-          };
-          modules = {
-            bib = false;
-            buffers = false;
-            conceal = false;
-            cursor = true;
-            folds = true;
-            links = false;
-            lists = false;
-            maps = true;
-            paths = false;
-            tables = true;
-            yaml = false;
-          };
-          tables = {
-            autoExtendCols = false;
-            autoExtendRows = false;
-            formatOnMove = true;
-            trimWhitespace = true;
+              # The rest is disabled
+              MkdnCreateLink = false;
+              MkdnCreateLinkFromClipboard = false;
+              MkdnDecreaseHeading = false;
+              MkdnDestroyLink = false;
+              MkdnEnter = false;
+              MkdnExtendList = false;
+              MkdnFollowLink = false;
+              MkdnGoBack = false;
+              MkdnGoForward = false;
+              MkdnIncreaseHeading = false;
+              MkdnMoveSource = false;
+              MkdnNewListItem = false;
+              MkdnNewListItemAboveInsert = false;
+              MkdnNewListItemBelowInsert = false;
+              MkdnNextHeading = false;
+              MkdnNextLink = false;
+              MkdnPrevHeading = false;
+              MkdnPrevLink = false;
+              MkdnSTab = false;
+              MkdnTab = false;
+              MkdnToggleToDo = false;
+              MkdnUpdateNumbering = false;
+              MkdnYankAnchorLink = false;
+              MkdnYankFileAnchorLink = false;
+            };
+            modules = {
+              bib = false;
+              buffers = false;
+              conceal = false;
+              cursor = true;
+              folds = true;
+              links = false;
+              lists = false;
+              maps = true;
+              paths = false;
+              tables = true;
+              yaml = false;
+            };
+            tables = {
+              autoExtendCols = false;
+              autoExtendRows = false;
+              formatOnMove = true;
+              trimWhitespace = true;
+            };
           };
         };
         markview = {
