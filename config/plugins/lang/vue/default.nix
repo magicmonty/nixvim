@@ -13,6 +13,9 @@ with builtins; {
     inherit (config.sys.lang.vue) enable;
   in
     mkIf enable {
-      plugins.lsp.servers.volar.enable = true;
+      lsp.servers = {
+        vue_ls.enable = true;
+        ts_ls.enable = true;
+      };
     };
 }

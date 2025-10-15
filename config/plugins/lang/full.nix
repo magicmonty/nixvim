@@ -6,7 +6,6 @@ with lib; {
     ./markdown
     ./neorg
     ./obsidian
-    ./powershell
     ./rust
     ./sql
     #    ./tailwindcss

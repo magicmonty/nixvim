@@ -14,6 +14,6 @@
   ];
 
   config = {
-    plugins.lsp.servers.texlab.enable = lib.mkForce false;
+    lsp.servers.texlab.enable = lib.mkForce false;
   };
 }

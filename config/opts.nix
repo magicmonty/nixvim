@@ -118,6 +118,7 @@ with lib; {
       virtualedit = "block"; # Allow cursor to move where there is no text in visual block mode
       winminwidth = 5; # Minimum window width
       wrap = false; # Disable line wrap
+      winborder = "rounded";
       fillchars = {
         foldopen = "";
         foldclose = "";

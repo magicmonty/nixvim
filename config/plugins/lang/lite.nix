@@ -5,7 +5,6 @@ _: {
     ./markdown
     ./neorg
     ./obsidian
-    ./powershell
     ./sql
     #    ./tailwindcss
     ./vue

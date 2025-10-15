@@ -1,6 +1,6 @@
 {pkgs, ...}: {
-  plugins.lsp = {
-    enable = true;
+  plugins.lsp.enable = true;
+  lsp = {
     onAttach =
       # lua
       ''
@@ -49,7 +49,7 @@
     servers = {
       angularls = {
         enable = true;
-        settings = {
+        config = {
           root_markers = ["angular.json" "nx.json" "project.json"];
         };
       };
@@ -60,7 +60,7 @@
       tinymist.enable = true;
       ts_ls = {
         enable = true;
-        onAttach.function =
+        config.onAttach.function =
           # lua
           ''
             vim.keymap.set(
@@ -92,24 +92,24 @@
               { desc = "Remove unused imports" }
             )
           '';
-        settings = {
+        config = {
           completions.completeFunctionCalls = true;
         };
       };
       lua_ls = {
         enable = true;
-        settings.telemetry.enable = false;
+        config.telemetry.enable = false;
       };
       eslint = {
         enable = true;
-        settings = {
+        config = {
           workingDirectories = {mode = "auto";};
         };
       };
       nixd = {
         enable = true;
 
-        settings = {
+        config = {
           # nixpkgs.expr = "import <nixpkgs> { }";
           # formatting.command = ["alejandra"];
           options = {
@@ -123,13 +123,13 @@
       marksman.enable = true;
       tailwindcss = {
         enable = true;
-        settings = {
+        config = {
           filetypes = ["javascript" "javascriptreact" "typescript" "typescriptreact" "html" "css" "scss" "vue" "svelte"];
         };
       };
       texlab = {
         enable = true;
-        onAttach.function =
+        config.onAttach.function =
           # lua
           ''
             vim.keymap.set("n", "<leader>K", "<plug>(vimtex-doc-package)",{desc = "Vimtex docs", silent = true})
@@ -138,7 +138,7 @@
       jsonls.enable = true;
       yamlls = {
         enable = true;
-        extraOptions = {
+        config = {
           capabilities = {
             textDocument = {
               foldingRange = {
@@ -162,7 +162,7 @@
               '';
           };
         };
-        settings = {
+        config = {
           redhat.telemetry.enabled = false;
           yaml = {
             keyOrdering = false;
@@ -198,9 +198,5 @@
         name = "DiagnosticSign" .. name
         vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
       end
-
-      require('lspconfig.ui.windows').default_options = {
-        border = _border
-      }
     '';
 }
