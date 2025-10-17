@@ -11,5 +11,6 @@
     ./mini-pairs.nix
     ./mini-surround.nix
     ./neotest.nix
+    ./refactoring.nix
   ];
 }
