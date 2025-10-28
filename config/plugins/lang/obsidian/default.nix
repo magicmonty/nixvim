@@ -541,43 +541,43 @@ with builtins; {
             mappings = {
               # Folds
               MkdnFoldSection = {
-                key = "zs";
-                modes = "n";
+                __unkeyed-1 = "n";
+                __unkeyed-2 = "zs";
               };
               MkdnUnfoldSection = {
-                key = "zS";
-                modes = "n";
+                __unkeyed-1 = "n";
+                __unkeyed-2 = "zS";
               };
 
               # Tables
               MkdnTableNewColAfter = {
-                key = "<leader>tc";
-                modes = "n";
+                __unkeyed-1 = "n";
+                __unkeyed-2 = "<leader>tc";
               };
               MkdnTableNewColBefore = {
-                key = "<leader>tC";
-                modes = "n";
+                __unkeyed-1 = "n";
+                __unkeyed-2 = "<leader>tC";
               };
               MkdnTableNewRowAbove = {
-                key = "<leader>tR";
-                modes = "n";
+                __unkeyed-1 = "n";
+                __unkeyed-2 = "<leader>tR";
               };
               MkdnTableNewRowBelow = {
-                key = "<leader>tr";
-                modes = "n";
+                __unkeyed-1 = "n";
+                __unkeyed-2 = "<leader>tr";
               };
               MkdnTableNextCell = false;
               MkdnTableNextRow = {
-                key = "<M-CR>";
-                modes = "i";
+                __unkeyed-1 = "i";
+                __unkeyed-2 = "<M-CR>";
               };
               MkdnTablePrevCell = {
-                key = "<S-Tab>";
-                modes = "i";
+                __unkeyed-1 = "i";
+                __unkeyed-2 = "<S-Tab>";
               };
               MkdnTableFormat = {
-                key = "<leader>tf";
-                modes = "n";
+                __unkeyed-1 = "n";
+                __unkeyed-2 = "<leader>tf";
               };
 
               # The rest is disabled
