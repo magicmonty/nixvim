@@ -24,7 +24,7 @@
     };
   in {
     enable = true;
-    layout = [
+    settings.layout = [
       (mkPadding 2)
       {
         opts = {
