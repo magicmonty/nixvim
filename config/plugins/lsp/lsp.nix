@@ -113,7 +113,7 @@
           # nixpkgs.expr = "import <nixpkgs> { }";
           # formatting.command = ["alejandra"];
           options = {
-            nixvim.expr = ''(builtins.getFlake "github:magicmonty/nixvim").packages.${pkgs.system}.neovimNixvim.options'';
+            nixvim.expr = ''(builtins.getFlake "github:magicmonty/nixvim").packages.${pkgs.stdenv.hostPlatform.system}.neovimNixvim.options'';
           };
         };
       };
