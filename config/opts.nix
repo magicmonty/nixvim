@@ -50,6 +50,7 @@ with lib; {
         standalonePlugins = [
           "blink.cmp"
           "copilot.lua"
+          "friendly-snippets"
           "markview.nvim"
           "nvim-treesitter"
           "conform.nvim"

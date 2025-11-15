@@ -9,7 +9,7 @@
       typescriptreact = ["eslint_d"];
       javascript = ["eslint_d"];
       javascriptreact = ["eslint_d"];
-      json = ["jsonlint"];
+      json = ["eslint_d"];
     };
   };
 
@@ -18,7 +18,6 @@
     markdownlint-cli
     statix
     eslint_d
-    nodePackages.jsonlint
   ];
 
   keymaps = [
