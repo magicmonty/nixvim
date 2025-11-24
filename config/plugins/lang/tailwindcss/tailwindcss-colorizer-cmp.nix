@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  helpers,
   ...
 }: {
   extraPlugins = with pkgs.vimUtils; [
@@ -40,7 +39,7 @@
     # lua
     ''
       function(entry, vim_item)
-        local kind = require('lspkind').cmp_format(${helpers.toLuaObject options})(entry, vim_item)
+        local kind = require('lspkind').cmp_format(${lib.nixvim.toLuaObject options})(entry, vim_item)
 
         return require('tailwindcss-colorizer-cmp').formatter(entry, vim_item)
       end
