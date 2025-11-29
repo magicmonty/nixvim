@@ -12,7 +12,7 @@
         vim.keymap.set("n", "<leader>cr", function()
           local inc_rename = require("inc_rename")
           return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
-        end, {desc = "Rename"})
+        end, {desc = "Rename", expr = true})
 
         if NixVim.lsp.has(bufnr, "definition") then
           vim.keymap.set("n", "gd", function() require('telescope.builtin').lsp_definitions({ reuse_win = true }) end, { desc = "Goto Definition", buffer = 0 })

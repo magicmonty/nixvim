@@ -37,7 +37,6 @@
       perSystem = {
         system,
         self',
-        lib,
         ...
       }: let
         pkgs = import nixpkgs {
