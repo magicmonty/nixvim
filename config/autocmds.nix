@@ -57,7 +57,6 @@
           "notify"
           "qf"
           "query"
-          "spectre_panel"
           "startuptime"
           "tsplayground"
           "neotest-output"

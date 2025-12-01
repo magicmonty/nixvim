@@ -26,7 +26,6 @@ If you add a new configuration file, remember to add it to the
   - [gitsigns](./config/plugins/editor/gitsigns.nix)
   - [illuminate](./config/plugins/editor/illuminate.nix)
   - [neo-tree](./config/plugins/editor/neo-tree.nix)
-  - [spectre](./config/plugins/editor/spectre.nix)
   - [Telescope](./config/plugins/editor/telescope.nix)
   - [todo-comments](./config/plugins/editor/todo-comments.nix)
   - [Trouble](./config/plugins/editor/trouble.nix)
