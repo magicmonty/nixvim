@@ -15,9 +15,11 @@ with builtins; {
       plugins = {
         neorg = {
           enable = true;
-          modules = {
-            "core.concealer" = {
-              folds = false;
+          settings = {
+            modules = {
+              "core.concealer" = {
+                folds = false;
+              };
             };
           };
         };

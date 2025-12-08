@@ -57,6 +57,7 @@
       clangd.enable = true;
       gopls.enable = true;
       lemminx.enable = true;
+      qmlls.enable = true;
       tinymist.enable = true;
       ts_ls = {
         enable = true;
@@ -117,7 +118,7 @@
           };
         };
       };
-      nil_ls.enable = false;
+      nil_ls.enable = true;
       dockerls.enable = true;
       docker_compose_language_service.enable = true;
       marksman.enable = true;
