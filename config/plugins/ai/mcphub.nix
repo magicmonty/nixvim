@@ -8,7 +8,7 @@
   extraConfigLua = let
     mcphub-bin = pkgs.buildNpmPackage rec {
       name = "mcp-hub";
-      buildInputs = [pkgs.nodejs_latest];
+      buildInputs = [pkgs.nodejs-slim_24];
       src = pkgs.fetchFromGitHub {
         owner = "ravitemer";
         repo = "mcp-hub";
@@ -29,7 +29,7 @@
     };
   in ''
     require("mcphub").setup({
-      cmd = "${pkgs.nodejs_latest}/bin/node",
+      cmd = "${pkgs.nodejs-slim_24}/bin/node",
       cmdArgs = { "${mcphub-bin}/cli.js" },
       extensions = {
         copilotchat = {

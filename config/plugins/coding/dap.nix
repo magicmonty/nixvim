@@ -81,7 +81,7 @@
           '';
         };
       in {
-        command = "${pkgs.nodejs}/bin/node";
+        command = "${pkgs.nodejs-slim_24}/bin/node";
         args = [
           "${vscode-chrome-debug}/out/src/chromeDebug.js"
         ];

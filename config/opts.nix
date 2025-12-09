@@ -11,14 +11,20 @@ with lib; {
   };
 
   config = {
+    dependencies = {
+      nodejs = {
+        enable = true;
+        package = pkgs.nodejs_24;
+      };
+    };
     extraPackages = with pkgs; [
       fd
       fzf
       gnused
       ripgrep
       unzip
-      nodejs-slim_22
-      nodejs_22
+      nodejs-slim_24
+      nodejs_24
     ];
 
     highlightOverride = {
