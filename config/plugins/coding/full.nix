@@ -11,6 +11,7 @@
     ./mini-pairs.nix
     ./mini-surround.nix
     ./neotest.nix
+    ./overseer.nix
     ./refactoring.nix
   ];
 }

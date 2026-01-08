@@ -55,14 +55,17 @@ with lib; {
         enable = true; # Combine plugins into a single file
         standalonePlugins = [
           "blink.cmp"
+          "conform.nvim"
           "copilot.lua"
           "friendly-snippets"
           "markview.nvim"
-          "nvim-treesitter"
-          "conform.nvim"
+          "mcphub.nvim"
           "mini.nvim"
           "neotest"
-          "mcphub.nvim"
+          "nvim-treesitter"
+          "overseer.nvim"
+          "refactoring.nvim"
+          "snacks.nvim"
         ];
       };
     };
