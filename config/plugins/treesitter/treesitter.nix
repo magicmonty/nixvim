@@ -235,7 +235,6 @@
         # rescript
         # rnoweb
         robot
-        robots
         # roc
         # ron
         # rst
