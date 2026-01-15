@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   plugins.lsp.enable = true;
   lsp = {
     onAttach =
@@ -121,7 +125,7 @@
       nil_ls.enable = true;
       dockerls.enable = true;
       docker_compose_language_service.enable = true;
-      marksman.enable = true;
+      marksman.enable = config.sys.lang.dotnet.enable;
       tailwindcss = {
         enable = true;
         config = {
