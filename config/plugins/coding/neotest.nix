@@ -5,7 +5,12 @@
 }:
 with lib; {
   plugins = {
-    neotest.enable = true;
+    neotest = {
+      enable = true;
+      adapters.jest = {
+        enable = true;
+      };
+    };
   };
 
   keymaps = mkIf config.plugins.neotest.enable [
