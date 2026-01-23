@@ -98,18 +98,19 @@ in {
               # lua
               ''
                 function()
-                  local clients = vim.lsp.get_clients()
+                  local clients = vim.lsp.get_clients({ bufnr = 0 })
                   if #clients <= 0 then
                     return "No LSP"
                   end
 
                   local out = "";
                   for _, client in pairs(clients or {}) do
-                    if icons.lsp[client.name] == nil then
-                      out = out .. client.name.substr(1, 1)
-                    else
-                      out = out .. icons.lsp[client.name]
+                    local icn = string.sub(client.name, 1, 1)
+                    if icons.lsp[client.name] ~= nil then
+                      icn = icons.lsp[client.name]
                     end
+
+                    out = out .. icn .. " "
                   end
 
                   return out
