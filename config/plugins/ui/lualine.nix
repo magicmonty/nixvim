@@ -98,24 +98,21 @@ in {
               # lua
               ''
                 function()
-                  local icon = icons.kinds.Copilot
-                  local status = require("copilot.api").status.data
-                  return icon .. (status.message or "")
-                end
-              '';
+                  local clients = vim.lsp.get_clients()
+                  if #clients <= 0 then
+                    return "No LSP"
+                  end
 
-            cond.__raw =
-              # lua
-              ''
-                function()
-                  if not package.loaded["copilot"] then
-                    return
+                  local out = "";
+                  for _, client in pairs(clients or {}) do
+                    if icons.lsp[client.name] == nil then
+                      out = out .. client.name.substr(1, 1)
+                    else
+                      out = out .. icons.lsp[client.name]
+                    end
                   end
-                  local ok, clients = pcall(NixVim.lsp.get_clients, { name = "copilot", bufnr = 0 })
-                  if not ok then
-                    return false
-                  end
-                  return ok and #clients > 0
+
+                  return out
                 end
               '';
 

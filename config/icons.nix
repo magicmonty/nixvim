@@ -61,4 +61,29 @@ _: {
     Value = " ";
     Variable = "󰀫 ";
   };
+  lsp = {
+    angularls = "󰚿 ";
+    bashls = " ";
+    clangd = " ";
+    copilot = " ";
+    docker_compose_language_service = " ";
+    dockerls = " ";
+    eslint = " ";
+    gopls = " ";
+    jsonls = " ";
+    lemminx = "󰗀 ";
+    lua_ls = " ";
+    marksman = " ";
+    nil_ls = "󱄅 ";
+    nixd = "󱄅 ";
+    qml = " ";
+    roslyn = "󰌛 ";
+    sqlls = " ";
+    tailwindcss = " ";
+    texlab = " ";
+    tinymist = " ";
+    ts_ls = " ";
+    vue_ls = " ";
+    yamlls = " ";
+  };
 }
