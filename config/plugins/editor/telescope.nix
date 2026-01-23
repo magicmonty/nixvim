@@ -137,12 +137,12 @@
       options = {desc = "Buffers";};
     }
     {
-      key = "<leader>sg";
+      key = "<leader>ft";
       action = "<cmd>Telescope live_grep<cr>";
       options = {desc = "Live grep";};
     }
     {
-      key = "<leader>fG";
+      key = "<leader>fg";
       action = "<cmd>Telescope git_files<cr>";
       options = {desc = "Find Files (git-files)";};
     }
