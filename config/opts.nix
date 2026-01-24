@@ -64,6 +64,7 @@ with lib; {
           "neotest"
           "nvim-treesitter"
           "overseer.nvim"
+          "qmk.nvim"
           "refactoring.nvim"
           "snacks.nvim"
         ];
