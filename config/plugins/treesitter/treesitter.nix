@@ -269,7 +269,7 @@
         # surface
         svelte
         # sway
-        swift
+        # swift
         # sxhkdrc
         # systemtap
         # systemverilog

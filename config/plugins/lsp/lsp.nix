@@ -108,7 +108,12 @@
       eslint = {
         enable = true;
         config = {
-          workingDirectories = {mode = "auto";};
+          settings = {
+            workingDirectories = [{mode = "auto";}];
+            onIgnoredFiles = "off";
+            experimental.useFlatConfig = true;
+            execArgv = ["--no-warn-ignored"];
+          };
         };
       };
       nixd = {

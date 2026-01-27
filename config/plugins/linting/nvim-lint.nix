@@ -5,11 +5,6 @@
       dockerfile = ["hadolint"];
       markdown = ["markdownlint"];
       nix = ["statix"];
-      typescript = ["eslint_d"];
-      typescriptreact = ["eslint_d"];
-      javascript = ["eslint_d"];
-      javascriptreact = ["eslint_d"];
-      json = ["eslint_d"];
     };
   };
 
@@ -17,7 +12,6 @@
     hadolint
     markdownlint-cli
     statix
-    eslint_d
   ];
 
   keymaps = [
