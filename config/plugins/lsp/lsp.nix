@@ -134,7 +134,7 @@
       tailwindcss = {
         enable = true;
         config = {
-          filetypes = ["javascript" "javascriptreact" "typescript" "typescriptreact" "html" "css" "scss" "vue" "svelte"];
+          filetypes = ["javascript" "javascriptreact" "typescript" "typescriptreact" "html" "css" "scss" "vue" "svelte" "htmlangular"];
         };
       };
       texlab = {
