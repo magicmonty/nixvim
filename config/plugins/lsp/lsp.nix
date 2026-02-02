@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   plugins.lsp.enable = true;
   lsp = {
     onAttach =
@@ -62,7 +58,6 @@
       gopls.enable = true;
       lemminx.enable = true;
       qmlls.enable = true;
-      tinymist.enable = true;
       ts_ls = {
         enable = true;
         config.onAttach.function =
@@ -130,22 +125,6 @@
       nil_ls.enable = true;
       dockerls.enable = true;
       docker_compose_language_service.enable = true;
-      marksman.enable = config.sys.lang.dotnet.enable;
-      tailwindcss = {
-        enable = true;
-        config = {
-          filetypes = ["javascript" "javascriptreact" "typescript" "typescriptreact" "html" "css" "scss" "vue" "svelte" "htmlangular"];
-        };
-      };
-      texlab = {
-        enable = true;
-        config.onAttach.function =
-          # lua
-          ''
-            vim.keymap.set("n", "<leader>K", "<plug>(vimtex-doc-package)",{desc = "Vimtex docs", silent = true})
-          '';
-      };
-      jsonls.enable = true;
       yamlls = {
         enable = true;
         config = {

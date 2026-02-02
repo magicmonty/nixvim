@@ -5,6 +5,7 @@ _: {
       tinymist.enable = true;
       websocat.enable = true;
     };
+    lsp.servers.tinymist.enable = true;
     plugins = {
       typst-preview.enable = true;
       typst-vim.enable = true;

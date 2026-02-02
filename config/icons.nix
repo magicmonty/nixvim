@@ -78,6 +78,7 @@ _: {
     nixd = "󱄅 ";
     qml = " ";
     roslyn = "󰌛 ";
+    roslyn_ls = "󰌛 ";
     sqlls = " ";
     tailwindcss = " ";
     texlab = " ";
