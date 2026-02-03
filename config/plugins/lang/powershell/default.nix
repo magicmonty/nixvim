@@ -12,9 +12,11 @@
     extraConfigLua =
       # lua
       ''
-        require('lspconfig').powershell_es.setup({
-          bundle_path = "${pkgs.vscode-extensions.ms-vscode.powershell}/share/vscode/extensions/ms-vscode.PowerShell/modules";
+        vim.lsp.config('powershell_es', {
+          bundle_path = "${pkgs.vscode-extensions.ms-vscode.powershell}/share/vscode/extensions/ms-vscode.PowerShell/modules"
         })
+
+        vim.lsp.enable('powershell_es')
       '';
   };
 }
