@@ -8,7 +8,7 @@ with lib; {
     ./obsidian
     ./rust
     ./sql
-    #    ./tailwindcss
+    ./tailwindcss
     ./tex
     ./typst
     ./vue
