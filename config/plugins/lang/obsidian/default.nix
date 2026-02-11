@@ -141,7 +141,7 @@ with builtins; {
             group = group,
             pattern = "markdown",
             callback = function()
-              map("n", "<CR>", require("obsidian.builtin").smart_action, { remap = false, silent = false, expr = true, buffer = true });
+              map("n", "<CR>", function() require("obsidian").util.smart_action() end, { remap = false, silent = false, expr = true, buffer = true });
               map("n", "<leader>io", function()
                 local image_path = get_image_path()
                 if not image_path then
@@ -780,14 +780,18 @@ with builtins; {
 
         obsidian = {
           enable = true;
-          package = pkgs.obsidian-nvim-custom;
+          # package = pkgs.obsidian-nvim-custom;
           settings = {
             inherit workspaces;
-            legacy_commands = false;
             notes_subdir = "inbox";
+
+            legacy_commands = false;
+
             new_notes_location = "notes_subdir";
 
-            disable_frontmatter = false;
+            frontmatter = {
+              enabled = true;
+            };
 
             templates = {
               folder = "templates";
@@ -800,22 +804,6 @@ with builtins; {
               blink = true;
               min_chars = 2;
             };
-
-            follow_url_func =
-              # lua
-              ''
-                function(url)
-                  vim.ui.open(url)
-                end
-              '';
-
-            follow_img_func.__raw =
-              # lua
-              ''
-                function(img)
-                  vim.fn.jobstart({"xdg-open", img})
-                end
-              '';
 
             note_id_func =
               # lua
@@ -869,29 +857,22 @@ with builtins; {
                 '';
             };
 
+            open = {
+              use_advanced_uri = false;
+              func.__raw = ''
+                vim.ui.open
+              '';
+              schemes = ["https" "http" "mailto" "file"];
+            };
+
+            checkbox = {
+              enabled = true;
+              create_new = false;
+              order = [" " "x" ">" "~" "!"];
+            };
+
             ui = {
-              checkboxes = {
-                " " = {
-                  char = "󰄱";
-                  hl_group = "ObsidianTodo";
-                };
-                "x" = {
-                  char = "";
-                  hl_group = "ObsidianDone";
-                };
-                ">" = {
-                  char = "";
-                  hl_group = "ObsidianRightArrow";
-                };
-                "~" = {
-                  char = "󰰱";
-                  hl_group = "ObsidianTilde";
-                };
-                "!" = {
-                  char = "";
-                  hl_group = "ObsidianImportant";
-                };
-              };
+              enabled = true;
               bullets = {
                 char = "•";
                 hl_group = "ObsidianBullet";

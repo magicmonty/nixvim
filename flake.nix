@@ -2,21 +2,14 @@
   description = "A nixvim configuration";
 
   inputs = {
-    nixpkgs-stable.url = "nixpkgs/nixos-25.11";
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-    };
+    nixvim.url = "github:nix-community/nixvim";
     mcphub-nvim = {
       url = "github:ravitemer/mcphub.nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
   };
 
   outputs = {
@@ -29,8 +22,6 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
         "aarch64-darwin"
       ];
 
@@ -42,32 +33,17 @@
         pkgs = import nixpkgs {
           inherit system;
           config.allowUnfree = true;
-          overlays = [
-            (final: prev: {
-              obsidian-nvim-custom = prev.vimUtils.buildVimPlugin {
-                name = "obsidian-nvim-custom";
-                src = prev.fetchFromGitHub {
-                  owner = "obsidian-nvim";
-                  repo = "obsidian.nvim";
-                  rev = "cc80395d6a710df0aa0faf5d7def46aa0f893e31";
-                  hash = "sha256-0vcThntq0uKNO4s4VqBjwtTqS9nn088xnoRzdsNR4t0="; # prev.lib.fakeHash;
-                };
-                doCheck = false;
-              };
-            })
-          ];
         };
         nixvim' = nixvim.legacyPackages.${system};
         nixvimLib = nixvim.lib.${system};
         mcphub-nvim = inputs.mcphub-nvim.packages.${system}.default;
-        stable = inputs.nixpkgs-stable.legacyPackages.${system};
 
         nixvimModuleFull = {
           inherit pkgs;
           module = ./config/full.nix; # import the module directly
           # You can use `extraSpecialArgs` to pass additional arguments to your module files
           extraSpecialArgs = {
-            inherit mcphub-nvim stable;
+            inherit mcphub-nvim;
           };
         };
 
