@@ -12,6 +12,7 @@
     ./mini-surround.nix
     ./neotest.nix
     ./overseer.nix
+    ./package-info.nix
     ./qmk.nix
     ./refactoring.nix
   ];

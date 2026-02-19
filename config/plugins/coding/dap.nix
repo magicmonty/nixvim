@@ -119,7 +119,6 @@
         };
       };
       luaConfig.post = ''
-        require('dap.ext.vscode').load_launchjs(nil, {})
         local dap, dapui = require("dap"), require("dapui")
         dap.listeners.before.attach.dapui_config = function()
           dapui.open()
