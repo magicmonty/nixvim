@@ -2,6 +2,7 @@
   extraPackages = with pkgs; [
     stylua
     alejandra
+    biome
     clang-tools
     shfmt
     nodePackages.prettier
