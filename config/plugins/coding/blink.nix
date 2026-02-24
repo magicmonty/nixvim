@@ -1,4 +1,8 @@
-let
+{
+  config,
+  lib,
+  ...
+}: let
   icons = import ../../icons.nix {};
 in {
   plugins = {
@@ -24,6 +28,7 @@ in {
         sources = {
           default = [
             "lsp"
+            (lib.strings.optionalString config.sys.lang.dotnet.enable "easy-dotnet")
             "path"
             "snippets"
             "emoji"

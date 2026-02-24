@@ -27,22 +27,9 @@ in {
         lualine_c = [
           # Shows name of root dir, if we are in a deeper subdirectory
           {
-            __unkeyed-1.__raw =
-              # lua
-              ''
-                NixVim.lualine.root_dir()[1]
-              '';
-
-            cond.__raw =
-              # lua
-              ''
-                NixVim.lualine.root_dir().cond
-              '';
-            color.__raw =
-              # lua
-              ''
-                NixVim.lualine.root_dir().color
-              '';
+            __unkeyed-1.__raw = "NixVim.lualine.root_dir()[1]";
+            cond.__raw = "NixVim.lualine.root_dir().cond";
+            color.__raw = "NixVim.lualine.root_dir().color";
           }
           {
             __unkeyed-1 = "diagnostics";
@@ -63,122 +50,84 @@ in {
             };
           }
           {
-            __unkeyed-1.__raw =
-              # lua
-              ''
-                NixVim.lualine.pretty_path()
-              '';
+            __unkeyed-1.__raw = "NixVim.lualine.pretty_path()";
           }
         ];
         lualine_x = [
           {
-            __unkeyed-1.__raw =
-              # lua
-              ''
-                function()
-                  return require("noice").api.status.command.get()
-                end
-              '';
-            cond.__raw =
-              # lua
-              ''
-                function()
-                  return package.loaded["noice"] and require("noice").api.status.command.has()
-                end
-              '';
-            color.__raw =
-              # lua
-              ''
-                NixVim.ui.fg('Statement')
-              '';
+            __unkeyed-1.__raw = ''
+              function()
+                return require("noice").api.status.command.get()
+              end
+            '';
+            cond.__raw = ''
+              function()
+                return package.loaded["noice"] and require("noice").api.status.command.has()
+              end
+            '';
+            color.__raw = "NixVim.ui.fg('Statement')";
           }
 
           {
-            __unkeyed-1.__raw =
-              # lua
-              ''
-                function()
-                  local clients = vim.lsp.get_clients({ bufnr = 0 })
-                  if #clients <= 0 then
-                    return "No LSP"
-                  end
-
-                  local out = "";
-                  for _, client in pairs(clients or {}) do
-                    local icn = string.sub(client.name, 1, 1)
-                    if icons.lsp[client.name] ~= nil then
-                      icn = icons.lsp[client.name]
-                    end
-
-                    out = out .. icn .. " "
-                  end
-
-                  return out
+            __unkeyed-1.__raw = ''
+              function()
+                local clients = vim.lsp.get_clients({ bufnr = 0 })
+                if #clients <= 0 then
+                  return "No LSP"
                 end
-              '';
 
-            color.__raw =
-              # lua
-              ''
-                function()
-                  local colors = {
-                    [""] = NixVim.ui.fg("Special"),
-                    ["Normal"] = NixVim.ui.fg("Special"),
-                    ["Warning"] = NixVim.ui.fg("DiagnosticError"),
-                    ["InProgress"] = NixVim.ui.fg("DiagnosticWarn"),
-                  }
-                  if not package.loaded["copilot"] then
-                    return
+                local out = "";
+                for _, client in pairs(clients or {}) do
+                  local icn = string.sub(client.name, 1, 1)
+                  if icons.lsp[client.name] ~= nil then
+                    icn = icons.lsp[client.name]
                   end
-                  local status = require("copilot.api").status.data
-                  return colors[status.status] or colors[""]
+
+                  out = out .. icn .. " "
                 end
-              '';
+
+                return out
+              end
+            '';
+
+            color.__raw = ''
+              function()
+                local colors = {
+                  [""] = NixVim.ui.fg("Special"),
+                  ["Normal"] = NixVim.ui.fg("Special"),
+                  ["Warning"] = NixVim.ui.fg("DiagnosticError"),
+                  ["InProgress"] = NixVim.ui.fg("DiagnosticWarn"),
+                }
+                if not package.loaded["copilot"] then
+                  return
+                end
+                local status = require("copilot.api").status.data
+                return colors[status.status] or colors[""]
+              end
+            '';
           }
 
           {
-            __unkeyed-1.__raw =
-              # lua
-              ''
-                function()
-                  return require("noice").api.status.mode.get()
-                end
-              '';
+            __unkeyed-1.__raw = ''
+              function()
+                return require("noice").api.status.mode.get()
+              end
+            '';
 
-            cond.__raw =
-              # lua
-              ''
-                function()
-                  return package.loaded['noice'] and require('noice').api.status.mode.has()
-                end
-              '';
-            color.__raw =
-              # lua
-              ''
-                NixVim.ui.fg('Constant')
-              '';
+            cond.__raw = ''
+              function()
+                return package.loaded['noice'] and require('noice').api.status.mode.has()
+              end
+            '';
+            color.__raw = "NixVim.ui.fg('Constant')";
           }
 
           {
-            __unkeyed-1.__raw =
-              # lua
-              ''
-                function()
-                    return '  ' .. require('dap').status()
-                  end
-              '';
-            cond.__raw =
-              # lua
-              ''
-                function ()
-                  return package.loaded['dap'] and require('dap').status() ~= '''
-                end
-              '';
-            color.__raw =
-              # lua
-              ''
-                NixVim.ui.fg('Debug')
-              '';
+            __unkeyed-1.__raw = ''
+              function() return '  ' .. require('dap').status() end
+            '';
+            cond.__raw = ''function () return package.loaded['dap'] and require('dap').status() ~= ''' end '';
+            color.__raw = "NixVim.ui.fg('Debug')";
           }
 
           {
@@ -189,20 +138,18 @@ in {
               inherit (icons.git) removed;
             };
 
-            source.__raw =
-              # lua
-              ''
-                function()
-                  local gitsigns = vim.b.gitsigns_status_dict
-                  if gitsigns then
-                    return {
-                      added = gitsigns.added,
-                      modified = gitsigns.changed,
-                      removed = gitsigns.removed
-                    }
-                  end
+            source.__raw = ''
+              function()
+                local gitsigns = vim.b.gitsigns_status_dict
+                if gitsigns then
+                  return {
+                    added = gitsigns.added,
+                    modified = gitsigns.changed,
+                    removed = gitsigns.removed
+                  }
                 end
-              '';
+              end
+            '';
           }
         ];
 
@@ -225,13 +172,7 @@ in {
         ];
         lualine_z = [
           {
-            __unkeyed-1.__raw =
-              # lua
-              ''
-                function()
-                  return " " .. os.date("%R")
-                end
-              '';
+            __unkeyed-1.__raw = ''function() return " " .. os.date("%R") end '';
           }
         ];
       };
