@@ -79,7 +79,7 @@ _: {
     qml = " ";
     roslyn = "󰌛 ";
     roslyn_ls = "󰌛 ";
-    rust = "󱘗 ";
+    rust-analyzer = "󱘗 ";
     sqlls = " ";
     tailwindcss = " ";
     texlab = " ";
