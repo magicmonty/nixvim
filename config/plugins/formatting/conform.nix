@@ -84,6 +84,7 @@
         go = ["gofmt"];
         javascript = ["prettierd" "prettier"];
         javascriptreact = ["prettierd" "prettier"];
+        rust = ["rustfmt"];
         typescript = ["prettierd" "prettier"];
         typescriptreact = ["prettierd" "prettier"];
         markdown = ["markdownlint"];
