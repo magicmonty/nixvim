@@ -126,7 +126,6 @@
       nil_ls.enable = true;
       dockerls.enable = true;
       docker_compose_language_service.enable = true;
-      rust_analyzer.enable = true;
       yamlls = {
         enable = true;
         config = {
