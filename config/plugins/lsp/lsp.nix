@@ -49,6 +49,7 @@
     servers = {
       angularls = {
         enable = true;
+
         config = {
           root_markers = ["angular.json" "nx.json" "project.json"];
         };
@@ -125,6 +126,7 @@
       nil_ls.enable = true;
       dockerls.enable = true;
       docker_compose_language_service.enable = true;
+      rust_analyzer.enable = true;
       yamlls = {
         enable = true;
         config = {
