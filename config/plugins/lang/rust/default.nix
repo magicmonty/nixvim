@@ -4,8 +4,17 @@
     neotest.adapters.rust = {
       enable = true;
     };
-    rustaceanvim = {
+    lsp.servers.rust_analyzer = {
       enable = true;
+      installRustc = false;
+      installCargo = false;
+      settings = {
+        checkOnSave.command = "clippy";
+        inlayHints.lifetimeElisionHints.enable = "always";
+      };
+    };
+    rustaceanvim = {
+      enable = false;
       settings = {
         tools = {
           enable_nextest = true;
