@@ -620,10 +620,10 @@ with builtins; {
               yaml = false;
             };
             tables = {
-              autoExtendCols = false;
-              autoExtendRows = false;
-              formatOnMove = true;
-              trimWhitespace = true;
+              auto_extend_cols = false;
+              auto_extend_rows = false;
+              format_on_move = true;
+              trim_whitespace = true;
             };
           };
         };

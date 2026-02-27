@@ -59,6 +59,7 @@ with lib; {
           "copilot.lua"
           "friendly-snippets"
           "markview.nvim"
+          "mkdnflow.nvim"
           "mcphub.nvim"
           "mini.nvim"
           "neotest"
