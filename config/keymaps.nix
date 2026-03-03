@@ -101,7 +101,6 @@
     })
     (nremap "<leader>," "<cmd>e #<cr>" "Switch to other buffer")
     (nremap "<leader>bb" "<cmd>e #<cr>" "Switch to other buffer")
-    (nremap "<leader>ai" "<cmd>CopilotChat<cr>" "Open Copilot Chat")
     {
       key = "<leader>bd";
       action.__raw =

@@ -2,6 +2,27 @@
   extraPackages = with pkgs; [
     lynx
   ];
+  keymaps = [
+    {
+      mode = "v";
+      key = "<leader>ai";
+      action = "<cmd>CodeCompanionChat Add<CR>";
+      options = {
+        noremap = true;
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>ai";
+      action = "<cmd>CodeCompanionChat Toggle<CR>";
+      options = {
+        noremap = true;
+        silent = true;
+      };
+    }
+  ];
+
   plugins = {
     blink-cmp.settings.sources = {
       default = [
@@ -33,12 +54,36 @@
       };
     };
 
-    copilot-chat = {
+    codecompanion = {
       enable = true;
+      settings = {
+        interactions = {
+          chat = {
+            adapter = "copilot";
+            model = "claude-sonnet-4.6";
+          };
+          inline = {
+            adapter = "copilot";
+            model = "claude-sonnet-4.6";
+          };
+          cmd = {
+            adapter = "copilot";
+            model = "claude-sonnet-4.6";
+          };
+          background = {
+            adapter = "copilot";
+            model = "claude-sonnet-4.6";
+          };
+        };
+      };
+    };
+
+    copilot-chat = {
+      enable = false;
     };
 
     copilot-lua = {
-      enable = true;
+      enable = false;
 
       settings = {
         suggestion.enabled = false;

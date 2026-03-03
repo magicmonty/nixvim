@@ -55,6 +55,7 @@ with lib; {
         enable = true; # Combine plugins into a single file
         standalonePlugins = [
           "blink.cmp"
+          "codecompanion.nvim"
           "conform.nvim"
           "copilot.lua"
           "friendly-snippets"
