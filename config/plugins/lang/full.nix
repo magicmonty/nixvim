@@ -20,5 +20,6 @@ with lib; {
     vue.enable = mkDefault true;
     dotnet.enable = mkDefault true;
     sql.enable = mkDefault true;
+    rust.enable = mkDefault true;
   };
 }
