@@ -73,6 +73,7 @@ with builtins; {
           score_offset = 10000;
           async = true;
         };
+        dotnet.enable = true;
         easy-dotnet = {
           enable = true;
           settings = {

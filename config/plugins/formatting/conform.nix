@@ -1,10 +1,16 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   extraPackages = with pkgs; [
     stylua
     alejandra
     biome
     clang-tools
     shfmt
+    sqlfluff
+    sqruff
     nodePackages.prettier
     prettierd
     yamllint
@@ -68,6 +74,21 @@
             ignore_errors = true;
           };
         };
+        sqlfluff = let
+          config = ./sqlfluff.toml;
+        in {
+          command = lib.getExe pkgs.sqlfluff;
+          args = [
+            "fix"
+            "--config"
+            "${config}"
+            "-"
+          ];
+          require_cwd = false;
+        };
+        yamllint = {
+          command = lib.getExe pkgs.yamllint;
+        };
       };
 
       formatters_by_ft = {
@@ -85,6 +106,7 @@
         javascript = ["prettierd" "prettier"];
         javascriptreact = ["prettierd" "prettier"];
         rust = ["rustfmt"];
+        sql = ["sqlfluff"];
         typescript = ["prettierd" "prettier"];
         typescriptreact = ["prettierd" "prettier"];
         markdown = ["markdownlint"];
