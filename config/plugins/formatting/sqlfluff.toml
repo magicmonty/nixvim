@@ -23,7 +23,7 @@ large_file_skip_byte_limit = 0
 processes = 0
 max_line_length = 120
 render_variant_limit = 1
-use_rust_parser = True
+use_rust_parser = auto
 
 [sqlfluff:indentation]
 indent_unit = space
