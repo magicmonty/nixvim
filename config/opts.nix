@@ -69,6 +69,8 @@ with lib; {
           "qmk.nvim"
           "refactoring.nvim"
           "snacks.nvim"
+          "telescope.nvim"
+          "xcodebuild.nvim"
         ];
       };
     };

@@ -8,6 +8,7 @@ with lib; {
     ./obsidian
     ./rust
     ./sql
+    ./swift
     ./tailwindcss
     ./tex
     ./typst
@@ -21,5 +22,6 @@ with lib; {
     dotnet.enable = mkDefault true;
     sql.enable = mkDefault true;
     rust.enable = mkDefault true;
+    swift.enable = mkDefault false;
   };
 }

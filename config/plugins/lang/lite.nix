@@ -6,7 +6,5 @@ _: {
     ./neorg
     ./obsidian
     ./sql
-    #    ./tailwindcss
-    ./vue
   ];
 }
