@@ -4,18 +4,9 @@
   ];
   keymaps = [
     {
-      mode = "v";
-      key = "<leader>ai";
-      action = "<cmd>CodeCompanionChat Add<CR>";
-      options = {
-        noremap = true;
-        silent = true;
-      };
-    }
-    {
       mode = "n";
       key = "<leader>ai";
-      action = "<cmd>CodeCompanionChat Toggle<CR>";
+      action = "<cmd>CopilotChatToggle<CR>";
       options = {
         noremap = true;
         silent = true;
@@ -54,36 +45,21 @@
       };
     };
 
-    codecompanion = {
+    copilot-chat = {
       enable = true;
       settings = {
-        interactions = {
-          chat = {
-            adapter = "copilot";
-            model = "claude-sonnet-4.6";
-          };
-          inline = {
-            adapter = "copilot";
-            model = "claude-sonnet-4.6";
-          };
-          cmd = {
-            adapter = "copilot";
-            model = "claude-sonnet-4.6";
-          };
-          background = {
-            adapter = "copilot";
-            model = "claude-sonnet-4.6";
-          };
+        debug = true;
+        show_help = true;
+        model = "claude-opus-4.6";
+        window = {
+          layout = "float";
         };
+        auto_follow_cursor = false;
       };
     };
 
-    copilot-chat = {
-      enable = false;
-    };
-
     copilot-lua = {
-      enable = false;
+      enable = true;
 
       settings = {
         suggestion.enabled = false;

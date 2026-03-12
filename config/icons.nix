@@ -81,6 +81,7 @@ _: {
     roslyn_ls = "󰌛 ";
     rust_analyzer = "󱘗 ";
     rust-analyzer = "󱘗 ";
+    sourcekit = " ";
     sqlls = " ";
     tailwindcss = " ";
     texlab = " ";

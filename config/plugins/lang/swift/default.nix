@@ -62,6 +62,7 @@ with builtins; {
             ];
             root_markers = [
               "Package.swift"
+              "*.xcodeproj"
               ".git"
             ];
           };
