@@ -26,13 +26,17 @@ in {
         signature.enabled = true;
         snippets.preset = "luasnip";
         sources = {
-          default = [
-            "lsp"
-            (lib.strings.optionalString config.sys.lang.dotnet.enable "easy-dotnet")
-            "path"
-            "snippets"
-            "emoji"
-            "buffer"
+          default = lib.mkMerge [
+            [
+              "lsp"
+            ]
+            (lib.mkIf config.sys.lang.dotnet.enable ["easy-dotnet"])
+            [
+              "path"
+              "snippets"
+              "emoji"
+              "buffer"
+            ]
           ];
 
           providers = {
