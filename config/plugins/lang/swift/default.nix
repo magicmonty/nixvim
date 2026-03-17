@@ -16,6 +16,7 @@ with builtins; {
     mkIf enable {
       extraPackages = with pkgs; [
         swiftformat
+        swiftlint
       ];
 
       extraPlugins = [
@@ -23,7 +24,7 @@ with builtins; {
 
         (pkgs.vimUtils.buildVimPlugin
           {
-            name = "my-plugin";
+            name = "xcodebuild.nvim";
             src = pkgs.fetchFromGitHub {
               owner = "wojciech-kulik";
               repo = "xcodebuild.nvim";
@@ -35,13 +36,100 @@ with builtins; {
       ];
 
       extraConfigLua = ''
-        require('xcodebuild').setup({});
+        require('xcodebuild').setup({
+            integrations = {
+                pymobiledevice = { enabled = true, },
+                xcode_build_server = { enabled = true, },
+                nvim_tree = { enabled = false, },
+                neo_tree = { enabled = false, },
+                oil_nvim = { enabled = true, },
+                telescope_nvim = { enabled = true, },
+                snacks_nvim = { enabled = false, },
+                fzf_lua = { enabled = false, },
+                codelldb = {
+                  enabled = false,
+                }
+            }
+          });
+
+
+        require("xcodebuild.integrations.dap").setup()
       '';
 
-      plugins.conform-nvim = {
-        settings = {
-          formatters_by_ft = {
-            swift = ["swiftformat"];
+      autoGroups = {
+        lint = {clear = true;};
+      };
+      autoCmd = [
+        {
+          callback.__raw = ''
+            function()
+              if not vim.endswith(vim.fn.bufname(), "swiftinterface") then
+                require("lint").try_lint()
+              end
+            end
+          '';
+          group = "lint";
+          event = [
+            "BufWritePost"
+            "BufReadPost"
+            "InsertLeave"
+            "TextChanged"
+          ];
+        }
+      ];
+      keymaps = [
+        {
+          mode = "n";
+          key = "<leader>cml";
+          action.__raw = ''
+            function()
+              require("lint").try_lint()
+            end
+          '';
+          options = {desc = "Lint current buffer";};
+        }
+      ];
+
+      plugins = {
+        dap = {
+          configurations = {
+            swift = [
+              {
+                cwd = "\${workspaceFolder}";
+                name = "Debug";
+                request = "launch";
+                stopOnEntry = false;
+                type = "lldb-dap";
+              }
+            ];
+          };
+        };
+        dap-lldb = {
+          settings = {
+            configurations = {
+              swift = [
+                {
+                  cwd = "\${workspaceFolder}";
+                  name = "Debug";
+                  request = "launch";
+                  stopOnEntry = false;
+                  type = "lldb-dap";
+                }
+              ];
+            };
+          };
+        };
+        conform-nvim = {
+          settings = {
+            formatters_by_ft = {
+              swift = ["swiftformat"];
+            };
+          };
+        };
+        lint = {
+          enable = true;
+          lintersByFt = {
+            swift = ["swiftlint"];
           };
         };
       };

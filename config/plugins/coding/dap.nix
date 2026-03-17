@@ -56,35 +56,63 @@
     }
   ];
   plugins = {
+    dap-lldb = {
+      enable = true;
+      settings = {
+        codelldb_path = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+      };
+    };
     dap = {
       enable = true;
-      adapters.executables.chrome = let
-        vscode-chrome-debug = pkgs.buildNpmPackage {
-          name = "vscode-chrome-debug";
-          src = pkgs.fetchFromGitHub {
-            owner = "Microsoft";
-            repo = "vscode-chrome-debug";
-            rev = "v4.13.0";
-            sha256 = "sha256-JsUVdsen9QMdYnaiQuWBXhPxMn/DazZOuN8df8xpfQ4=";
+      adapters = {
+        servers = {
+          lldb-dap = {
+            executable = {
+              command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+              args = ["--port" "\${port}"];
+              detached = true;
+            };
+            port = "\${port}";
           };
-          npmFlags = [
-            "--ignore-scripts"
-            "--legacy-peer-deps"
-          ];
-          npmDepsHash = "sha256-wgD6gop8dAwNDrV6cLZoSbqL1dtGWjNhsjr80jjGXPQ=";
-
-          installPhase = ''
-            mkdir -p $out
-            cp -r out $out
-            cp -r package* $out
-            cp -r node_modules $out/node_modules
-          '';
+          codelldb = {
+            executable = {
+              command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+              args = ["--port" "\${port}"];
+              detached = true;
+            };
+            port = "\${port}";
+          };
         };
-      in {
-        command = "${pkgs.nodejs-slim_24}/bin/node";
-        args = [
-          "${vscode-chrome-debug}/out/src/chromeDebug.js"
-        ];
+        executables = {
+          chrome = let
+            vscode-chrome-debug = pkgs.buildNpmPackage {
+              name = "vscode-chrome-debug";
+              src = pkgs.fetchFromGitHub {
+                owner = "Microsoft";
+                repo = "vscode-chrome-debug";
+                rev = "v4.13.0";
+                sha256 = "sha256-JsUVdsen9QMdYnaiQuWBXhPxMn/DazZOuN8df8xpfQ4=";
+              };
+              npmFlags = [
+                "--ignore-scripts"
+                "--legacy-peer-deps"
+              ];
+              npmDepsHash = "sha256-wgD6gop8dAwNDrV6cLZoSbqL1dtGWjNhsjr80jjGXPQ=";
+
+              installPhase = ''
+                mkdir -p $out
+                cp -r out $out
+                cp -r package* $out
+                cp -r node_modules $out/node_modules
+              '';
+            };
+          in {
+            command = "${pkgs.nodejs-slim_24}/bin/node";
+            args = [
+              "${vscode-chrome-debug}/out/src/chromeDebug.js"
+            ];
+          };
+        };
       };
       signs = {
         dapBreakpointCondition = {

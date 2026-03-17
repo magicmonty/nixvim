@@ -70,7 +70,7 @@ with lib; {
           "refactoring.nvim"
           "snacks.nvim"
           "telescope.nvim"
-          "xcodebuild.nvim"
+          "xcodebuild"
         ];
       };
     };

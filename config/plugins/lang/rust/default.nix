@@ -59,7 +59,174 @@ with lib; {
             };
           };
         };
-        dap-lldb.enable = true;
+        dap-lldb = {
+          settings = {
+            configurations = {
+              rust = [
+                {
+                  name = "Debug";
+                  cwd = "$\${workspaceFolder}";
+                  type = "lldb";
+                  request = "launch";
+                  stopOnEntry = false;
+                  program = {
+                    __raw = ''
+                      function(selection)
+                         local targets = list_targets(selection)
+
+                         if targets == nil then
+                            return nil
+                         end
+
+                         if #targets == 0 then
+                            return read_target()
+                         end
+
+                         if #targets == 1 then
+                            return targets[1]
+                         end
+
+                         local options = { "Select a target:" }
+
+                         for index, target in ipairs(targets) do
+                            local parts = vim.split(target, sep, { trimempty = true })
+                            local option = string.format("%d. %s", index, parts[#parts])
+                            table.insert(options, option)
+                         end
+
+                         local choice = vim.fn.inputlist(options)
+
+                         return targets[choice]
+                      end
+                    '';
+                  };
+                }
+                {
+                  name = "Debug (+args)";
+                  cwd = "$\${workspaceFolder}";
+                  type = "lldb";
+                  request = "launch";
+                  stopOnEntry = false;
+                  program = {
+                    __raw = ''
+                      function(selection)
+                         local targets = list_targets(selection)
+
+                         if targets == nil then
+                            return nil
+                         end
+
+                         if #targets == 0 then
+                            return read_target()
+                         end
+
+                         if #targets == 1 then
+                            return targets[1]
+                         end
+
+                         local options = { "Select a target:" }
+
+                         for index, target in ipairs(targets) do
+                            local parts = vim.split(target, sep, { trimempty = true })
+                            local option = string.format("%d. %s", index, parts[#parts])
+                            table.insert(options, option)
+                         end
+
+                         local choice = vim.fn.inputlist(options)
+
+                         return targets[choice]
+                      end
+                    '';
+                  };
+                  args = {
+                    __raw = ''
+                      function()
+                         local args = vim.fn.input("Enter args: ")
+                         return vim.split(args, " ", { trimempty = true })
+                      end
+                    '';
+                  };
+                }
+                {
+                  name = "Debug tests";
+                  cwd = "$\${workspaceFolder}";
+                  type = "lldb";
+                  request = "launch";
+                  stopOnEntry = false;
+                  program = {
+                    __raw = ''
+                      function()
+                        return select_target("tests")
+                      end
+                    '';
+                  };
+                  args = [
+                    "--test-threads=1"
+                  ];
+                }
+                {
+                  name = "Debug tests (+args)";
+                  cwd = "$\${workspaceFolder}";
+                  type = "lldb";
+                  request = "launch";
+                  stopOnEntry = false;
+                  program = {
+                    __raw = ''
+                      function()
+                        return select_target("tests")
+                      end
+                    '';
+                  };
+                  args = {
+                    __raw = ''
+                      function()
+                          return vim.list_extend(read_args(), { "--test-threads=1" })
+                      end
+                    '';
+                  };
+                }
+                {
+                  name = "Debug tests (cursor)";
+                  cwd = "$\${workspaceFolder}";
+                  request = "launch";
+                  type = "lldb";
+                  stopOnEntry = false;
+                  program = {
+                    __raw = ''
+                      function()
+                        return select_target("tests")
+                      end
+                    '';
+                  };
+                  args = {
+                    __raw = ''
+                      function()
+                        local test = select_test()
+                        local args = test and { "--exact", test } or {}
+                        return vim.list_extend(args, { "--test-threads=1" })
+                      end
+                    '';
+                  };
+                }
+                {
+                  name = "Attach debugger";
+                  cwd = "$\${workspaceFolder}";
+                  type = "lldb";
+                  request = "attach";
+                  stopOnEntry = false;
+                  program = {
+                    __raw = ''
+                      function()
+                         local cwd = string.format("%s%s", vim.fn.getcwd(), sep)
+                         return vim.fn.input("Path to executable: ", cwd, "file")
+                      end
+                    '';
+                  };
+                }
+              ];
+            };
+          };
+        };
         neotest.adapters.rust = {
           enable = true;
         };
