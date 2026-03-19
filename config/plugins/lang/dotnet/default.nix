@@ -39,8 +39,14 @@ with builtins; {
   in
     mkIf enable {
       extraPackages = with pkgs; [
-        dotnet-sdk_9
-        dotnet-sdk_10
+        (
+          with dotnetCorePackages;
+            combinePackages [
+              sdk_8_0-bin
+              sdk_9_0-bin
+              sdk_10_0-bin
+            ]
+        )
         csharpier
         netcoredbg
       ];
