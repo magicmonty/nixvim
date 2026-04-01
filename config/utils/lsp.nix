@@ -10,7 +10,7 @@
       ret = vim.lsp.get_active_clients(opts)
       if opts and opts.method then
         ret = vim.tbl_filter(function(client)
-          return client.supports_method(opts.method, { bufnr = opts.bufnr })
+          return client:supports_method(opts.method, { bufnr = opts.bufnr })
         end, ret)
       end
     end
@@ -20,7 +20,7 @@
   function NixVim.lsp.on_rename(from, to)
     local clients = NixVim.lsp.get_clients()
     for _, client in ipairs(clients) do
-      if client.supports_method("workspace/willRenameFiles") then
+      if client:supports_method("workspace/willRenameFiles") then
         local resp = client.request_sync("workspace/willRenameFiles", {
           files = {
             {
@@ -40,7 +40,7 @@
     method = method:find("/") and method or "textDocument/" .. method
     local clients = NixVim.lsp.get_clients({ bufnr = buffer })
     for _, client in ipairs(clients) do
-      if client.supports_method(method) then
+      if client:supports_method(method) then
         return true
       end
     end
@@ -63,8 +63,8 @@
         local clients = NixVim.lsp.get_clients(LazyVim.merge({}, filter, { bufnr = buf }))
 
         local ret = vim.tbl_filter(function(client)
-          return client.supports_method("textDocument/formatting")
-            or client.supports_method("textDocument/rangeFormatting")
+          return client:supports_method("textDocument/formatting")
+            or client:supports_method("textDocument/rangeFormatting")
         end, clients)
 
         return vim.tbl_map(function(client)
