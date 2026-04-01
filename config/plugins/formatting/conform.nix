@@ -11,7 +11,7 @@
     shfmt
     sqlfluff
     sqruff
-    nodePackages.prettier
+    prettier
     prettierd
     yamllint
     yamlfmt
