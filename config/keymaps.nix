@@ -102,6 +102,17 @@
     (nremap "<leader>," "<cmd>e #<cr>" "Switch to other buffer")
     (nremap "<leader>bb" "<cmd>e #<cr>" "Switch to other buffer")
     {
+      key = "<leader>ai";
+      action.__raw =
+        # lua
+        ''
+          function()
+            require("opencode").toggle()
+          end
+        '';
+      options = {desc = "Toggle OpenCode";};
+    }
+    {
       key = "<leader>bd";
       action.__raw =
         # lua
@@ -195,6 +206,26 @@
     # Checkbox
     (nremap "<leader>tz" ":s/\\[\\s\\?\\]/[x]/<cr>" "Check checkbox")
     (nremap "<leader>tu" ":s/\\[[x~>!]\\]/[ ]/<cr>" "Uncheck checkbox")
+
+    {
+      mode = "n";
+      key = "+";
+      action = "<C-a>";
+      options = {
+        desc = "Increment under cursor";
+        remap = false;
+      };
+    }
+
+    {
+      mode = "n";
+      key = "-";
+      action = "<C-x>";
+      options = {
+        desc = "Decrement under cursor";
+        remap = false;
+      };
+    }
   ];
 
   extraConfigLua =
@@ -221,6 +252,7 @@
       map("n", "öe", diagnostic_goto(false, "ERROR"), { desc = "Previous error", remap = true, silent = true })
       map("n", "äw", diagnostic_goto(true, "WARN"), { desc = "Previous warning", remap = true, silent = true })
       map("n", "öw", diagnostic_goto(false, "WARN"), { desc = "Previous warning", remap = true, silent = true })
+
 
       vim.keymap.del('i', '<Tab>');
       vim.keymap.del({'n', 'x'}, 's')

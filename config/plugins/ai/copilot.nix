@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   extraPackages = with pkgs; [
     lynx
+    lsof
   ];
   keymaps = [
     {
@@ -15,6 +16,26 @@
   ];
 
   plugins = {
+    snacks = {
+      settings = {
+        picker = {
+          actions = {
+            opencode_send.__raw = ''function(...) return require("opencode").snacks_picker_send(...) end'';
+          };
+          win = {
+            input = {
+              keys = {
+                "<a-a>" = {
+                  __unkeyed-1 = "opencode_send";
+                  mode = ["n" "i"];
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+
     blink-cmp.settings.sources = {
       default = [
         "lsp"
@@ -57,6 +78,8 @@
         auto_follow_cursor = false;
       };
     };
+
+    opencode.enable = true;
 
     copilot-lua = {
       enable = true;
