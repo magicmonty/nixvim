@@ -53,7 +53,6 @@ If you add a new configuration file, remember to add it to the
   - [lualine](./config/plugins/ui/lualine.nix)
   - [noice](./config/plugins/ui/noice.nix)
   - [nvim-notify](./config/plugins/ui/notify.nix)
-  - [ufo](./config/plugins/ui/ufo.nix)
 - **Language support**
   - **Angular**
     - [angular](./config/plugins/lang/angular/angular.nix)

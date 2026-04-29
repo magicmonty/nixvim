@@ -2,7 +2,7 @@
   plugins = {
     refactoring = {
       enable = true;
-      enableTelescope = true;
+      enableTelescope = false;
     };
 
     which-key.settings.spec = [

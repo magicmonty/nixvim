@@ -54,6 +54,7 @@ with lib; {
       combinePlugins = {
         enable = true; # Combine plugins into a single file
         standalonePlugins = [
+          "async.nvim"
           "blink.cmp"
           "codecompanion.nvim"
           "conform.nvim"

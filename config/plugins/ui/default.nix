@@ -5,6 +5,5 @@
     ./dressing.nix
     ./lualine.nix
     ./noice.nix
-    ./ufo.nix
   ];
 }
