@@ -5,6 +5,7 @@
 }:
 with lib; {
   imports = [
+    ./clojure
     ./dotnet
     ./json
     ./markdown
@@ -20,6 +21,7 @@ with lib; {
   ];
 
   config.sys.lang = {
+    clojure.enable = mkDefault true;
     neorg.enable = mkDefault false;
     obsidian.enable = mkDefault true;
     vue.enable = mkDefault true;

@@ -58,6 +58,7 @@ with lib; {
           "blink.cmp"
           "codecompanion.nvim"
           "conform.nvim"
+          "conjure"
           "copilot.lua"
           "friendly-snippets"
           "markview.nvim"
