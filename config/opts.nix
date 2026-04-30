@@ -79,7 +79,7 @@ with lib; {
 
     globals = {
       mapleader = " ";
-      maplocalleader = "\\";
+      maplocalleader = "#";
       markdown_recommended_style = 0; # Fix markdown indentation settings
     };
 
@@ -120,6 +120,12 @@ with lib; {
       laststatus = 3; # global statusline
       list = true; # Show some invisible characters (tabs...)
       mouse = "a"; # enable mouse mode
+
+      # folds
+      foldcolumn = "0";
+      foldlevel = 99;
+      foldlevelstart = 99;
+      foldenable = true;
 
       pumblend = 10; # Popup blend
       pumheight = 10; # maximum number of entries in a popup

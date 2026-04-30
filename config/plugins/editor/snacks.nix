@@ -31,7 +31,13 @@
       quickfile = enabled;
       scope = enabled;
       scroll = enabled;
-      statuscolumn = enabled;
+      statuscolumn = {
+        enabled = true;
+        folds = {
+          git_hl = true;
+          open = true;
+        };
+      };
       words = enabled;
       image = {
         enabled = true;
