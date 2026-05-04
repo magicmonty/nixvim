@@ -29,5 +29,6 @@ with lib; {
     sql.enable = mkDefault true;
     rust.enable = mkDefault true;
     swift.enable = mkDefault (pkgs.stdenv.hostPlatform.system == "aarch64-darwin");
+    tex.enable = mkDefault true;
   };
 }
