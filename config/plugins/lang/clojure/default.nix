@@ -14,6 +14,17 @@ with builtins; {
     inherit (config.sys.lang.clojure) enable;
   in
     mkIf enable {
-      plugins.conjure.enable = true;
+      plugins = {
+        lz-n = {
+          enable = true;
+        };
+        conjure = {
+          enable = true;
+          lazyLoad = {
+            enable = true;
+            settings.ft = "clojure";
+          };
+        };
+      };
     };
 }
