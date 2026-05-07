@@ -11,13 +11,17 @@ with builtins; {
   };
   config = let
     inherit (config.sys.lang.tex) enable;
+    isDarwin = pkgs.stdenv.hostPlatform.system == "aarch64-darwin";
   in
     mkIf enable {
       plugins.vimtex = {
         enable = true;
         texlivePackage = null;
         settings = {
-          view_method = "zathura";
+          view_method =
+            if isDarwin
+            then "skim"
+            else "zathura";
         };
       };
 
@@ -29,7 +33,7 @@ with builtins; {
       };
 
       extraPackages = with pkgs; [
-        zathura
+        (mkIf (!isDarwin) zathura)
         python312Packages.pygments
       ];
     };
