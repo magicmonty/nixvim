@@ -123,6 +123,7 @@ with lib; {
 
       # folds
       foldcolumn = "0";
+      foldminlines = 1;
       foldlevel = 99;
       foldlevelstart = 99;
       foldenable = true;
