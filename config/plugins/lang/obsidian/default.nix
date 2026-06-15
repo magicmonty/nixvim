@@ -800,8 +800,8 @@ with builtins; {
             };
 
             completion = {
-              nvim_cmp = false;
-              blink = true;
+              # nvim_cmp = false;
+              # blink = true;
               min_chars = 2;
             };
 
