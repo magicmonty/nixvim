@@ -18,7 +18,7 @@
       mode = ["n" "x"];
       action.__raw = ''
         function()
-          require("snacks.terminal").toggle("opencode --port", { win = { position = "right", enter = false } })
+          require("snacks.terminal").toggle("opencode attach http://localhost:4096", { win = { position = "right", enter = false } })
         end
       '';
       options = {desc = "Ask OpenCode…";};
@@ -175,7 +175,7 @@
           url = "http://localhost:4096";
           start.__raw = ''
             function()
-              require("snacks.terminal").open("opencode --port", { win = { position = "right", enter = false } })
+              require("snacks.terminal").open("opencode attach http://localhost:4096", { win = { position = "right", enter = false } })
             end
           '';
         };
