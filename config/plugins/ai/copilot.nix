@@ -14,17 +14,17 @@
       };
     }
     {
-      key = "<leader>oo";
+      key = "<leader>ao";
       mode = ["n" "x"];
       action.__raw = ''
         function()
           require("snacks.terminal").toggle("opencode attach http://localhost:4096", { win = { position = "right", enter = false } })
         end
       '';
-      options = {desc = "Ask OpenCode…";};
+      options = {desc = "Toggle OpenCode…";};
     }
     {
-      key = "<leader>oa";
+      key = "<leader>aa";
       mode = ["n" "x"];
       action.__raw = ''
         function()
@@ -34,7 +34,7 @@
       options = {desc = "Ask OpenCode…";};
     }
     {
-      key = "<leader>os";
+      key = "<leader>as";
       mode = ["n" "x"];
       action.__raw = ''
         function()
