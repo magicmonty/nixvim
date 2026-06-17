@@ -2,7 +2,22 @@
   plugins.web-devicons.enable = true;
   plugins.telescope = {
     enable = true;
-    extensions.fzf-native.enable = true;
+    extensions = {
+      fzf-native.enable = true;
+      live-grep-args = {
+        enable = true;
+        settings = {
+          auto_quoting = true;
+          mappings = {
+            i = {
+              "<C-i>".__raw = ''require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " })'';
+              "<C-k>".__raw = ''require("telescope-live-grep-args.actions").quote_prompt()'';
+              "<C-space>".__raw = ''require("telescope.actions").to_fuzzy_refine'';
+            };
+          };
+        };
+      };
+    };
     settings = {
       prompt_prefix = " ";
       selection_caret = " ";
@@ -25,93 +40,23 @@
       };
       mappings = {
         i = {
-          "<C-t>" = {
-            __raw =
-              # lua
-              ''
-                function(...)
-                  require("trouble.providers.telescope").open_with_trouble(...)
-                end
-              '';
-          };
-          "<a-t>" = {
-            __raw =
-              # lua
-              ''
-                function(...)
-                  require("trouble.providers.telescope").open_selected_with_trouble(...)
-                end
-              '';
-          };
-          "<C-Down>" = {
-            __raw = "require('telescope.actions').cycle_history_next";
-          };
-          "<C-Up>" = {
-            __raw = "require('telescope.actions').cycle_history_prev";
-          };
-          "<C-f>" = {
-            __raw = "require('telescope.actions').preview_scrolling_down";
-          };
-          "<C-d>" = {
-            __raw = "require('telescope.actions').preview_scrolling_up";
-          };
-          /*
-          "<C-s>" = {
-            __raw =
-              # lua
-              ''
-                function(prompt_bufnr)
-                  require("flash").jump({
-                    pattern = "^",
-                    label = { after = { 0, 0 } },
-                    search = {
-                      mode = "search",
-                      exclude = {
-                        function(win)
-                          return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "TelescopeResults"
-                        end,
-                      },
-                    },
-                    action = function(match)
-                      local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
-                      picker:set_selection(match.pos[1] - 1)
-                    end,
-                  })
-                end
-              '';
-          };
-          */
+          "<C-t>".__raw = ''
+            function(...)
+              require("trouble.providers.telescope").open_with_trouble(...)
+            end
+          '';
+          "<a-t>".__raw = ''
+            function(...)
+              require("trouble.providers.telescope").open_selected_with_trouble(...)
+            end
+          '';
+          "<C-Down>".__raw = "require('telescope.actions').cycle_history_next";
+          "<C-Up>".__raw = "require('telescope.actions').cycle_history_prev";
+          "<C-f>".__raw = "require('telescope.actions').preview_scrolling_down";
+          "<C-d>".__raw = "require('telescope.actions').preview_scrolling_up";
         };
         n = {
-          "q" = {
-            __raw = "require('telescope.actions').close";
-          };
-          /*
-          "s" = {
-            __raw =
-              # lua
-              ''
-                function(prompt_bufnr)
-                  require("flash").jump({
-                    pattern = "^",
-                    label = { after = { 0, 0 } },
-                    search = {
-                      mode = "search",
-                      exclude = {
-                        function(win)
-                          return vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= "TelescopeResults"
-                        end,
-                      },
-                    },
-                    action = function(match)
-                      local picker = require("telescope.actions.state").get_current_picker(prompt_bufnr)
-                      picker:set_selection(match.pos[1] - 1)
-                    end,
-                  })
-                end
-              '';
-          };
-          */
+          "q".__raw = "require('telescope.actions').close";
         };
       };
     };
@@ -138,7 +83,7 @@
     }
     {
       key = "<leader>ft";
-      action = "<cmd>Telescope live_grep<cr>";
+      action = "<cmd>Telescope live_grep_args<cr>";
       options = {desc = "Live grep";};
     }
     {

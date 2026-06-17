@@ -74,7 +74,7 @@
           (mkPadding 1)
           (mkButton "r" "<CMD>Telescope oldfiles<CR>" "  Recent Files" "Operator")
           (mkPadding 1)
-          (mkButton "g" "<CMD>Telescope live_grep<CR>" "  Find Text" "Operator")
+          (mkButton "g" "<CMD>Telescope live_grep_args<CR>" "  Find Text" "Operator")
           (mkPadding 1)
           (mkButton "q" "<CMD>qa<CR>" "  Quit" "String")
         ];
