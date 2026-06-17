@@ -101,17 +101,7 @@
     })
     (nremap "<leader>," "<cmd>e #<cr>" "Switch to other buffer")
     (nremap "<leader>bb" "<cmd>e #<cr>" "Switch to other buffer")
-    {
-      key = "<leader>ai";
-      action.__raw =
-        # lua
-        ''
-          function()
-            require("opencode").toggle()
-          end
-        '';
-      options = {desc = "Toggle OpenCode";};
-    }
+
     {
       key = "<leader>bd";
       action.__raw =

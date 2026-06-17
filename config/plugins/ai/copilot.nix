@@ -13,6 +13,82 @@
         silent = true;
       };
     }
+    {
+      key = "<leader>oo";
+      mode = ["n" "x"];
+      action.__raw = ''
+        function()
+          require("snacks.terminal").toggle("opencode --port", { win = { position = "right", enter = false } })
+        end
+      '';
+      options = {desc = "Ask OpenCode…";};
+    }
+    {
+      key = "<leader>oa";
+      mode = ["n" "x"];
+      action.__raw = ''
+        function()
+          require("opencode").ask("@this: ")
+        end
+      '';
+      options = {desc = "Ask OpenCode…";};
+    }
+    {
+      key = "<leader>os";
+      mode = ["n" "x"];
+      action.__raw = ''
+        function()
+          require("opencode").select()
+        end
+      '';
+      options = {desc = "Select OpenCode…";};
+    }
+    {
+      key = "go";
+      mode = ["n" "x"];
+      action.__raw = ''
+        function()
+          return require("opencode").operator("@this ")
+        end
+      '';
+      options = {
+        desc = "Append range to OpenCode";
+        expr = true;
+      };
+    }
+    {
+      key = "goo";
+      mode = ["n"];
+      action.__raw = ''
+        function()
+          return require("opencode").operator("@this ") .. "_"
+        end
+      '';
+      options = {
+        desc = "Append line to OpenCode";
+        expr = true;
+      };
+    }
+    {
+      key = "<S-C-u>";
+      mode = ["n"];
+      action.__raw = ''
+        function()
+          require("opencode").command("session.half.page.up")
+        end
+      '';
+      options = {desc = "OpenCode: Scroll up";};
+    }
+    {
+      key = "<S-C-d>";
+      mode = ["n"];
+      action.__raw = ''
+        function()
+          require("opencode").command("session.half.page.down")
+        end
+      '';
+      options = {desc = "OpenCode: Scroll down";};
+    }
   ];
 
   plugins = {
@@ -20,7 +96,20 @@
       settings = {
         picker = {
           actions = {
-            opencode_send.__raw = ''function(...) return require("opencode").snacks_picker_send(...) end'';
+            opencode_send.__raw = ''
+              function(picker)
+                local items = vim.tbl_map(
+                  function(item)
+                    return item.file
+                      and require("opencode").format({ path = item.file, from = item.pos, to = item.end_pos })
+                      or item.text
+                  end,
+                  picker:selected({ fallback = true })
+                )
+
+                require("opencode").prompt(table.concat(items, ", ") .. " ")
+              end
+            '';
           };
           win = {
             input = {
@@ -79,7 +168,19 @@
       };
     };
 
-    opencode.enable = true;
+    opencode = {
+      enable = true;
+      settings = {
+        server = {
+          url = "http://localhost:4096";
+          start.__raw = ''
+            function()
+              require("snacks.terminal").open("opencode --port", { win = { position = "right", enter = false } })
+            end
+          '';
+        };
+      };
+    };
 
     copilot-lua = {
       enable = true;
