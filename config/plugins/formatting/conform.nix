@@ -9,7 +9,7 @@
     biome
     clang-tools
     shfmt
-    sqlfluff
+    # sqlfluff
     sqruff
     prettier
     prettierd
@@ -74,6 +74,8 @@
             ignore_errors = true;
           };
         };
+
+        /*
         sqlfluff = let
           config = ./sqlfluff.toml;
         in {
@@ -86,6 +88,7 @@
           ];
           require_cwd = false;
         };
+        */
         yamllint = {
           command = lib.getExe pkgs.yamllint;
         };

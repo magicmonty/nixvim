@@ -32,7 +32,12 @@
       }: let
         pkgs = import nixpkgs {
           inherit system;
-          config.allowUnfree = true;
+          config = {
+            allowUnfree = true;
+            permittedInsecurePackages = [
+              "pnpm-10.34.0"
+            ];
+          };
         };
         nixvim' = nixvim.legacyPackages.${system};
         nixvimLib = nixvim.lib.${system};
