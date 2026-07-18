@@ -58,6 +58,13 @@
       clangd.enable = true;
       gopls.enable = true;
       lemminx.enable = true;
+      phphantom = {
+        enable = true;
+        config = {
+          filetypes = ["php"];
+          root_markers = ["composer.json" ".git"];
+        };
+      };
       qmlls.enable = true;
       ts_ls = {
         enable = true;
