@@ -111,7 +111,7 @@
         go = ["gofmt"];
         javascript = ["prettierd" "prettier"];
         javascriptreact = ["prettierd" "prettier"];
-        php = ["php_cs_fixer" "phpcbf" "phpinsights"];
+        php = ["easy-coding-standard" "php_cs_fixer" "phpcbf" "phpinsights"];
         rust = ["rustfmt"];
         sql = ["sqlfluff"];
         typescript = ["prettierd" "prettier"];
