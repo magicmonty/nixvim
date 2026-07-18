@@ -58,9 +58,10 @@
       clangd.enable = true;
       gopls.enable = true;
       lemminx.enable = true;
-      phphantom = {
+      phpantom_lsp = {
         enable = true;
         config = {
+          cmd = ["phpantom_lsp"];
           filetypes = ["php"];
           root_markers = ["composer.json" ".git"];
         };

@@ -76,6 +76,7 @@ _: {
     marksman = " ";
     nil_ls = "󱄅 ";
     nixd = "󱄅 ";
+    phpantom_lsp = "";
     qml = " ";
     roslyn = "󰌛 ";
     roslyn_ls = "󰌛 ";
