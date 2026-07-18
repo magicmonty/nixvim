@@ -16,6 +16,9 @@
     yamllint
     yamlfmt
     libxml2
+    phpPackages.php-cs-fixer
+    phpPackages.php-codesniffer
+    phpPackages.phpinsights
   ];
   plugins.conform-nvim = {
     enable = true;
@@ -108,6 +111,7 @@
         go = ["gofmt"];
         javascript = ["prettierd" "prettier"];
         javascriptreact = ["prettierd" "prettier"];
+        php = ["php_cs_fixer" "phpcbf" "phpinsights"];
         rust = ["rustfmt"];
         sql = ["sqlfluff"];
         typescript = ["prettierd" "prettier"];
