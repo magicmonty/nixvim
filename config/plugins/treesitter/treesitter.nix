@@ -285,7 +285,6 @@
         # thrift
         # tiger
         # tlaplus
-        tmux
         todotxt
         toml
         tsv
@@ -321,7 +320,6 @@
         yaml
         # yang
         # yuck
-        zathurarc
         zig
         # ziggy
         # ziggy_schema

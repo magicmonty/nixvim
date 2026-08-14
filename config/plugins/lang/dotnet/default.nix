@@ -39,16 +39,7 @@ with builtins; {
   in
     mkIf enable {
       extraPackages = with pkgs; [
-        (
-          with dotnetCorePackages;
-            combinePackages [
-              sdk_8_0-bin
-              sdk_9_0-bin
-              sdk_10_0-bin
-            ]
-        )
         csharpier
-        netcoredbg
       ];
 
       lsp.servers.roslyn_ls = {
@@ -92,7 +83,7 @@ with builtins; {
               analyzer_assemblies = {}; # Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
               config = lspConfig;
             };
-            debugger.bin_path = "${pkgs.netcoredbg}/bin/netcoredbg";
+            debugger.bin_path = "netcoredbg";
           };
         };
         roslyn = {
@@ -118,13 +109,7 @@ with builtins; {
         dap = {
           adapters.executables = {
             coreclr = {
-              command = "${pkgs.netcoredbg}/bin/netcoredbg";
-              args = [
-                "--interpreter=vscode"
-              ];
-            };
-            netcoredbg = {
-              command = "${pkgs.netcoredbg}/bin/netcoredbg";
+              command = "/usr/local/bin/netcoredbg";
               args = [
                 "--interpreter=vscode"
               ];
@@ -138,7 +123,42 @@ with builtins; {
                 request = "launch";
                 program.__raw = ''
                   function ()
-                    return vim.fn.input('Path to dll: ', vim.fn.getcwd() .. '/bin/Debug/net9.0/', 'file')
+                    function map(tbl, f)
+                        local t = {}
+                        for k,v in pairs(tbl) do
+                            t[k] = f(v)
+                        end
+                        return t
+                    end
+
+                    local cwDir = vim.fn.getcwd()
+                    local projects = vim.split(vim.fn.glob(cwDir .. "/**/*.csproj"), '\n', {trimempty=true})
+                    local binaries = map(
+                      projects,
+                      function(p)
+                        projectName = vim.fn.fnamemodify(p, ":t:r")
+                        projectDir = vim.fn.fnamemodify(p, ":h")
+                        executables = vim.split(vim.fn.glob(projectDir .. '/bin/Debug/**/' .. projectName .. '.dll'), '\n', {trimempty=true})
+
+                        if executables[1] then
+                          return  vim.fn.fnamemodify(executables[1], ":p")
+                        else
+                          return nil
+                        end
+                      end
+                    )
+
+                    local nonNilBinaries = {}
+
+                    for _, binary in ipairs(binaries) do
+                      if binary ~= nil then
+                        table.insert(nonNilBinaries, binary)
+                      end
+                    end
+
+                    local executable = require("mini.pick").start({ source = { items = nonNilBinaries, name = "Executables", choose = function(item) return nil end }});
+
+                    return executable
                   end
                 '';
               }

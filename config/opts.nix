@@ -158,20 +158,24 @@ with lib; {
       cmdheight = 0; # Height of the command bar
     };
 
-    extraConfigLuaPre =
-      # lua
-      ''
-        P = function(v)
-          print(vim.inspect(v))
-          return v
-        end
+    extraConfigLuaPre = ''
+      P = function(v)
+        print(vim.inspect(v))
+        return v
+      end
 
-        DN = function(v)
-          local time = os.date('%H:%M')
-          local msg = time
-          vim.notify(vim.inspect(v), 'debug', { title = { 'Debug Output', msg } })
-          return v
-        end
-      '';
+      DN = function(v)
+        local time = os.date('%H:%M')
+        local msg = time
+        vim.notify(vim.inspect(v), 'debug', { title = { 'Debug Output', msg } })
+        return v
+      end
+    '';
+
+    extraConfigLuaPost = ''
+      if vim.env.DOTNET_ROOT ~= nil  then
+        vim.env.PATH = vim.env.DOTNET_ROOT .. ":" .. vim.env.PATH
+      end
+    '';
   };
 }
