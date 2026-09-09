@@ -88,6 +88,7 @@ _: {
     texlab = " ";
     tinymist = " ";
     ts_ls = " ";
+    vtsls = " ";
     vue_ls = " ";
     yamlls = " ";
   };

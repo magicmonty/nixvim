@@ -67,42 +67,77 @@
         };
       };
       qmlls.enable = true;
-      ts_ls = {
+      vtsls = {
         enable = true;
-        config.onAttach.function =
-          # lua
-          ''
-            vim.keymap.set(
-              "n",
-              "<leader>co",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.organizeImports.ts" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              { desc = "Organize imports" }
-            )
-            vim.keymap.set(
-              "n",
-              "<leader>cR",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.removeUnused.ts" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              { desc = "Remove unused imports" }
-            )
-          '';
         config = {
-          completions.completeFunctionCalls = true;
+          filetypes = ["typescript" "javascript" "javascript.jsx" "typescript.tsx" "javascriptreact" "typescriptreact" "htmlangular" "vue"];
+          capabilities = {
+            textDocument = {
+              documentHighlight = false;
+            };
+          };
+          on_attach.__raw =
+            # lua
+            ''
+              function(client, bufnr)
+                client.server_capabilities.documentHighlightProvider = false;
+                vim.keymap.set(
+                  "n",
+                  "<leader>co",
+                  function()
+                    vim.lsp.buf.code_action({
+                      apply = true,
+                      context = {
+                        only = { "source.organizeImports.ts" },
+                        diagnostics = {},
+                      },
+                    })
+                  end,
+                  { desc = "Organize imports" }
+                )
+                vim.keymap.set(
+                  "n",
+                  "<leader>cR",
+                  function()
+                    vim.lsp.buf.code_action({
+                      apply = true,
+                      context = {
+                        only = { "source.removeUnused.ts" },
+                        diagnostics = {},
+                      },
+                    })
+                  end,
+                  { desc = "Remove unused imports" }
+                )
+              end
+            '';
+          settings = {
+            vtsls = {
+              enableMoveToFileCodeAction = true;
+              autoUseWorkspaceTsdk = true;
+              experimental.completion = {
+                enableServerSideFuzzyMatch = true;
+                entriesLimit = 20;
+              };
+            };
+            typescript = {
+              updateImportsOnFileMove = "always";
+              inlayHints = {
+                parameterNames.enabled = "literals";
+                parameterTypes.enabled = true;
+                variableTypes.enabled = true;
+                propertyDeclarationTypes.enabled = true;
+                functionLikeReturnTypes.enabled = true;
+                enumMemberValues.enabled = true;
+              };
+            };
+            javascript = {
+              updateImportsOnFileMove = "always";
+            };
+          };
+          config = {
+            completions.completeFunctionCalls = true;
+          };
         };
       };
       lua_ls = {

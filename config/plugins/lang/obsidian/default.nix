@@ -805,7 +805,7 @@ with builtins; {
               min_chars = 2;
             };
 
-            note_id_func =
+            note_id_func.__raw =
               # lua
               ''
                 function(title)
@@ -837,7 +837,7 @@ with builtins; {
                     return string.format("pasted_img_%s", os.date "%Y%m%d%H%M%S")
                   end
                 '';
-              img_text_func =
+              img_text_func.__raw =
                 # lua
                 ''
                   function(client, path)

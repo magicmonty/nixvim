@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib;
@@ -14,8 +15,26 @@ with builtins; {
   in
     mkIf enable {
       lsp.servers = {
+        vtsls = {
+          enable = true;
+          config = {
+            settings = {
+              vtsls = {
+                tsserver = {
+                  globalPlugins = [
+                    {
+                      name = "@vue/typescript-plugin";
+                      languages = ["vue"];
+                      configNamespace = "typescript";
+                      enableForWorkspaceTypeScriptVersions = true;
+                    }
+                  ];
+                };
+              };
+            };
+          };
+        };
         vue_ls.enable = true;
-        ts_ls.enable = true;
       };
     };
 }
