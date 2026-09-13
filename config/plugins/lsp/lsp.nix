@@ -144,6 +144,9 @@
         enable = true;
         config.telemetry.enable = false;
       };
+      oxlint = {
+        enable = true;
+      };
       eslint = {
         enable = true;
         config = {
