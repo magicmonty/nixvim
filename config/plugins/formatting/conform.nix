@@ -6,14 +6,10 @@
   extraPackages = with pkgs; [
     stylua
     alejandra
-    biome
     clang-tools
     shfmt
     # sqlfluff
     sqruff
-    oxfmt
-    prettier
-    prettierd
     yamllint
     yamlfmt
     libxml2
@@ -102,25 +98,25 @@
         lua = ["stylua"];
         nix = ["alejandra"];
         sh = ["shfmt"];
-        html = ["oxfmt" "prettierd" "prettier"];
-        htmlangular = ["oxfmt" "prettierd" "prettier"];
-        htmlvue = ["oxfmt" "prettierd" "prettier"];
-        json = ["oxfmt" "prettierd" "prettier"];
+        html = ["oxfmt" "oxlint" "prettierd" "prettier"];
+        htmlangular = ["oxfmt" "oxlint" "prettierd" "prettier"];
+        htmlvue = ["oxfmt" "oxlint" "prettierd" "prettier"];
+        json = ["oxfmt" "oxlint" "prettierd" "prettier"];
         c = ["clang-format"];
         cpp = ["clang-format"];
-        css = ["oxfmt" "prettierd" "prettier"];
+        css = ["oxfmt" "oxlint" "prettierd" "prettier"];
         go = ["gofmt"];
-        javascript = ["oxfmt" "prettierd" "prettier"];
-        javascriptreact = ["oxfmt" "prettierd" "prettier"];
+        javascript = ["oxfmt" "oxlint" "prettierd" "prettier"];
+        javascriptreact = ["oxfmt" "oxlint" "prettierd" "prettier"];
         php = ["easy-coding-standard" "php_cs_fixer" "phpcbf" "phpinsights"];
         rust = ["rustfmt"];
         sql = ["sqlfluff"];
-        typescript = ["oxfmt" "prettierd" "prettier"];
-        typescriptreact = ["oxfmt" "prettierd" "prettier"];
+        typescript = ["oxfmt" "oxlint" "prettierd" "prettier"];
+        typescriptreact = ["oxfmt" "oxlint" "prettierd" "prettier"];
         markdown = ["markdownlint"];
         yaml = ["yamllint" "yamlfmt"];
         xml = ["xmllint"];
-        vue = ["oxfmt" "prettierd" "prettier"];
+        vue = ["oxfmt" "oxlint" "prettierd" "prettier"];
       };
     };
   };
