@@ -11,6 +11,7 @@
     shfmt
     # sqlfluff
     sqruff
+    oxfmt
     prettier
     prettierd
     yamllint
@@ -101,24 +102,25 @@
         lua = ["stylua"];
         nix = ["alejandra"];
         sh = ["shfmt"];
-        html = ["prettierd" "prettier"];
-        htmlangular = ["prettierd" "prettier"];
-        htmlvue = ["prettierd" "prettier"];
-        json = ["prettierd" "prettier"];
+        html = ["oxfmt" "prettierd" "prettier"];
+        htmlangular = ["oxfmt" "prettierd" "prettier"];
+        htmlvue = ["oxfmt" "prettierd" "prettier"];
+        json = ["oxfmt" "prettierd" "prettier"];
         c = ["clang-format"];
         cpp = ["clang-format"];
-        css = ["prettierd" "prettier"];
+        css = ["oxfmt" "prettierd" "prettier"];
         go = ["gofmt"];
-        javascript = ["prettierd" "prettier"];
-        javascriptreact = ["prettierd" "prettier"];
+        javascript = ["oxfmt" "prettierd" "prettier"];
+        javascriptreact = ["oxfmt" "prettierd" "prettier"];
         php = ["easy-coding-standard" "php_cs_fixer" "phpcbf" "phpinsights"];
         rust = ["rustfmt"];
         sql = ["sqlfluff"];
-        typescript = ["prettierd" "prettier"];
-        typescriptreact = ["prettierd" "prettier"];
+        typescript = ["oxfmt" "prettierd" "prettier"];
+        typescriptreact = ["oxfmt" "prettierd" "prettier"];
         markdown = ["markdownlint"];
         yaml = ["yamllint" "yamlfmt"];
         xml = ["xmllint"];
+        vue = ["oxfmt" "prettierd" "prettier"];
       };
     };
   };
