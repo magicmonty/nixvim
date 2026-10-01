@@ -77,6 +77,7 @@ _: {
     nil_ls = "󱄅 ";
     nixd = "󱄅 ";
     phpantom_lsp = "";
+    pyrefly = " ";
     qml = " ";
     roslyn = "󰌛 ";
     roslyn_ls = "󰌛 ";

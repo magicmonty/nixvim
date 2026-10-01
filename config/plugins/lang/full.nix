@@ -11,6 +11,7 @@ with lib; {
     ./markdown
     ./neorg
     ./obsidian
+    ./python
     ./rust
     ./sql
     ./swift
@@ -24,6 +25,7 @@ with lib; {
     clojure.enable = mkDefault true;
     neorg.enable = mkDefault false;
     obsidian.enable = mkDefault true;
+    python.enable = mkDefault true;
     vue.enable = mkDefault true;
     dotnet.enable = mkDefault true;
     sql.enable = mkDefault true;
