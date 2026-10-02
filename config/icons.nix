@@ -81,6 +81,7 @@ _: {
     qml = " ";
     roslyn = "󰌛 ";
     roslyn_ls = "󰌛 ";
+    ruff = " ";
     rust_analyzer = "󱘗 ";
     rust-analyzer = "󱘗 ";
     sourcekit = " ";

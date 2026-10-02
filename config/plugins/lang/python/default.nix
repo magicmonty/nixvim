@@ -14,9 +14,8 @@ with builtins; {
   in
     mkIf enable {
       lsp.servers = {
-        pyrefly = {
-          enable = true;
-        };
+        pyrefly.enable = true;
+        ruff.enable = true;
       };
 
       plugins = {
