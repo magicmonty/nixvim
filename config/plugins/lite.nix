@@ -1,4 +1,5 @@
-{lib, ...}: {
+{lib, ...}:
+with lib; {
   imports = [
     ./ai/lite.nix
     ./coding/lite.nix
@@ -14,6 +15,7 @@
   ];
 
   config = {
-    lsp.servers.texlab.enable = lib.mkForce false;
+    sys.ai.enable = mkDefault false;
+    lsp.servers.texlab.enable = mkForce false;
   };
 }

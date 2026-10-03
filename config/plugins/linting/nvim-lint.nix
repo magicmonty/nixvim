@@ -3,14 +3,12 @@
     enable = true;
     lintersByFt = {
       dockerfile = ["hadolint"];
-      markdown = ["markdownlint"];
       nix = ["statix"];
     };
   };
 
   extraPackages = with pkgs; [
     hadolint
-    markdownlint-cli
     statix
   ];
 

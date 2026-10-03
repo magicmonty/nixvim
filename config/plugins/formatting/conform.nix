@@ -1,21 +1,10 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   extraPackages = with pkgs; [
     stylua
     alejandra
     clang-tools
     shfmt
-    # sqlfluff
-    sqruff
-    yamllint
-    yamlfmt
     libxml2
-    phpPackages.php-cs-fixer
-    phpPackages.php-codesniffer
-    phpPackages.phpinsights
   ];
   plugins.conform-nvim = {
     enable = true;
@@ -74,49 +63,14 @@
             ignore_errors = true;
           };
         };
-
-        /*
-        sqlfluff = let
-          config = ./sqlfluff.toml;
-        in {
-          command = lib.getExe pkgs.sqlfluff;
-          args = [
-            "fix"
-            "--config"
-            "${config}"
-            "-"
-          ];
-          require_cwd = false;
-        };
-        */
-        yamllint = {
-          command = lib.getExe pkgs.yamllint;
-        };
       };
 
       formatters_by_ft = {
-        lua = ["stylua"];
         nix = ["alejandra"];
         sh = ["shfmt"];
-        html = ["oxfmt" "oxlint" "prettierd" "prettier"];
-        htmlangular = ["oxfmt" "oxlint" "prettierd" "prettier"];
-        htmlvue = ["oxfmt" "oxlint" "prettierd" "prettier"];
-        json = ["oxfmt" "oxlint" "prettierd" "prettier"];
         c = ["clang-format"];
         cpp = ["clang-format"];
-        css = ["oxfmt" "oxlint" "prettierd" "prettier"];
-        go = ["gofmt"];
-        javascript = ["oxfmt" "oxlint" "prettierd" "prettier"];
-        javascriptreact = ["oxfmt" "oxlint" "prettierd" "prettier"];
-        php = ["easy-coding-standard" "php_cs_fixer" "phpcbf" "phpinsights"];
-        rust = ["rustfmt"];
-        sql = ["sqlfluff"];
-        typescript = ["oxfmt" "oxlint" "prettierd" "prettier"];
-        typescriptreact = ["oxfmt" "oxlint" "prettierd" "prettier"];
-        markdown = ["markdownlint"];
-        yaml = ["yamllint" "yamlfmt"];
         xml = ["xmllint"];
-        vue = ["oxfmt" "oxlint" "prettierd" "prettier"];
       };
     };
   };

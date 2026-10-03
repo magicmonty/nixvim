@@ -15,9 +15,9 @@ with builtins; {
   in
     mkIf enable {
       plugins = {
-        lz-n = {
-          enable = true;
-        };
+        lsp.enable = true;
+        lz-n.enable = true;
+
         conjure = {
           enable = true;
           lazyLoad = {
@@ -25,6 +25,12 @@ with builtins; {
             settings.ft = "clojure";
           };
         };
+
+        treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          clojure
+        ];
       };
+
+      lsp.servers.clojure_lsp.enable = true;
     };
 }

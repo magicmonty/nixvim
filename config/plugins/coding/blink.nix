@@ -53,7 +53,7 @@ in {
         };
       };
     };
-    blink-copilot.enable = true;
+    blink-copilot.enable = config.sys.ai.enable;
     blink-emoji.enable = true;
   };
 }

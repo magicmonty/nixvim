@@ -59,6 +59,7 @@ with builtins; {
       autoGroups = {
         lint = {clear = true;};
       };
+
       autoCmd = [
         {
           callback.__raw = ''
@@ -77,6 +78,7 @@ with builtins; {
           ];
         }
       ];
+
       keymaps = [
         {
           mode = "n";
@@ -91,6 +93,8 @@ with builtins; {
       ];
 
       plugins = {
+        lsp.enable = true;
+
         dap = {
           configurations = {
             swift = [
@@ -104,6 +108,7 @@ with builtins; {
             ];
           };
         };
+
         dap-lldb = {
           settings = {
             configurations = {
@@ -119,6 +124,7 @@ with builtins; {
             };
           };
         };
+
         conform-nvim = {
           settings = {
             formatters_by_ft = {
@@ -126,6 +132,7 @@ with builtins; {
             };
           };
         };
+
         lint = {
           enable = true;
           lintersByFt = {

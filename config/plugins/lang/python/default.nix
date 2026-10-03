@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib;
@@ -13,15 +14,18 @@ with builtins; {
     inherit (config.sys.lang.python) enable;
   in
     mkIf enable {
-      lsp.servers = {
-        pyrefly.enable = true;
-        ruff.enable = true;
-      };
-
       plugins = {
+        lsp.enable = true;
+
         jupytext = {
           enable = true;
         };
+
+        treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          pymanifest
+          python
+        ];
+
         conform-nvim.settings.formatters_by_ft = {
           python = ["ruff_format" "ruff_fix" "ruff_organize_imports"];
         };
@@ -31,7 +35,13 @@ with builtins; {
             enable = true;
           };
         };
+
         dap-python.enable = true;
+      };
+
+      lsp.servers = {
+        pyrefly.enable = true;
+        ruff.enable = true;
       };
     };
 }

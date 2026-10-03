@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 with lib; {
@@ -12,6 +13,16 @@ with lib; {
   in
     mkIf enable {
       plugins = {
+        lsp.enable = true;
+
+        treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          rust
+        ];
+
+        conform-nvim.settings.formatters_by_ft = {
+          rust = ["rustfmt"];
+        };
+
         crates = {
           enable = true;
           settings = {
@@ -227,9 +238,11 @@ with lib; {
             };
           };
         };
+
         neotest.adapters.rust = {
           enable = true;
         };
+
         lsp.servers.rust_analyzer = {
           enable = true;
           installRustc = false;
@@ -239,6 +252,7 @@ with lib; {
             inlayHints.lifetimeElisionHints.enable = "always";
           };
         };
+
         rustaceanvim = {
           enable = false;
           settings = {

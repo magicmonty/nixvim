@@ -63,6 +63,19 @@ with builtins; {
         '';
 
       plugins = {
+        lsp.enable = true;
+
+        treesitter.grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          c_sharp
+          fsharp
+        ];
+
+        conform-nvim.settings.formatters_by_ft = {
+          cs = ["csharpier"];
+          razor = ["csharpier"];
+          cshtml = ["csharpier"];
+        };
+
         blink-cmp.settings.sources.providers.easy-dotnet = {
           name = "easy-dotnet";
           enabled = true;
@@ -70,6 +83,7 @@ with builtins; {
           score_offset = 10000;
           async = true;
         };
+
         dotnet.enable = true;
         easy-dotnet = {
           enable = true;
@@ -86,6 +100,7 @@ with builtins; {
             debugger.bin_path = "netcoredbg";
           };
         };
+
         roslyn = {
           enable = true;
           settings = {
@@ -94,12 +109,6 @@ with builtins; {
             broad_search = true;
             lock_target = true;
           };
-        };
-
-        conform-nvim.settings.formatters_by_ft = {
-          cs = ["csharpier"];
-          razor = ["csharpier"];
-          cshtml = ["csharpier"];
         };
 
         neotest.adapters.dotnet = {

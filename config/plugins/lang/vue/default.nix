@@ -13,6 +13,20 @@ with builtins; {
     inherit (config.sys.lang.vue) enable;
   in
     mkIf enable {
+      sys.lang.web.enable = mkForce true;
+      sys.lang.tailwindcss.enable = mkForce true;
+
+      plugins = {
+        lsp.enable = true;
+
+        conform-nvim = {
+          settings.formatters_by_ft = {
+            vue = ["oxfmt" "oxlint" "prettierd" "prettier"];
+            htmlvue = ["oxfmt" "oxlint" "prettierd" "prettier"];
+          };
+        };
+      };
+
       lsp.servers = {
         vtsls = {
           enable = true;
@@ -33,7 +47,10 @@ with builtins; {
             };
           };
         };
+
         vue_ls.enable = true;
+
+        oxlint.enable = true;
       };
     };
 }

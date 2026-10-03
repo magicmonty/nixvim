@@ -1,4 +1,5 @@
-{
+{lib, ...}:
+with lib; {
   imports = [
     ./ai
     ./coding
@@ -12,4 +13,8 @@
     ./ui
     ./custom
   ];
+
+  config = {
+    sys.ai.enable = mkDefault true;
+  };
 }
