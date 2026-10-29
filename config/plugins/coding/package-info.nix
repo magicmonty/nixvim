@@ -5,6 +5,8 @@ _: {
     settings = {
       package_manager = "npm";
       hide_unstable_versions = true;
+      notifications = false;
+      hide_up_to_date = true;
     };
   };
 
