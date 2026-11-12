@@ -89,6 +89,17 @@ with builtins; {
         }
       ];
 
-      lsp.servers.marksman.enable = enable_lsp;
+      lsp.servers.markdown_oxide = {
+        enable = enable_lsp;
+        config = {
+          capabilities = {
+            workspace.didChangeWatchedFiles.dynamicRegistration = true;
+          };
+        };
+      };
+
+      plugins.blink-cmp.settings.sources.providers.lsp.opts.markdown_oxide = {
+        keyword_pattern = "[[\\(\\k\\| \\|\\/\\|#\\)\\+]]";
+      };
     };
 }

@@ -73,7 +73,7 @@ _: {
     jsonls = " ";
     lemminx = "󰗀 ";
     lua_ls = " ";
-    marksman = " ";
+    markdown_oxide = " ";
     nil_ls = "󱄅 ";
     nixd = "󱄅 ";
     phpantom_lsp = "";

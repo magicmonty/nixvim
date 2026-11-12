@@ -4,6 +4,15 @@
     onAttach =
       # lua
       ''
+        local function codelens_supported(bufnr)
+          for _, c in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+            if c.server_capabilities and c.server_capabilities.codeLensProvider then
+              return true
+            end
+          end
+          return false
+        end
+
         vim.keymap.set("n", "<leader>cl", "<cmd>LspInfo<cr>", { desc = "LSP info", silent = true })
         vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { desc = "References", silent = true })
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
@@ -39,9 +48,25 @@
           end, { desc = "Source Action", buffer = 0 })
         end
 
-        if NixVim.lsp.has(bufnr, "codeLens") then
-          vim.keymap.set({"n", "v"}, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
-          vim.keymap.set("n", "<leader>cC", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens" })
+        if codelens_supported(bufnr) then
+          if NixVim.lsp.has(bufnr, "codeLens") then
+            vim.keymap.set({"n", "v"}, "<leader>cc", vim.lsp.codelens.run, { desc = "Run Codelens" })
+            vim.keymap.set("n", "<leader>cC", function() vim.lsp.codelens.enable(true, { bufnr = bufnr }) end, { desc = "Refresh & Display Codelens" })
+          end
+
+          vim.api.nvim_create_autocmd(
+            { 'TextChanged', 'InsertLeave', 'CursorHold', 'BufEnter' },
+            {
+              buffer = bufnr,
+              callback = function()
+                if codelens_supported(bufnr) then
+                  vim.lsp.codelens.enable(true, { bufnr = bufnr })
+                end
+              end,
+            }
+          )
+
+          vim.lsp.codelens.enable(true, { bufnr = bufnr })
         end
 
       '';
