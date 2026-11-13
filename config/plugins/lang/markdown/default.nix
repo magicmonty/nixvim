@@ -97,9 +97,5 @@ with builtins; {
           };
         };
       };
-
-      plugins.blink-cmp.settings.sources.providers.lsp.opts.markdown_oxide = {
-        keyword_pattern = "[[\\(\\k\\| \\|\\/\\|#\\)\\+]]";
-      };
     };
 }
