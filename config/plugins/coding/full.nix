@@ -2,6 +2,7 @@
   imports = [
     ./blink.nix
     ./comment.nix
+    ./codediff.nix
     ./dap.nix
     ./kulala.nix
     ./lazygit.nix

@@ -57,6 +57,7 @@ with lib; {
           "async.nvim"
           "blink.cmp"
           "codecompanion.nvim"
+          "codediff.nvim"
           "conform.nvim"
           "conjure"
           "copilot.lua"
