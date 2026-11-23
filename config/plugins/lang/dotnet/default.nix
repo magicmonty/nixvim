@@ -38,10 +38,6 @@ with builtins; {
     };
   in
     mkIf enable {
-      extraPackages = with pkgs; [
-        csharpier
-      ];
-
       lsp.servers.roslyn_ls = {
         enable = false;
         config = {
