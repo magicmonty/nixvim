@@ -143,6 +143,7 @@ with lib; {
       virtualedit = "block"; # Allow cursor to move where there is no text in visual block mode
       winminwidth = 5; # Minimum window width
       wrap = false; # Disable line wrap
+      iskeyword = "@,48-57,_,192-255,-"; # default + `-`, so w/e/b/* treat kebab-case as one word
       winborder = "rounded";
       fillchars = {
         foldopen = "";

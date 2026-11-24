@@ -244,8 +244,10 @@
       map("n", "öw", diagnostic_goto(false, "WARN"), { desc = "Previous warning", remap = true, silent = true })
 
 
-      vim.keymap.del('i', '<Tab>');
-      vim.keymap.del({'n', 'x'}, 's')
+       vim.keymap.del('i', '<Tab>');
+       vim.keymap.del({'n', 'x'}, 's')
+       -- remove s binding
+       vim.keymap.set('n', 's', '<nop>')
 
       map( "i", "<Tab>", function()
           local luasnip = require("luasnip")
