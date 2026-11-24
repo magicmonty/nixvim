@@ -113,6 +113,8 @@ in {
           diffget_incoming = false;
           discard = false;
           discard_all = false;
+          next_conflict = "äx";
+          prev_conflict = "öx";
         };
         view = {
           diff_get = "do";
@@ -121,6 +123,10 @@ in {
           stage_hunk = false;
           toggle_stage = false;
           unstage_hunk = false;
+          next_hunk = "äc";
+          prev_hunk = "öc";
+          next_file = "äf";
+          prev_file = "öf";
         };
         explorer = {
           restore = false;
