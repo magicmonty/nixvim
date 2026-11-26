@@ -6,6 +6,7 @@
     ui = import ./ui.nix;
     lsp = import ./lsp.nix;
     lualine = import ./lualine.nix;
+    rex = import ./rex.nix;
   in ''
     ${base}
     ${inject}
@@ -13,6 +14,7 @@
     ${ui}
     ${lsp}
     ${lualine}
+    ${rex}
   '';
 
   extraConfigLuaPost = "NixVim.root.setup()";
